@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field
+			name="id"
+			type="hidden"
+		/>
+		<field
+			name="name"
+			type="text"
+			label="Event name"
+			description="The name of the event?"
+			size="40"
+			class="inputbox validate-name"
+			required="true"
+			default=""
+		/>
+		
+		<field type="spacer" class="text" label="" />
+		<field type="spacer" class="text" label="&lt;b&gt;Game details&lt;/b&gt;" />
+
+		<field 
+			name="type"
+			type="list"
+			default="National tour"
+			label="Event type"
+			description="The type of the event?"
+		>
+			<option value="World tour">World tour</option>
+			<option value="UK tour">UK tour</option>
+			<option value="Non-tour">Non-tour</option>
+		</field>
+		<field 
+			name="singles"
+			type="radio"
+			class="btn-group" 
+			label="Singles"
+			description="Does the event involve singles?"
+			default="1">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>
+		<field 
+			name="doubles"
+			type="radio"
+			class="btn-group" 
+			label="Doubles"
+			description="Does the event involve doubles?"
+			default="0">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>
+		<field 
+			name="teams"
+			type="radio"
+			class="btn-group" 
+			label="Teams"
+			description="Does the event involve teams?"
+			default="0">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>
+		
+
+		<field type="spacer" class="text" label="" />
+		<field type="spacer" class="text" label="&lt;b&gt;Dates&lt;/b&gt;" />
+
+		<field
+			name="year"
+			type="text"
+			label="Year"
+			description="The year of the event?"
+			size="40"
+			class="inputbox validate-year"
+			required="true"
+			default=""
+		/>
+		<field 
+			name="dated"
+			type="radio"
+			class="btn-group validate-dated" 
+			label="Dates decided"
+			description="Have the dates of the event been decided?"
+			default="0">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>
+		<field 
+			name="startdate" 
+			type="calendar" 
+			label="Start date" 
+			default="2016-01-01"
+			description="The date the event starts on? (in the form YYYY-MM-DD)"
+			format="%Y-%m-%d"
+			class="validate-startdate"
+			showon="dated:1"
+		/>
+		<field 
+			name="enddate" 
+			type="calendar" 
+			label="End date" 
+			default="2016-01-01"
+			description="The date the event ends on? (in the form YYYY-MM-DD)"
+			format="%Y-%m-%d"
+			class="validate-enddate"
+			showon="dated:1"
+		/>
+
+		<field type="spacer" class="text" label="" />
+		<field type="spacer" class="text" label="&lt;b&gt;Location&lt;/b&gt;" />
+		<field
+			name="postcode"
+			type="text"
+			label="Venue postcode"
+			description="The postcode of the venue? (used to plot the event on maps)"
+			size="10"
+			class="inputbox validate-postcode"
+			default=""
+		/>
+		<field
+			name="location"
+			type="text"
+			label="Venue location"
+			description="The location of the event (either city or county)?"
+			size="10"
+			class="inputbox validate-location"
+			default=""
+			required="true"
+		/>
+		<field
+			name="latitude"
+			type="number"
+			label="Venue latitude"
+			description="The latitude of the venue? It is used to plot the event on maps and is auto-retrieved from the 'Postcode' field."
+			size="10"
+			class="inputbox validate-latitude"
+			default=""
+		/>
+		<field
+			name="longitude"
+			type="number"
+			label="Venue longitude"
+			description="The longitude of the venue? It is used to plot the event on maps and is auto-retrieved from the 'Postcode' field."
+			size="10"
+			class="inputbox validate-longitude"
+			default=""
+		/>
+
+		<field type="spacer" class="text" label="" />
+		<field type="spacer" class="text" label="&lt;b&gt;Other&lt;/b&gt;" />
+		<field
+			name="link"
+			type="text"
+			label="Link"
+			description="The link to the entry page (tournamentsoftware page)?"
+			size="80"
+			class="inputbox"
+			default=""
+		/>
+
+	</fieldset>
+</form>

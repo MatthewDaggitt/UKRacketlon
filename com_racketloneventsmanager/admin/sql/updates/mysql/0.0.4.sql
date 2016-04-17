@@ -1,0 +1,1 @@
+ALTER TABLE `#__racketloneventsmanager` DROP COLUMN notes;
