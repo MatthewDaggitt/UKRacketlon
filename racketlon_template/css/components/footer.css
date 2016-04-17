@@ -1,0 +1,111 @@
+/* Bottom of the page icons */
+.bd-footer-icons a {
+    color: #bbb;
+    -webkit-transition: all 500ms;
+    transition: all 500ms;
+    font-size: 17.5px;
+    margin-left: .5em;
+    padding: .4em .65em;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    line-height: 25px
+}
+@media (max-width: 991px) {
+    .bd-socialicons-2 .bd-socialicon {
+        margin-left: 0;
+        margin-right: 1em
+    }
+}
+.bd-socialicons-2 .bd-socialicon:hover {
+    color: #fff;
+    background-color: #d9534f;
+    border: 1px solid transparent;
+    background-image: none
+}
+.bd-socialicon-5 span:first-child {
+    text-decoration: inherit;
+    display: inline-block;
+    speak: none
+}
+.bd-socialicon-5 span:first-child:before {
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    text-transform: none;
+    content: '\281';
+    width: auto;
+    visibility: inherit;
+    display: inline-block;
+    vertical-align: middle;
+    text-decoration: none
+}
+.bd-socialicon-7 span:first-child {
+    text-decoration: inherit;
+    display: inline-block;
+    speak: none
+}
+.bd-socialicon-7 span:first-child:before {
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    text-transform: none;
+    content: '\282';
+    width: auto;
+    visibility: inherit;
+    display: inline-block;
+    vertical-align: middle;
+    text-decoration: none
+}
+.bd-socialicon-8 span:first-child {
+    text-decoration: inherit;
+    display: inline-block;
+    speak: none
+}
+.bd-socialicon-8 span:first-child:before {
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    text-transform: none;
+    content: '\1de';
+    width: auto;
+    visibility: inherit;
+    display: inline-block;
+    vertical-align: middle;
+    text-decoration: none
+}
+.bd-socialicon-6 span:first-child {
+    text-decoration: inherit;
+    display: inline-block;
+    speak: none
+}
+.bd-socialicon-6 span:first-child:before {
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    text-transform: none;
+    content: '\246';
+    width: auto;
+    visibility: inherit;
+    display: inline-block;
+    vertical-align: middle;
+    text-decoration: none
+}
+.bd-textblock-1 {
+    border-radius: 15px;
+    border: 3px solid #438AC9;
+    background-color: rgba(0, 54, 102, .85);
+    line-height: 28.57px;
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    width: 100%;
+}
+.bd-socialicon-5 span:first-child:before,
+.bd-socialicon-6 span:first-child:before,
+.bd-socialicon-7 span:first-child:before,
+.bd-socialicon-8 span:first-child:before {
+	float: left;
+    font-family: 'Billion Web Font';
+}

@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.6/template-install.dtd">
+
+<extension version="2.5" client="site" type="template" method="upgrade">
+
+  	<name>uk_racketlon</name>
+  	<creationDate>2015-12-08</creationDate>
+  	<version>1.0</version>
+	<author>Matthew Daggitt</author>
+		<!--<authorUrl>http://www.diablodesign.eu</authorUrl>-->
+  	<author/>
+  	<authorUrl/>
+
+   	<description>
+   		<![CDATA[
+			
+			<style type="text/css" media="all">
+				
+				#wrap1 {padding:0px 0px 4px 0px;}
+				h1 {clear:both;font-family: Georgia, sans-serif;font-size:36px;margin:30px 20px 0px ;padding:0px 0px 14px 10px;color:#369; border-bottom: 1px solid #ccc; font-weight: normal;}
+				h4 { border: none;  margin: 0 0 12px; padding:0; font: 20px/32px Georgia, sans-serif; color: #333; }
+
+			</style>	
+
+			<div id="wrap1">
+				<h1><em>UK Racketlon template</em></h1>
+			</div>
+		]]>
+	</description>
+
+  	<files>
+		<file>CloudZoom.js</file>
+		<file>Readme.txt</file>
+		<file>blank.png</file>
+		<file>bootstrap.min.js</file>
+		<file>component.php</file>
+		<file>error.php</file>
+		<file>functions.php</file>
+		<file>index.html</file>
+		<file>index.php</file>
+		<file>jquery.js</file>
+		<file>modrender.php</file>
+		<file>script.ie.js</file>
+		<file>script.js</file>
+		<file>style.ie.css</file>
+		<file>templateDetails.xml</file>
+		<file>virtuemart.js</file>
+		<folder>css</folder>
+		<folder>fields</folder>
+		<folder>html</folder>
+		<folder>images</folder>
+		<folder>includes</folder>
+		<folder>js</folder>
+		<folder>language</folder>
+		<folder>library</folder>
+		<folder>prototypes</folder>
+		<folder>templates</folder>
+  	</files>
+
+  	<positions>
+		<position>banner-1</position>
+		<position>footer1</position>
+		<position>footer2</position>
+		<position>footer3</position>
+		<position>footer4</position>
+		<position>left</position>
+		<position>position-1</position>
+		<position>position-13</position>
+		<position>position-14</position>
+		<position>position-15</position>
+		<position>position-7</position>
+		<position>position-8</position>
+  	</positions>
+
+  	<config>
+		<fields name="params" addfieldpath="/templates/dd_autogarage_84/fields">
+		  
+		 	<fieldset name="logo" label="Logo">
+				<field name="logoFile" default="templates/uk_racketlon/images/Racketlon_logo_small.gif" type="media" label="TPL_LOGO_LABEL" description="TPL_LOGO_DESC"/>
+				<field name="logoLink" default="" type="text" label="TPL_LOGOLINK_LABEL" description="TPL_LOGOLINK_DESC"/>
+				<field type="spacer" name="spacer" hr="true"/>
+			</fieldset>
+
+		  	<fieldset name="license" label="License Key">       
+				<field name="license" type="text" default="License key" size="50" label="License key" description="License key"/>         
+			</fieldset>	
+
+		  	<fieldset name="analytics" label="Google analytics">
+		  		<field name="ac" type="radio" default="0" class="btn-group" label="Google analytics" description="test">
+					<option value="0">Disabled</option>
+					<option value="1">Enabled</option>
+				</field>
+				<field name="analytics" type="text" default="UA-XXXXXXXX-1" size="50" label="Tracking ID"/>
+			</fieldset>
+
+			<fieldset name="favicon" label="Favicon">    
+				<field name="fav" type="media" label="Favicon image" description="" default="templates/uk_racketlon/images/favicon.gif"/>
+			</fieldset>	
+
+
+			<fieldset name="slideshow" label="Slideshow">
+				<field name="close_slideshow" type="radio" default="1" class="btn-group"  label="Slideshow" description="Stop the slideshow from appearing">
+					<option value="0">Disabled</option>
+					<option value="1">Enabled</option>
+				</field>
+				<field name="close_text" type="radio" default="1" class="btn-group"  label="Slideshow text" description="Stop the slideshow text from appearing">
+					<option value="0">Disabled</option>
+					<option value="1">Enabled</option>
+				</field>
+
+				<field type="spacer" class="text" label=" " />	
+				<field type="spacer" class="text" label="&lt;b&gt;Slide 1&lt;/b&gt;" />	
+				<field name="foto1" type="media" label="Photo" description="" default="templates/uk_racketlon/images/slideshow/1.jpg"/>
+				<field name="ts1" type="textarea" default="From 2nd to 4th October 2015, Malta will become the newest country on the FIR International World Tour events list with the Malta Open. This is a truly incredible venue, with all the facilities a Racketlon player could ask for on site.  Outdoor tennis courts with indoor facilities that are the toast of Malta, it is certain to prove to be a very special world tour venue." rows="8" cols="60" label="Text"/>
+				<field name="b1" type="text" default="Enter now!" size="50" label="Button text" description="Title button"/>
+				<field name="l1" type="text" default="http://" size="50" label="Button link" description="Link button"/>
+				
+				<field type="spacer" class="text" label=" " />	
+				<field type="spacer" class="text" label="&lt;b&gt;Slide 2&lt;/b&gt;" />	
+				<field name="foto2" type="media" label="Photo" description="" default="templates/uk_racketlon/images/slideshow/2.jpg"/>
+				<field name="ts2" type="textarea" default="The 2016 UK Racketlon tour is good to go and it is beautifully laid out on our 2016 Tour Poster.  The tour is not complete and we hope to add additional events as the year goes on, but as a starting point you cannot go wrong." rows="8" cols="60" label="Text"/>
+				<field name="b2" type="text" default="View tour" size="50" label="Button text" description="Title button"/>
+				<field name="l2" type="text" default="http://" size="50" label="Button link" description="Link button"/>
+			
+				<field type="spacer" class="text" label=" " />	
+				<field type="spacer" class="text" label="&lt;b&gt;Slide 3&lt;/b&gt;" />	
+				<field name="foto3" type="media" label="Photo" description="" default="templates/uk_racketlon/images/slideshow/3.jpg"/>
+				<field name="ts3" type="textarea" default="As we approach the end of the 2015 Racketlon season, we approach the first ever European Championships. With 6 events, the UK is fielding the largest squad of players with teams entered in all categories and in 2015 we go with real hopes of coming home with some excess baggage in all 6 of them." rows="8" cols="60" label="Text"/>
+				<field name="b3" type="text" default="Read more" size="50" label="Button text" description="Title button"/>
+				<field name="l3" type="text" default="http://" size="50" label="Button link" description="Link button"/>
+			</fieldset>
+				
+				
+			<fieldset name="Gallery" label="Four box gallery">
+				<field name="close_box" type="radio" default="1" class="btn-group" label="Gallery " description="test">
+					<option value="0">Disabled</option>
+					<option value="1">Enabled</option>
+				</field>
+				
+				<field type="spacer" class="text" label=" " />	
+				<field type="spacer" class="text" label="&lt;b&gt;Box 1&lt;/b&gt;" />         
+				<field name="image1" type="media" label="Photo" description="" default="templates/uk_racketlon/images/gallery/1.jpg"/>
+				<field name="title1" type="text" default="Racketlon?" size="50" label="Title" description="Title hover image"/>
+				<field name="text1" type="textarea" default="Racketlon is a new sport where you play your opponent at all four main racket sports: table tennis, badminton, squash and tennis!" rows="8" cols="60"  label="Text" description="info text " />
+				<field name="button1" type="text" default="Read more" size="50" label="Button text" description="Title button"/>
+				<field name="link1" type="text" default="http://" size="50" label="Button link" description="Link button"/>
+				
+				<field type="spacer" class="text" label=" " />
+				<field type="spacer" class="text" label="&lt;b&gt;Box 2&lt;/b&gt;" /> 
+				<field name="title2" type="text" default="Events" size="50" label="Title" description="Title hover image"/>
+				<field name="image2" type="media" label="Photo" description="" default="templates/uk_racketlon/images/gallery/2.jpg"/>
+				<field name="text2" type="textarea" default="Racketlon events are held up and down the country, throughout the year, so there's bound to be one near you!" rows="8" cols="60"  label="Text" description="info text " />
+				<field name="button2" type="text" default="Find events near you" size="50" label="Button text" description="Title button"/>
+				<field name="link2" type="text" default="http://" size="50" label="Button link" description="Link button"/>
+				
+				<field type="spacer" class="text" label=" " />
+				<field type="spacer" class="text" label="&lt;b&gt;Box 3&lt;/b&gt;" /> 
+				<field name="title3" type="text" default="News" size="50" label="Title" description="Title hover image"/>
+				<field name="image3" type="media" label="Photo" description="" default="templates/uk_racketlon/images/gallery/3.jpg"/>
+				<field name="text3" type="textarea" default="Stay up-to-date with the latest Racketlon news, recent tournament reports and upcoming events." rows="8" cols="60"  label="Text" description="info text " />
+				<field name="button3" type="text" default="Browse" size="50" label="Button text" description="Title button"/>
+				<field name="link3" type="text" default="http://" size="50" label="Button link" description="Link button"/>
+				
+				<field type="spacer" class="text" label=" " />
+				<field type="spacer" class="text" label="&lt;b&gt;Box 4&lt;/b&gt;" /> 
+				<field name="title4" type="text" default="Get in touch" size="50" label="Title" description="Title hover image"/>
+				<field name="image4" type="media" label="Photo" description="" default="templates/uk_racketlon/images/gallery/4.jpg"/>
+				<field name="text4" type="textarea" default="Interested in playing? Get in touch and we'll be happy to give you advice on everything from tournaments to transport!" rows="8" cols="60"  label="Text" description="info text " />
+				<field name="button4" type="text" default="Contact us" size="50" label="Button text" description="Title button"/>
+				<field name="link4" type="text" default="http://" size="50" label="Button link" description="Link button"/>
+			</fieldset>
+				
+
+			<fieldset name="footer" label="Footer">  
+			  	<field name="footer1" type="text" default="UK Racketlon" size="50" label="Site name" description="footer site name"/>	
+				<field name="bg" type="media" label="Background image" description="" default="templates/uk_racketlon/images/bg.jpg"/>
+			</fieldset>	
+
+			<fieldset name="social" label="Social networking icons">	
+				<field type="spacer" class="text" label="&lt;b&gt;Facebook&lt;/b&gt;" />
+				<field name="facebook" type="text" default="//www.facebook.com/sharer.php?u=" label="Url:" description="Facebook link" filter="string" />
+				<field name="fc" type="radio" default="1" class="btn-group" label="Use:" description="">
+					<option value="0">Disabled</option>
+					<option value="1">Enabled</option>
+				</field>
+
+				<field type="spacer" class="text" label=" " />
+				<field type="spacer" class="text" label="&lt;b&gt;Twitter&lt;/b&gt;" />
+				<field name="twitter" type="text" default="//twitter.com/share?url=&amp;text=" label="Url:" description="Twitter link" filter="string" />
+				<field name="tc" type="radio" default="1" class="btn-group" label="Use:" description="">
+					<option value="0">Disabled</option>
+					<option value="1">Enabled</option>
+				</field>
+				
+				<field type="spacer" class="text" label=" " />
+				<field type="spacer" class="text" label="&lt;b&gt;Google+&lt;/b&gt;"/>
+				<field name="google" type="text" default="//plus.google.com/share?url=http://google.com" label="Url:" description="Google+ link" filter="string" />
+				<field name="gc" type="radio" default="0" class="btn-group" label="Use:" description="">
+					<option value="0">Disabled</option>
+					<option value="1">Enabled</option>
+				</field>
+				
+				<field type="spacer" class="text" label=" " />
+				<field type="spacer" class="text" label="&lt;b&gt;Pinterest&lt;/b&gt;" />
+				<field name="pinterest" type="text" default="//pinterest.com/pin/create/button/?url=&amp;media=&amp;description=" label="Url:" description="pinterest link" filter="string" />
+				<field name="pc" type="radio" default="0" class="btn-group" label="Use:" description="">
+					<option value="0">Disabled</option>
+					<option value="1">Enabled</option>
+				</field>
+		
+				<field type="spacer" class="text" label=" " />
+				<field type="spacer" class="text" label="&lt;b&gt;All icons&lt;/b&gt;" />
+				<field name="allicon" type="radio" default="1" class="btn-group" label="Use:" description="">
+					<option value="0">Disabled</option>
+					<option value="1">Enabled</option>
+				</field>
+			</fieldset>
+
+		</fields>
+  	</config>
+
+
+  	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.tpl_uk_racketlon.ini</language>
+  	</languages>
+
+</extension>
