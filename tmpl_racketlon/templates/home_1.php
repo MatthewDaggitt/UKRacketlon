@@ -37,6 +37,8 @@
 			window._$ = jQuery.noConflict(themeHasJQuery);
 		</script>
 
+		<script src = "<?php echo addThemeVersion($document->templateUrl . '/jquery.mousewheel.js'); ?>" type = "text/javascript"></script>
+		<script src = "<?php echo addThemeVersion($document->templateUrl . '/jquery.simplr.smoothscroll.js'); ?>" type = "text/javascript"></script>
 
 		
 
@@ -86,6 +88,12 @@
 			jQuery(document).ready(calculateGalleryTextHeight);
 		</script>
 
+		<script>
+            jQuery(function() {
+                jQuery.srSmoothscroll({});
+            });
+        </script>
+
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="<?php echo addThemeVersion($document->templateUrl . '/bootstrap.min.js'); ?>"></script>
@@ -115,202 +123,146 @@
 		<script src="<?php echo addThemeVersion($document->templateUrl . '/script.js'); ?>"></script>
 	</head>
 
+	<script>
+		function toggle(elm){
+		    //Toggle the class .fill
+		    elm.parentElement.classList.toggle('fill');
+		}
+	</script>
+
+
+	
+
+
 	<style>
 		.bd-layoutbox-53{ background-image: url(<?php echo $document->params->get('bg'); ?>);}
-		.bd-slide-1 {background-image: url(<?php echo $document->params->get('foto2'); ?>);}
-		.bd-slide-5 {background-image: url(<?php echo $document->params->get('foto1'); ?>);}
-		.bd-slide-2 {background-image: url(<?php echo $document->params->get('foto3'); ?>);}
+		#bd-slide-1 .bd-slideshow-image {background-image: url(<?php echo $document->params->get('foto1'); ?>);}
+		#bd-slide-2 .bd-slideshow-image {background-image: url(<?php echo $document->params->get('foto2'); ?>);}
+		#bd-slide-3 .bd-slideshow-image {background-image: url(<?php echo $document->params->get('foto3'); ?>);}
 	</style>
+
 
 	<body class=" bootstrap bd-body-1 bd-pagebackground">
 		
 		<?php include 'common_components/header.php';?>
 
 		<?php if ($close_slideshow == 1) { ?> 
-			<div class=" bd-layoutbox-1 hidden-xs clearfix">
+			<div class="bd-layoutbox-1 hidden-xs clearfix">
 				<div class="bd-container-inner">
-					<div id="carousel-2" class=" bd-slider-2 carousel slide">
-						<div class="bd-container-inner">
-							<div class="bd-slides carousel-inner">
-								<div class=" bd-slide-5 item">
-									<div class="bd-container-inner">
-										<div class="bd-container-inner-wrapper">
-			   								<?php if ($close_text == 1) { ?>
+					<div class="bd-slideshow">
 
-			   									<div class="bd-slide">
-													<div class=" bd-animation-19 animated" data-animation-name="fadeInRightBig"
-														data-animation-event="slidein"
-														data-animation-duration="1000ms"
-														data-animation-delay="300ms"
-														data-animation-infinited="false"
-														data-animation-display="none">
-
-														<div class=" bd-animation-20 animated" data-animation-name="fadeOutRightBig"
-															data-animation-event="slideout"
-															data-animation-duration="1000ms"
-															data-animation-delay="200ms"
-															data-animation-infinited="false">
-
-															<p class=" bd-textblock-1 bd-tagstyles">
-																<?php echo $document->params->get('ts1'); ?>
-															</p>
-														</div>
-													</div>
-			
-													<div class=" bd-animation-8 animated" data-animation-name="fadeInLeftBig"
-														data-animation-event="slidein"
-														data-animation-duration="1000ms"
-														data-animation-delay="400ms"
-														data-animation-infinited="false"
-														data-animation-display="none">
-
-														<div class=" bd-animation-10 animated" data-animation-name="fadeOutLeftBig"
-															data-animation-event="slideout"
-															data-animation-duration="1000ms"
-															data-animation-delay="300ms"
-															data-animation-infinited="false">
-
-															<a href="<?php echo $document->params->get('l1'); ?>" class="bd-slide-button bd-linkbutton btn-primary btn btn-slideshow">
-																<span> 
-																	<?php echo $document->params->get('b1'); ?> 
-																</span>
-															</a>
-														</div>
-													</div>
-												</div>
-											<?php } ?>
-												
-										</div>
-									</div>
-								</div>
-		
-								<div class="bd-slide-1 item">
-									<div class="bd-container-inner">
-										<div class="bd-container-inner-wrapper">
-										   <?php if ($close_text == 1) { ?>
-
-										   		<div class="bd-slide">
-													<div class=" bd-animation-19 animated" data-animation-name="fadeInRightBig"
-														data-animation-event="slidein"
-														data-animation-duration="1000ms"
-														data-animation-delay="300ms"
-														data-animation-infinited="false"
-														data-animation-display="none">
-
-														<div class=" bd-animation-20 animated" data-animation-name="fadeOutRightBig"
-															data-animation-event="slideout"
-															data-animation-duration="1000ms"
-															data-animation-delay="200ms"
-															data-animation-infinited="false">
-
-															<p class=" bd-textblock-1 bd-tagstyles">
-																<?php echo $document->params->get('ts2'); ?>
-															</p>
-														</div>
-													</div>
-											
-													<div class=" bd-animation-8 animated" data-animation-name="fadeInLeftBig"
-														data-animation-event="slidein"
-														data-animation-duration="1000ms"
-														data-animation-delay="400ms"
-														data-animation-infinited="false"
-														data-animation-display="none">
-
-														<div class=" bd-animation-10 animated" data-animation-name="fadeOutLeftBig"
-															data-animation-event="slideout"
-															data-animation-duration="1000ms"
-															data-animation-delay="300ms"
-															data-animation-infinited="false">
-
-															<a href="<?php echo $document->params->get('l2'); ?>" class="bd-slide-button bd-linkbutton btn-primary btn btn-slideshow">
-																<span> 
-																	<?php echo $document->params->get('b2'); ?> 
-																</span>
-															</a>
-														</div>
-													</div>
-												</div>
-											<?php } ?>
-										</div>
-									</div>
-								</div>
-												
-								<div class=" bd-slide-2 item">
-									<div class="bd-container-inner">
-										<div class="bd-container-inner-wrapper">
-										   	<?php if ($close_text == 1) { ?> 
-
-										   		<div class="bd-slide">
-													<div class=" bd-animation-19 animated" data-animation-name="fadeInRightBig"
-														data-animation-event="slidein"
-														data-animation-duration="1000ms"
-														data-animation-delay="300ms"
-														data-animation-infinited="false"
-														data-animation-display="none">
-
-														<div class=" bd-animation-20 animated" data-animation-name="fadeOutRightBig"
-															data-animation-event="slideout"
-															data-animation-duration="1000ms"
-															data-animation-delay="200ms"
-															data-animation-infinited="false">
-															
-															<p class=" bd-textblock-1 bd-tagstyles">
-																<?php echo $document->params->get('ts3'); ?>
-															</p>
-														</div>
-													</div>
-										
-													<div class=" bd-animation-8 animated" data-animation-name="fadeInLeftBig"
-														data-animation-event="slidein"
-														data-animation-duration="1000ms"
-														data-animation-delay="400ms"
-														data-animation-infinited="false"
-														data-animation-display="none">
-
-														<div class=" bd-animation-10 animated" data-animation-name="fadeOutLeftBig"
-															data-animation-event="slideout"
-															data-animation-duration="1000ms"
-															data-animation-delay="300ms"
-															data-animation-infinited="false">
-
-															<a href="<?php echo $document->params->get('l3'); ?>" class="bd-slide-button bd-linkbutton btn-primary btn btn-slideshow">
-																<span> 
-																	<?php echo $document->params->get('b3'); ?> 
-																</span>
-															</a>
-														</div>
-													</div>
-												</div>
-											<?php } ?>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="left-button">
-								<a class=" bd-carousel" href="#">
-									<span class=" bd-icon-18"></span>
-								</a>
-							</div>
-
-							<div class="right-button">
-								<a class=" bd-carousel" href="#">
-									<span class=" bd-icon-18"></span>
-								</a>
-							</div>
-
+						<div class="left-button">
+							<a class=" bd-carousel" href="#">
+								<span class="bd-icon-18"></span>
+							</a>
 						</div>
 
-						<script>
-							if ('undefined' !== typeof initSlider){
-								initSlider('.bd-slider-2', 'left-button', 'right-button', '.bd-carousel', '.bd-indicators', 6100, "hover", true, true);
-							}
-						</script>
+						<div class="right-button">
+							<a class=" bd-carousel" href="#">
+								<span class="bd-icon-18"></span>
+							</a>
+						</div>
+
+						<div id="bd-slide-1" class="panel bd-slideshow-slide">
+						    <div class="bd-slideshow-image fill">
+						        _
+						    </div>
+						    <div class="bd-slideshow-text">
+						        <div class="bd-container-inner">
+									<p> 
+										<?php echo $document->params->get('ts1'); ?>
+									</p>
+
+									<div class="bd-slideshow-link">
+										<a href="<?php echo $document->params->get('l1'); ?>" class="bd-slide-button bd-linkbutton bd-slideshow-btn btn-primary btn">
+											<span> 
+												<?php echo $document->params->get('b1'); ?> 
+											</span>
+										</a>
+									</div>
+								</div>
+						    </div>
+						</div>
+
+						<div id="bd-slide-2" class="panel bd-slideshow-slide">
+						    <div class="bd-slideshow-image fill">
+						        _
+						    </div>
+						    <div class="bd-slideshow-text">
+						        <div class="bd-container-inner">
+									<p> 
+										<?php echo $document->params->get('ts2'); ?>
+									</p>
+
+									<div class="bd-slideshow-link">
+										<a href="<?php echo $document->params->get('l2'); ?>" class="bd-slide-button bd-linkbutton bd-slideshow-btn btn-primary btn">
+											<span> 
+												<?php echo $document->params->get('b2'); ?> 
+											</span>
+										</a>
+									</div>
+								</div>
+						    </div>
+						</div>
+
+						<div id="bd-slide-3" class="panel bd-slideshow-slide">
+						    <div class="bd-slideshow-image fill">
+						        _
+						    </div>
+						    <div class="bd-slideshow-text">
+						        <div class="bd-container-inner">
+									<p> 
+										<?php echo $document->params->get('ts3'); ?>
+									</p>
+
+									<div class="bd-slideshow-link">
+										<a href="<?php echo $document->params->get('l3'); ?>" class="bd-slide-button bd-linkbutton bd-slideshow-btn btn-primary btn">
+											<span> 
+												<?php echo $document->params->get('b3'); ?> 
+											</span>
+										</a>
+									</div>
+								</div>
+						    </div>
+						</div>
 					</div>
 				</div>
 			</div>
 		<?php } ?>
-			
+		
+		<script> 
+			// Slideshow transition script
+			var numberOfSlides = 3;
+			var currentSlide = -1;
+			var timePerSlide = 50000;
+
+			var updateSlideshow = function() {
+				currentSlide = (currentSlide + 1) % numberOfSlides;
+
+				for (var i = numberOfSlides - 1; i >= 0; i--) {
+					var slide = jQuery('#bd-slide-' + (i+1));
+					if(i == currentSlide) {
+						slide.addClass("showing");
+					}
+					else {
+						slide.removeClass("showing");
+					}
+				}
+			}
+			updateSlideshow();
+
+			window.setInterval(updateSlideshow, timePerSlide);
+
+			jQuery('.left-button').click(function() {
+				currentSlide = currentSlide + numberOfSlides - 2;
+				updateSlideshow();
+			});
+
+			jQuery('.right-button').click(function() {
+				updateSlideshow();
+			});
+		</script>
+
 		<?php if ($close_box == 1) { ?><section class=" bd-section-3 bd-tagstyles" id="section4" data-section-title="Architecture Four Steps">
 			
 			<div class="bd-vertical-align-section-wrapper">

@@ -29,6 +29,8 @@
     var themeHasJQuery = !!window.jQuery;
 </script>
 <script src="<?php echo addThemeVersion($document->templateUrl . '/jquery.js'); ?>"></script>
+<script src = "<?php echo addThemeVersion($document->templateUrl . '/jquery.mousewheel.js'); ?>" type = "text/javascript"></script>
+<script src = "<?php echo addThemeVersion($document->templateUrl . '/jquery.simplr.smoothscroll.js'); ?>" type = "text/javascript"></script>
 <script>
     window._$ = jQuery.noConflict(themeHasJQuery);
 </script>
@@ -105,7 +107,19 @@
         </div>
     </div>
 </div></div>
-	
+
+	    <script>
+            jQuery(function() {
+                jQuery.srSmoothscroll({});
+            });
+
+            jQuery(window).scroll(function(e) {
+                var height = Math.max(0, jQuery(window).scrollTop() - jQuery(".bd-headerarea-1").height() - 10);
+                jQuery(".twitter_module.jmoddiv").css('padding-top', height);
+            });
+        </script>
+
+
 		<?php include 'common_components/footer.php';?>
-</body>
+    </body>
 </html>

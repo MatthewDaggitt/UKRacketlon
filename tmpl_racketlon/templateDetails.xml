@@ -39,10 +39,11 @@
 		<file>index.html</file>
 		<file>index.php</file>
 		<file>jquery.js</file>
+		<file>jquery.mousewheel.js</file>
+		<file>jquery.simplr.smoothscroll.js</file>
 		<file>modrender.php</file>
 		<file>script.ie.js</file>
 		<file>script.js</file>
-		<file>style.ie.css</file>
 		<file>templateDetails.xml</file>
 		<folder>css</folder>
 		<folder>fields</folder>

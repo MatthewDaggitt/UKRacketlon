@@ -74,6 +74,7 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA-XCnoJQEARUqKqIMI9J16Ax6g5e1Fxh0"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script>
 	function initialise() {
 
@@ -125,10 +126,10 @@ defined('_JEXEC') or die('Restricted access');
 				}
 
 				jQuery('html,body').animate({
-				   scrollTop: jQuery(eventElement).offset().top - jQuery(window).height()/2 - jQuery(eventElement).height()/2
+				   scrollTop: jQuery(eventElement).offset().top - jQuery(window).height()/2 + jQuery(eventElement).height()/2
 				});
 
-				jQuery(eventElement).effect("shake", "left", 20, 3);
+				jQuery(eventElement).effect("pulsate", { times:4 }, 2000);
 				/*
 				var time = 0;
 				var fadeTime = 2000;

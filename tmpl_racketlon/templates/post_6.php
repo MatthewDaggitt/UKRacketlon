@@ -35,6 +35,7 @@
 		<script>
 			window._$ = jQuery.noConflict(themeHasJQuery);
 		</script>
+		<script src = "<?php echo addThemeVersion($document->templateUrl . '/jquery.simplr.smoothscroll.js'); ?>" type = "text/javascript"></script>
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="<?php echo addThemeVersion($document->templateUrl . '/bootstrap.min.js'); ?>"></script>
@@ -109,7 +110,7 @@
 				</div>
 			</div>  
 		</div>
-
+		
 		<?php include 'common_components/footer.php';?>
 	</body>
 </html>
