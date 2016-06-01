@@ -114,8 +114,22 @@
             });
 
             jQuery(window).scroll(function(e) {
-                var height = Math.max(0, jQuery(window).scrollTop() - jQuery(".bd-headerarea-1").height() - 10);
-                jQuery(".twitter_module.jmoddiv").css('padding-top', height);
+                if(jQuery(window).width() >= 768)
+                {
+                    var height = Math.max(0, jQuery(window).scrollTop() - jQuery(".bd-headerarea-1").height() - 10);
+                    jQuery(".twitter_module.jmoddiv").css('padding-top', height);
+                }
+                else
+                {
+                    jQuery(".twitter_module.jmoddiv").css('padding-top', 0);
+                }
+            });
+
+            jQuery(window).resize(function() {
+                if(jQuery(window).width() < 768)
+                {
+                    jQuery(".twitter_module.jmoddiv").css('padding-top', 0);
+                }
             });
         </script>
 

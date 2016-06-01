@@ -38,7 +38,6 @@
 		</script>
 
 		<script src = "<?php echo addThemeVersion($document->templateUrl . '/jquery.mousewheel.js'); ?>" type = "text/javascript"></script>
-		<script src = "<?php echo addThemeVersion($document->templateUrl . '/jquery.simplr.smoothscroll.js'); ?>" type = "text/javascript"></script>
 
 		
 
@@ -87,12 +86,6 @@
 			jQuery(window).resize(calculateGalleryTextHeight);
 			jQuery(document).ready(calculateGalleryTextHeight);
 		</script>
-
-		<script>
-            jQuery(function() {
-                jQuery.srSmoothscroll({});
-            });
-        </script>
 
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">

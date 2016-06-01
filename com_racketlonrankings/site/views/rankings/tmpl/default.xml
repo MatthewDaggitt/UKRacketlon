@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Rankings">
+		<message>Displays the top UK ranked players</message>
+	</layout>
+
+	<fields name="request">
+		<fieldset name="request">
+
+		</fieldset>
+	</fields>
+
+</metadata>

@@ -3,28 +3,15 @@
 	<section class="bd-section-4 bd-tagstyles" id="section3" data-section-title="Simple Footer BG Image Dark">
 		<div class="bd-vertical-align-section-wrapper">
 			<div class=" bd-layoutbox-2 clearfix">
-				<div class="bd-container-inner">
+				<div id="bd-footer-container" class="bd-container-inner">
 
-					<div class=" bd-layoutbox-4 clearfix">
-						<div class="bd-container-inner">
-							<p class=" bd-textblock-2 bd-tagstyles">
-								Copyright © <?php echo date("Y");?>, <?php echo $document->params->get('footer1'); ?>
-							</p>
-						</div>
-					</div>
-
-					<div class=" bd-layoutbox-4 clearfix">
-						<div class="bd-container-inner">
-							<a target="_blank" class="bd-footer-icon bd-login-icon">
-								<span></span>
-							</a>
-						</div>
-					</div>
-					
-					<div class=" bd-layoutbox-9 clearfix">
+					<div id="bd-footer-icons" class="bd-layoutbox-9 clearfix">
 						<div class="bd-container-inner">
 							<?php if ($allicon == 1) { ?>
 								<div class=" bd-socialicons-2">
+									<a target="_blank" class="bd-footer-icon bd-login-icon">
+										<span></span>
+									</a>
 									<?php if ($fc == 1) { ?>
 										<a target="_blank" class="bd-footer-icon bd-socialicon-5" href="<?php echo $document->params->get('facebook');?>">
 											<span></span>
@@ -52,6 +39,15 @@
 							<?php } ?>
 						</div>
 					</div>
+
+					<div id="bd-footer-copyright" class=" bd-layoutbox-4 clearfix">
+						<div class="bd-container-inner">
+							<p class=" bd-textblock-2 bd-tagstyles">
+								Copyright © <?php echo date("Y");?>, <?php echo $document->params->get('footer1'); ?>
+							</p>
+						</div>
+					</div>
+
 				</div>
 			</div>
 		</div>

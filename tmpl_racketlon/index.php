@@ -7,6 +7,7 @@ defined('_JEXEC') or die;
  * Template for Joomla! CMS, created with Designer.
  * See readme.txt for more details on how to use the template.
  */
+header('Content-Type: text/html; charset=UTF-8');
 
 $themeDir = dirname(__FILE__);
 
@@ -23,3 +24,6 @@ Designer::load("Designer_Page");
 $this->view = new DesignerPage($this);
 echo $this->view->renderTemplate($themeDir);
 ?>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>

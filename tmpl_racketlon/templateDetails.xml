@@ -41,6 +41,7 @@
 		<file>jquery.js</file>
 		<file>jquery.mousewheel.js</file>
 		<file>jquery.simplr.smoothscroll.js</file>
+		<file>heartcode-canvasloader.min.js</file>
 		<file>modrender.php</file>
 		<file>script.ie.js</file>
 		<file>script.js</file>

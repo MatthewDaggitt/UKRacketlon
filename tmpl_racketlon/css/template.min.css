@@ -6416,7 +6416,7 @@ input[type=text].bd-bootstrapinput.form-control::-webkit-input-placeholder {
 }
 .bd-orderedlist,
 .bd-tagstyles:not(.bd-custom-orderedlist) ol {
-	padding-left: 25px
+	padding-left: 5%;
 }
 .bd-pagination.right {
 	text-align: right
@@ -9771,7 +9771,7 @@ a.bd-backtotop-1:hover {
 	right: auto;
 	top: 50%;
 	bottom: auto;
-	width: 372px;
+	width: 324px;
 	height: auto;
 	transform: translateY(-50%);
 }
@@ -10104,7 +10104,7 @@ a.bd-backtotop-1:hover {
 	right: auto;
 	top: 0;
 	bottom: auto;
-	height: 138px
+	height: 118px
 }
 @media (max-width: 1199px) {
 	.bd-section-1 {
@@ -13192,7 +13192,7 @@ input[type=text].bd-bootstrapinput-7.form-control::-webkit-input-placeholder {
 .bd-menu-3.nav-pills .bd-menuitem-3>a:visited {
 	color: #ddd;
 	text-transform: none;
-	padding: 15px 20px;
+	padding: 10px 20px;
 	display: block;
 	white-space: nowrap
 }
@@ -13245,7 +13245,7 @@ input[type=text].bd-bootstrapinput-7.form-control::-webkit-input-placeholder {
 	position: absolute;
 	z-index: 1001;
 	transition: all 0.2s;
-	opacity: 0;
+	opacity: 1;
 }
 .bd-menu-4-popup.bd-popup-left {
 	left: auto;
@@ -15798,11 +15798,37 @@ input[type=text].bd-bootstrapinput-9.form-control:-ms-input-placeholder {
 }
 .bd-login-icon {
 	cursor: pointer;
-	margin-left: 2em;
 }
 .bd-login-icon span:first-child:before {
 	content: '\280';
 }
+
+#bd-footer-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+#bd-footer-icons {
+	order: 2;
+}
+#bd-footer-copyright {
+	order: 1;
+}
+@media (max-width: 479px) {
+	#bd-footer-container {
+		justify-content: space-around;
+	}
+	#bd-footer-icons {
+		order: 1;
+	}
+	#bd-footer-copyright {
+		order: 2;
+		margin-left: 40px;
+    	margin-right: 40px;
+    	margin-top: 5px;
+	}
+}
+
 
 /*************/
 /** General **/
@@ -15955,6 +15981,10 @@ body {
 .item-title {
 	margin-left: 12px;
 	margin-right: 12px;
+}
+
+.bd-empty-grid-item {
+	height: 1px !important;
 }
 
 /************/
@@ -16426,4 +16456,253 @@ th > .rem-trophy {
 .bd-slide-button:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+/***************/
+/** Footables **/
+/***************/
+table>tbody>tr>td>span.footable-toggle {
+    border: 0px solid #ccc;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    top: -1px;
+    text-align: center;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.fooicon-minus {
+	background-color: red;
+}
+.fooicon-plus {
+	background-color: green;
+}
+.fooicon.fooicon-minus:before,
+.fooicon.fooicon-plus:before {
+	content: "\126";
+}
+.fooicon-plus:before,
+.fooicon-minus:before {
+	color: white;
+	font-size: 16px;
+	vertical-align: -37%;
+	font-family: 'Billion Web Font';
+}
+@media (max-width: 767px) {
+	.fooicon-plus:before,
+	.fooicon-minus:before {
+		vertical-align: -50%;
+	}
+}
+
+.fooicon.footable-toggle {
+	opacity: 0.6;
+	transition: opacity 0.5s;
+	margin-right: 5%;
+}
+.fooicon:hover {
+	opacity: 1;
+}
+table.footable-details {
+	margin-left: 10px;
+	margin-bottom: 25px;
+}
+
+/******************/
+/* Player ratings */
+/******************/
+
+#player-search {
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+#player-search-icon {
+	position: absolute;
+    right: 1px;
+    margin-top: -36px;
+    line-height: 32px;
+}
+#player-search-box {
+	width: 100%;
+}
+
+#all-rating-graph {
+	width: 100%;
+	height: 400px;
+	margin: auto;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#all-rating-container {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 25px;
+}
+.rating-graph {
+	width: 100%;
+	height: 200px;
+	margin: auto;
+	margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media (max-width: 991px) {
+	#all-rating-graph {
+		height: 300px;
+	}
+	.rating-graph {
+		height: 200px;
+	}
+}
+@media (max-width: 767px) {
+	#all-rating-graph,
+	.rating-graph {
+		height: 200px;
+	}
+}
+@media (max-width: 479px) {
+	#all-rating-graph,
+	.rating-graph {
+		height: 150px;
+	}
+}
+
+#sports-ratings-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	margin-top: 17px;
+}
+
+.rating-section {
+	margin-top: 40px;
+}
+
+.sport-container {
+	width: 50%;
+	margin-bottom: 20px;
+	margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+@media (max-width: 767px) {
+	.sport-container {
+		width: 100%;
+	}
+}
+.tournament-results-container {
+	margin-top: 50px;
+}
+.tournament-table tr {
+	line-height: 45px;
+}
+
+
+.tournament-table .op-col {
+	width: 25%;
+}
+.tournament-table .op-rat-col,
+.tournament-table .rat-chg-col {
+	width: 10%;
+}
+.tournament-table .rat-col,
+.tournament-table .total-col {
+	width: 9%;
+}
+.tournament-table .result-col {
+	width: 8%;
+}
+.tournament-table .tt-col,
+.tournament-table .bd-col,
+.tournament-table .sq-col,
+.tournament-table .tn-col {
+	width: 7%;
+}
+.tournament-table .fooicon.footable-toggle {
+	margin-right: 10%;
+}
+@media (max-width: 1191px) {
+	.tournament-table .total-col {
+		width: 5%;
+	}
+}
+@media (max-width: 992px) {
+	.tournament-table .op-rat-col {
+		width: 12%;
+	}
+	.tournament-table .fooicon.footable-toggle {
+		margin-right: 5%;
+	}
+}
+@media (max-width: 767px) {
+	.tournament-table .op-col {
+		width: 60%;
+	}
+	.tournament-table .result-col {
+		width: 20%
+	}
+	.tournament-table .total-col {
+		width: 10%;
+	}
+	.tournament-table .fooicon.footable-toggle {
+		margin-right: 15%;
+	}
+}
+@media (max-width: 479px) {
+	.tournament-table .op-col {
+		width: 80%;
+	}
+	.tournament-table .result-col {
+		width: 10%;
+	}
+}
+
+table.tournament-table.footable-details>tbody>tr>th:nth-child(1) {
+    width: 150px;
+}
+
+/***************/
+/* Top players */
+/***************/
+
+.rankings-table-container {
+	display: none;
+}
+.rankings-table {
+	line-height: 40px;
+}
+@media (max-width: 480px) {
+	.rankings-table .name-col {
+		width: 70%;
+	}
+	.rankings-table .rank-col {
+		padding-left: 50px;
+	}
+}
+#loading-div {
+	text-align: center;
+    padding-top: 30px;
+}
+
+/**************/
+/* Contact us */
+/**************/
+
+#contact-form > div:nth-child(7) {
+	display: flex;
+}
+
+#contact-form > div:nth-child(7) > div.control-label {
+	padding-right: 20px;
+}
+
+@media (max-width: 767px) {
+	#emailid,
+	#email,
+	#name {
+		width: 100%;
+	}
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Player">
+		<message>Hmm some sort of description thing for the player view</message>
+	</layout>
+
+	<fields name="request">
+		<fieldset name="request">
+			<field
+				name="player_id"
+				type="number"
+				label="Player id"
+				description="The player to display. Use '-1' to display no player"
+				default=""
+			/>
+		</fieldset>
+	</fields>
+
+</metadata>
