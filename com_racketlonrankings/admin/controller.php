@@ -149,7 +149,8 @@ class RacketlonRankingsController extends JControllerLegacy
 	**/
 	private function process($handle, $table, $metacolumns)
 	{
-		$header = explode(",", str_replace(' ', '', str_replace(PHP_EOL, '', fgets($handle))));
+		$allHeader = fgets($handle);
+		$header = array_map('trim', explode(",", str_replace(PHP_EOL, '', $allHeader)));
 		if(!$this->validateHeader($header, $metacolumns, "players"))
 		{
 			return false;
@@ -269,9 +270,6 @@ class RacketlonRankingsController extends JControllerLegacy
 				$ratingbd = $match['p1ratingbd'] + $match['p1ratingchgbd'];
 				$ratingsq = $match['p1ratingsq'] + $match['p1ratingchgsq'];
 				$ratingtn = $match['p1ratingtn'] + $match['p1ratingchgtn'];
-
-				var_dump(array($p[1], $match['p1rating'], $match['p1ratingchg'], $match['bonus'], $rating));
-				echo "<br>";
 
 				$putColumns = array(
 					'rating='   . $this->db->quote($rating),
