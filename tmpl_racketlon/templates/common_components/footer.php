@@ -9,29 +9,29 @@
 						<div class="bd-container-inner">
 							<?php if ($allicon == 1) { ?>
 								<div class=" bd-socialicons-2">
-									<a target="_blank" class="bd-footer-icon bd-login-icon">
+									<a target="_blank" class="bd-round-icon bd-footer-icon bd-login-icon">
 										<span></span>
 									</a>
 									<?php if ($fc == 1) { ?>
-										<a target="_blank" class="bd-footer-icon bd-socialicon-5" href="<?php echo $document->params->get('facebook');?>">
+										<a target="_blank" class="bd-round-icon bd-footer-icon bd-socialicon-5" href="<?php echo $document->params->get('facebook');?>">
 											<span></span>
 										</a>
 									<?php } ?>
 							
 									<?php if ($tc == 1) { ?>
-										<a target="_blank" class="bd-footer-icon bd-socialicon-6" href="<?php echo $document->params->get('twitter'); ?>">
+										<a target="_blank" class="bd-round-icon bd-footer-icon bd-socialicon-6" href="<?php echo $document->params->get('twitter'); ?>">
 											<span></span>
 										</a>
 									<?php } ?>
 							
 									<?php if ($gc == 1) { ?>
-										<a target="_blank" class="bd-footer-icon bd-socialicon-7" href="<?php echo $document->params->get('google'); ?>">
+										<a target="_blank" class="bd-round-icon bd-footer-icon bd-socialicon-7" href="<?php echo $document->params->get('google'); ?>">
 											<span></span>
 										</a>
 									<?php } ?>
 							
 									<?php if ($pc == 1) { ?>
-										<a target="_blank" class="bd-footer-icon bd-socialicon-8" href="<?php echo $document->params->get('pinterest'); ?>">
+										<a target="_blank" class="bd-round-icon bd-footer-icon bd-socialicon-8" href="<?php echo $document->params->get('pinterest'); ?>">
 											<span></span>
 										</a>
 									<?php } ?>

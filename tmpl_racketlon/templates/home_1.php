@@ -37,57 +37,7 @@
 			window._$ = jQuery.noConflict(themeHasJQuery);
 		</script>
 
-		<script src = "<?php echo addThemeVersion($document->templateUrl . '/jquery.mousewheel.js'); ?>" type = "text/javascript"></script>
-
 		
-
-		<script>
-			// Script to ensure gallery text-blocks are all the same size
-			var win = jQuery(window);
-
-			var calculateGalleryTextHeight = function() 
-			{
-  				var width = win.width() + 15;
-
-  				jQuery(".bd-textblock-7").css("height", "auto");
-  				jQuery(".bd-textblock-10").css("height", "auto");
-  				jQuery(".bd-textblock-13").css("height", "auto");
-  				jQuery(".bd-textblock-16").css("height", "auto");
-
-  				var h1 = jQuery(".bd-textblock-7").height();
-  				var h2 = jQuery(".bd-textblock-10").height();
-  				var h3 = jQuery(".bd-textblock-13").height();
-  				var h4 = jQuery(".bd-textblock-16").height();
-
-  				if(width < 768)
-  				{
-  					h1 = "auto";
-  					h3 = "auto";
-  				}
-  				else if(width < 1199)
-  				{
-  					h1 = Math.max(h1, h2);
-  					h3 = Math.max(h3, h4);
-  				}
-  				else
-  				{
-  					h1 = Math.max(h1, h2, h3, h4);
-  					h3 = h1;
-  				}
-  				h2 = h1;
-  				h4 = h3;
-
-				jQuery(".bd-textblock-7").css("height", h1)
-				jQuery(".bd-textblock-10").css("height", h2)
-				jQuery(".bd-textblock-13").css("height", h3)
-				jQuery(".bd-textblock-16").css("height", h4)
-			};
-
-			jQuery(window).resize(calculateGalleryTextHeight);
-			jQuery(document).ready(calculateGalleryTextHeight);
-		</script>
-
-
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="<?php echo addThemeVersion($document->templateUrl . '/bootstrap.min.js'); ?>"></script>
 
@@ -116,22 +66,8 @@
 		<script src="<?php echo addThemeVersion($document->templateUrl . '/script.js'); ?>"></script>
 	</head>
 
-	<script>
-		function toggle(elm){
-		    //Toggle the class .fill
-		    elm.parentElement.classList.toggle('fill');
-		}
-	</script>
-
-
-	
-
-
 	<style>
 		.bd-layoutbox-53{ background-image: url(<?php echo $document->params->get('bg'); ?>);}
-		#bd-slide-1 .bd-slideshow-image {background-image: url(<?php echo $document->params->get('foto1'); ?>);}
-		#bd-slide-2 .bd-slideshow-image {background-image: url(<?php echo $document->params->get('foto2'); ?>);}
-		#bd-slide-3 .bd-slideshow-image {background-image: url(<?php echo $document->params->get('foto3'); ?>);}
 	</style>
 
 
@@ -140,122 +76,41 @@
 		<?php include 'common_components/header.php';?>
 
 		<?php if ($close_slideshow == 1) { ?> 
-			<div class="bd-layoutbox-1 hidden-xs clearfix">
-				<div class="bd-container-inner">
-					<div class="bd-slideshow">
+			<div id="bd-slideshow">
+				<div id="bd-slideshow-filler"> </div>
 
-						<div class="left-button">
-							<a class=" bd-carousel" href="#">
-								<span class="bd-icon-18"></span>
-							</a>
-						</div>
+				<div id="bd-slideshow-content">
+					<div class="bd-container-inner">
+					    <div id="bd-slideshow-text">
+							<div class="bd-container-inner">
+								<p> 
+									<?php echo $document->params->get('ts1'); ?>
+								</p>
 
-						<div class="right-button">
-							<a class=" bd-carousel" href="#">
-								<span class="bd-icon-18"></span>
-							</a>
-						</div>
+								<div id="bd-slideshow-link">
+									<a class="bd-round-icon left-button" href="#">
+										<span></span>
+									</a>
 
-						<div id="bd-slide-1" class="panel bd-slideshow-slide">
-						    <div class="bd-slideshow-image fill">
-						        _
-						    </div>
-						    <div class="bd-slideshow-text">
-						        <div class="bd-container-inner">
-									<p> 
-										<?php echo $document->params->get('ts1'); ?>
-									</p>
+									<a id="bd-slideshow-btn" class="bd-slide-button bd-link-button btn-primary btn" href="<?php echo $document->params->get('l1'); ?>" >
+										<span> 
+											<?php echo $document->params->get('b1'); ?> 
+										</span>
+									</a>
 
-									<div class="bd-slideshow-link">
-										<a href="<?php echo $document->params->get('l1'); ?>" class="bd-slide-button bd-linkbutton bd-slideshow-btn btn-primary btn">
-											<span> 
-												<?php echo $document->params->get('b1'); ?> 
-											</span>
-										</a>
-									</div>
+									<a class="bd-round-icon right-button" href="#">
+										<span></span>
+									</a>
 								</div>
-						    </div>
-						</div>
-
-						<div id="bd-slide-2" class="panel bd-slideshow-slide">
-						    <div class="bd-slideshow-image fill">
-						        _
-						    </div>
-						    <div class="bd-slideshow-text">
-						        <div class="bd-container-inner">
-									<p> 
-										<?php echo $document->params->get('ts2'); ?>
-									</p>
-
-									<div class="bd-slideshow-link">
-										<a href="<?php echo $document->params->get('l2'); ?>" class="bd-slide-button bd-linkbutton bd-slideshow-btn btn-primary btn">
-											<span> 
-												<?php echo $document->params->get('b2'); ?> 
-											</span>
-										</a>
-									</div>
-								</div>
-						    </div>
-						</div>
-
-						<div id="bd-slide-3" class="panel bd-slideshow-slide">
-						    <div class="bd-slideshow-image fill">
-						        _
-						    </div>
-						    <div class="bd-slideshow-text">
-						        <div class="bd-container-inner">
-									<p> 
-										<?php echo $document->params->get('ts3'); ?>
-									</p>
-
-									<div class="bd-slideshow-link">
-										<a href="<?php echo $document->params->get('l3'); ?>" class="bd-slide-button bd-linkbutton bd-slideshow-btn btn-primary btn">
-											<span> 
-												<?php echo $document->params->get('b3'); ?> 
-											</span>
-										</a>
-									</div>
-								</div>
-						    </div>
+							</div>
 						</div>
 					</div>
 				</div>
+
+				<div id="bd-slideshow-border"> </div>
 			</div>
 		<?php } ?>
 		
-		<script> 
-			// Slideshow transition script
-			var numberOfSlides = 3;
-			var currentSlide = -1;
-			var timePerSlide = 50000;
-
-			var updateSlideshow = function() {
-				currentSlide = (currentSlide + 1) % numberOfSlides;
-
-				for (var i = numberOfSlides - 1; i >= 0; i--) {
-					var slide = jQuery('#bd-slide-' + (i+1));
-					if(i == currentSlide) {
-						slide.addClass("showing");
-					}
-					else {
-						slide.removeClass("showing");
-					}
-				}
-			}
-			updateSlideshow();
-
-			window.setInterval(updateSlideshow, timePerSlide);
-
-			jQuery('.left-button').click(function() {
-				currentSlide = currentSlide + numberOfSlides - 2;
-				updateSlideshow();
-			});
-
-			jQuery('.right-button').click(function() {
-				updateSlideshow();
-			});
-		</script>
-
 		<?php if ($close_box == 1) { ?><section class=" bd-section-3 bd-tagstyles" id="section4" data-section-title="Architecture Four Steps">
 			
 			<div class="bd-vertical-align-section-wrapper">
@@ -285,7 +140,7 @@
 												<?php echo $document->params->get('text1'); ?>
 											</p>
 											
-											<a href="<?php echo $document->params->get('link1'); ?>" class="bd-slide-button bd-linkbutton btn-primary btn">
+											<a href="<?php echo $document->params->get('link1'); ?>" class="bd-slide-button bd-link-button btn-primary btn">
 												<span> <?php echo $document->params->get('button1'); ?> </span>
 											</a>
 										</div>
@@ -313,7 +168,7 @@
 									   			<?php echo $document->params->get('text2'); ?>
 											</p	>
 			
-											<a href="<?php echo $document->params->get('link2'); ?>" class="bd-slide-button bd-linkbutton btn-primary btn">
+											<a href="<?php echo $document->params->get('link2'); ?>" class="bd-slide-button bd-link-button btn-primary btn">
 												<span> <?php echo $document->params->get('button2'); ?> </span>
 											</a>
 										</div>
@@ -341,7 +196,7 @@
 												<?php echo $document->params->get('text3'); ?>
 											</p>
 									
-											<a href="<?php echo $document->params->get('link3'); ?>" class="bd-slide-button bd-linkbutton btn-primary btn">
+											<a href="<?php echo $document->params->get('link3'); ?>" class="bd-slide-button bd-link-button btn-primary btn">
 												<span> <?php echo $document->params->get('button3'); ?> </span>
 											</a>
 										</div>
@@ -369,7 +224,7 @@
 												<?php echo $document->params->get('text4'); ?>
 											</p>
 									
-											<a href="<?php echo $document->params->get('link4'); ?>" class="bd-slide-button bd-linkbutton btn-primary btn">
+											<a href="<?php echo $document->params->get('link4'); ?>" class="bd-slide-button bd-link-button btn-primary btn">
 												<span> <?php echo $document->params->get('button4'); ?> </span>
 											</a>
 										</div>
@@ -399,4 +254,119 @@
 			</script>
 		<?php } ?>
 	</body>
+
+
+	<script src = "<?php echo addThemeVersion($document->templateUrl . '/jquery.mousewheel.js'); ?>" type = "text/javascript"></script>
+
+		
+	<script> 
+		// Slideshow transition script
+		var numberOfSlides = 3;
+		var currentSlide = 0;
+		var timePerSlide = 10000;
+
+		var imageUrls = [
+			'url(<?php echo $document->params->get('foto1'); ?>)',
+			'url(<?php echo $document->params->get('foto2'); ?>)',
+			'url(<?php echo $document->params->get('foto3'); ?>)'
+		]
+
+		var text = [
+			'<?php echo $document->params->get('ts1'); ?>',
+			'<?php echo $document->params->get('ts2'); ?>',
+			'<?php echo $document->params->get('ts3'); ?>'
+		]
+
+		var links = [
+			'<?php echo $document->params->get('l1'); ?>',
+			'<?php echo $document->params->get('l2'); ?>',
+			'<?php echo $document->params->get('l3'); ?>'
+		]
+
+		var buttonText = [
+			'<?php echo $document->params->get('b1'); ?>',
+			'<?php echo $document->params->get('b2'); ?>',
+			'<?php echo $document->params->get('b3'); ?>'
+
+		]
+
+		var updateSlideshow = function(e) {
+			jQuery('#bd-slideshow-text p').text(text[currentSlide]);
+			jQuery('#bd-slideshow-btn').attr('href', links[currentSlide]);
+			jQuery('#bd-slideshow-btn span').text(buttonText[currentSlide]);
+
+			if(jQuery(window).width() >= 768)
+			{
+				jQuery('#bd-slideshow').css('background-image', imageUrls[currentSlide]);
+			}
+			else
+			{
+				jQuery('#bd-slideshow').css('background-image', 'none');
+			}
+			
+		}
+		updateSlideshow();
+
+		window.setInterval(updateSlideshow, timePerSlide);
+		jQuery(window).resize(updateSlideshow);
+
+		jQuery('.left-button').click(function(e) {
+			currentSlide = (currentSlide + numberOfSlides - 1) % numberOfSlides;
+			updateSlideshow();
+			e.preventDefault();
+		});
+
+		jQuery('.right-button').click(function(e) {
+			currentSlide = (currentSlide + 1) % numberOfSlides;
+			updateSlideshow();
+			e.preventDefault();
+		});
+
+	</script>
+
+	<script>
+		// Script to ensure gallery text-blocks are all the same size
+		var win = jQuery(window);
+
+		var calculateGalleryTextHeight = function() 
+		{
+				var width = win.width() + 15;
+
+				jQuery(".bd-textblock-7").css("height", "auto");
+				jQuery(".bd-textblock-10").css("height", "auto");
+				jQuery(".bd-textblock-13").css("height", "auto");
+				jQuery(".bd-textblock-16").css("height", "auto");
+
+				var h1 = jQuery(".bd-textblock-7").height();
+				var h2 = jQuery(".bd-textblock-10").height();
+				var h3 = jQuery(".bd-textblock-13").height();
+				var h4 = jQuery(".bd-textblock-16").height();
+
+				if(width < 768)
+				{
+					h1 = "auto";
+					h3 = "auto";
+				}
+				else if(width < 1199)
+				{
+					h1 = Math.max(h1, h2);
+					h3 = Math.max(h3, h4);
+				}
+				else
+				{
+					h1 = Math.max(h1, h2, h3, h4);
+					h3 = h1;
+				}
+				h2 = h1;
+				h4 = h3;
+
+			jQuery(".bd-textblock-7").css("height", h1)
+			jQuery(".bd-textblock-10").css("height", h2)
+			jQuery(".bd-textblock-13").css("height", h3)
+			jQuery(".bd-textblock-16").css("height", h4)
+		};
+
+		jQuery(window).resize(calculateGalleryTextHeight);
+		jQuery(document).ready(calculateGalleryTextHeight);
+	</script>
 </html>
