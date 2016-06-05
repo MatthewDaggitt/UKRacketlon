@@ -7,33 +7,22 @@
             <div class="bd-container-inner">
                 <div class="container-fluid">
                     <div class="row bd-row-align-top ">
-
-                        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-1">
-                            <div class="bd-layoutcolumn-36">
-                                <div class="bd-vertical-align-wrapper">
-                                    <img class="bd-imagestyles bd-imagelink-2   " src="<?php echo JURI::base() . 'templates/' . JFactory::getApplication()->getTemplate(); ?>/images/news_icon_2.png">
-                                </div>
-                            </div>
-                        </div>
-	
 		                <div class="col-lg-23 col-md-23 col-sm-21">
                             <div class="bd-layoutcolumn-37">
                                 <div class="bd-vertical-align-wrapper">
-                                    <div class=" bd-settopagebackground-1 bd-settopagebackground">
-                                        <h2 class=" bd-postheader-2"  itemprop="name">
-                                            <div class="bd-container-inner">
-                                                <?php if (isset($data['header-text']) && strlen($data['header-text'])) : ?>
-                                                    <?php if (isset($data['header-link']) && strlen($data['header-link'])) : ?>
-                                                        <a <?php echo funcBuildRoute($data['header-link'], 'href'); ?>>
-                                                            <?php echo $data['header-text'];?>
-                                                        </a>
-                                                    <?php else: ?>
-                                                        <?php echo $data['header-text']; ?>
-                                                    <?php endif; ?>
+                                    <h2 class=" bd-postheader-2"  itemprop="name">
+                                        <div class="bd-container-inner">
+                                            <?php if (isset($data['header-text']) && strlen($data['header-text'])) : ?>
+                                                <?php if (isset($data['header-link']) && strlen($data['header-link'])) : ?>
+                                                    <a <?php echo funcBuildRoute($data['header-link'], 'href'); ?>>
+                                                        <?php echo $data['header-text'];?>
+                                                    </a>
+                                                <?php else: ?>
+                                                    <?php echo $data['header-text']; ?>
                                                 <?php endif; ?>
-                                            </div>
-                                        </h2>
-                                    </div>
+                                            <?php endif; ?>
+                                        </div>
+                                    </h2>
                                 </div>
                             </div>
                         </div>

@@ -9383,12 +9383,8 @@ a.bd-backtotop-1:hover {
 .bd-layoutbox-7 {
 	position: relative;
 	overflow: hidden;
-	margin-bottom: 0
-}
-@media (max-width: 767px) {
-	.bd-layoutbox-7 {
-		margin-top: 4px
-	}
+	margin-bottom: 0;
+	margin-top: 15px
 }
 .bd-layoutbox-8 {
 	position: relative;
