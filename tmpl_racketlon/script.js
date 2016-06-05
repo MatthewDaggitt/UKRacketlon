@@ -1539,46 +1539,7 @@ jQuery(function () {
 window.ProductOverview_Class = "bd-productoverview";
 (function (jQuery, $) {
 jQuery(function($) {
-    'use strict';
-    function makeCloudZoom1() {
-        if ($('.bd-productimage-6 a').length > 0) {
-            $('.bd-productimage-6 a').attr('id', 'cloud-zoom-effect-1').addClass('cloud-zoom');
-            $('.bd-productimage-6 a').attr('rel', "position:'right', adjustX:0, adjustY:0, tint:'#ffffff', softFocus:1, smoothMove:1, tintOpacity:0.5");
-
-            if ('undefined' !== typeof window.ProductOverview_Class && 'undefined' !== typeof window.ImageThumbnails_Class) {
-                var parent = $('.bd-productimage-6')
-                            .closest('[class*=" ' + window.ProductOverview_Class + '"], [class^="' + window.ProductOverview_Class + '"]'),
-                    thumbnails = $('[class*=" ' + window.ImageThumbnails_Class + '"], [class^="' + window.ImageThumbnails_Class + '"]', parent);
-
-                if (thumbnails.length > 0) {
-                    $('a', thumbnails).each(function () {
-                        var thumbnail = $(this),
-                            rel = thumbnail.attr('rel'),
-                            relAttr = (rel === '' ? '' : rel + ',') + "useZoom: 'cloud-zoom-effect-1'";
-                        thumbnail.attr('rel', relAttr).addClass('cloud-zoom-gallery');
-                    });
-                }
-            }
-
-            var parent = $(".bd-productimage-6").parents().filter(function (key, value) {
-                return parseInt($(value).css('z-index'), 10).toString() !== 'NaN';
-            });
-
-            var minZIndex = 100;
-            var zIndex = parent.length > 0 ? parseInt($(parent[0]).css('z-index'), 10) + 1 : 1;
-            zIndex = zIndex < minZIndex ? minZIndex : zIndex;
-
-            $('<style type="text/css"> .bd-productimage-6 .mousetrap { z-index: ' + zIndex + '!important;} </style>').appendTo("head");
-
-            $('#cloud-zoom-effect-1, .cloud-zoom-gallery').CloudZoom();
-        }
-    }
-    makeCloudZoom1();
-    var resizeTimeout;
-    $(window).resize(function(){
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(makeCloudZoom1, 25);
-    });
+    
 });
 })(window._$, window._$);
 (function (jQuery, $) {

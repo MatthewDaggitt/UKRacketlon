@@ -29,7 +29,6 @@
 	</description>
 
   	<files>
-		<file>CloudZoom.js</file>
 		<file>Readme.txt</file>
 		<file>blank.png</file>
 		<file>bootstrap.min.js</file>
