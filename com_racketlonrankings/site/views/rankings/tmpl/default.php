@@ -132,7 +132,7 @@ Note: Genders are currently randomly assigned and some UK players are not proper
 <script type="text/javascript" src="/templates/uk_racketlon/js/footable.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/templates/uk_racketlon/css/footable.bootstrap.min.css">
 
-<script type="text/javascript" src="/templates/uk_racketlon/heartcode-canvasloader.min.js"></script>
+<script type="text/javascript" src="/templates/uk_racketlon/js/heartcode-canvasloader.min.js"></script>
 
 <script>
 

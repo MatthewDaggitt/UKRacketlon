@@ -27,8 +27,6 @@
         <link href="<?php echo $document->params->get('fav'); ?>" rel="icon" type="image/x-icon" />
         <script> var themeHasJQuery = !!window.jQuery; </script>
         <script src="<?php echo addThemeVersion($document->templateUrl . '/jquery.js'); ?>"></script>
-        <script src = "<?php echo addThemeVersion($document->templateUrl . '/jquery.mousewheel.js'); ?>" type = "text/javascript"></script>
-        <script src = "<?php echo addThemeVersion($document->templateUrl . '/jquery.simplr.smoothscroll.js'); ?>" type = "text/javascript"></script>
         <script> window._$ = jQuery.noConflict(themeHasJQuery); </script>
         <script src="<?php echo addThemeVersion($document->templateUrl . '/bootstrap.min.js'); ?>"></script>
 
@@ -92,10 +90,6 @@
         </div>
 
         <script>
-            jQuery(function() {
-                jQuery.srSmoothscroll({});
-            });
-
             jQuery(window).scroll(function(e) {
                 if(jQuery(window).width() >= 768)
                 {

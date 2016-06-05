@@ -30,7 +30,6 @@
 
   	<files>
 		<file>Readme.txt</file>
-		<file>blank.png</file>
 		<file>bootstrap.min.js</file>
 		<file>component.php</file>
 		<file>error.php</file>
@@ -38,10 +37,6 @@
 		<file>index.html</file>
 		<file>index.php</file>
 		<file>jquery.js</file>
-		<file>jquery.mousewheel.js</file>
-		<file>jquery.simplr.smoothscroll.js</file>
-		<file>heartcode-canvasloader.min.js</file>
-		<file>modrender.php</file>
 		<file>script.ie.js</file>
 		<file>script.js</file>
 		<file>templateDetails.xml</file>

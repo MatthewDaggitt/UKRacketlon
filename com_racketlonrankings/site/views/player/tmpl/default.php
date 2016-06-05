@@ -82,12 +82,6 @@ defined('_JEXEC') or die('Restricted access');
     	idsByName[players[i]['name']] = players[i]['id'];
     }
 
-    jQuery("#player-search-box").autocomplete({
-    	source: function(req, response) {
-			response(jQuery.ui.autocomplete.filter(names, req.term).slice(0, 10));//for getting 5 results
-		}
-    });
-
     function search()
     {
     	console.log("Search");
@@ -106,6 +100,15 @@ defined('_JEXEC') or die('Restricted access');
     		window.location="http://www.racketlon.co.uk/index.php/rankings/search?option=com_racketlonrankings&player_id=" + id;
     	}
     }
+
+    jQuery("#player-search-box").autocomplete({
+    	source: function(req, response) {
+			response(jQuery.ui.autocomplete.filter(names, req.term).slice(0, 10));//for getting 5 results
+		},
+		select: function(event, ui) {
+	        search();
+	    }
+    });
 
     document.getElementById("player-search-box").onkeypress = function(e)
     {
@@ -309,7 +312,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 			<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-			<script type="text/javascript" src="/templates/uk_racketlon/heartcode-canvasloader.min.js"></script>
+			<script type="text/javascript" src="/templates/uk_racketlon/js/heartcode-canvasloader.min.js"></script>
 
 			<script type="text/javascript">
 
