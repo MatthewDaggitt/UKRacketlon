@@ -130,21 +130,6 @@ defined('_JEXEC') or die('Restricted access');
 				});
 
 				jQuery(eventElement).effect("pulsate", { times:4 }, 2000);
-				/*
-				var time = 0;
-				var fadeTime = 2000;
-				var updateFrequency = 10;
-				var startAlpha = 0.5;
-
-				clearInterval(timerID);
-				timerID = setInterval(function() {
-					jQuery(eventElement).css('background', 'rgba(0, 86, 179, ' + 2*startAlpha*(1 - time/fadeTime) + ')');
-					time += updateFrequency;
-
-					if(time == fadeTime) {
-						clearInterval(timerID);
-					}
-				}, updateFrequency);*/
 			});
 		};
 
@@ -181,7 +166,7 @@ defined('_JEXEC') or die('Restricted access');
 <div id="rem-legends-div">
 	<div class="rem-legend" id="rem-tour-legend">
 		<div class="rem-legend-title-div">
-			<span class="rem-legend-title">Event types</span>
+			<span class="rem-legend-title">Tour types</span>
 		</div>
 
 		<br>
