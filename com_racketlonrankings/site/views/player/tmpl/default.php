@@ -84,7 +84,6 @@ defined('_JEXEC') or die('Restricted access');
 
     function search()
     {
-    	console.log("Search");
     	var name = jQuery("#player-search-box").val();
     	if(name)
     	{
@@ -106,6 +105,7 @@ defined('_JEXEC') or die('Restricted access');
 			response(jQuery.ui.autocomplete.filter(names, req.term).slice(0, 10));//for getting 5 results
 		},
 		select: function(event, ui) {
+	        jQuery("#player-search-box").val(ui.item.value);
 	        search();
 	    }
     });

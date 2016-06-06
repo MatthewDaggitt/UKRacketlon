@@ -33,15 +33,20 @@ defined('_JEXEC') or die('Restricted access');
 
 <div class="test">
 	<form class="form-inline">
-		<label>
-			Gender: 
-			<select name="gender">
-			  <option value="All">All</option>
-			  <option value="1">Female</option>
-			  <option value="0">Male</option>
-			</select>
-		</label>
-
+		<div class="control-group">
+			<div class="control-label">
+				<label>
+					Gender:
+				</label>
+			</div>
+			<div class="controls">
+				<select name="gender">
+				  <option value="All">All</option>
+				  <option value="1">Female</option>
+				  <option value="0">Male</option>
+				</select>
+			</div>
+		</div>
 		<!--
 		<label>
 			Age group: 
@@ -53,20 +58,24 @@ defined('_JEXEC') or die('Restricted access');
 			</select>
 		</label>
 		-->
-
-		<label>
-			Nationality: 
-			<select name="country">
-				<?php foreach($countries as $c) : ?>
-					<option 
-						value="<?php echo $c ?>"
-						<?php echo ($c == "GBR" ? 'selected="selected"' : "") ?>
-					>
-						<?php echo $c ?>
-					</option>
-				<?php endforeach ?>
-			</select>
-		</label>
+		<div class="control-group">
+			<div class="control-label">
+				<label>
+					Nationality: 
+				</label>
+			<div class="controls">
+				<select name="country">
+					<?php foreach($countries as $c) : ?>
+						<option 
+							value="<?php echo $c ?>"
+							<?php echo ($c == "GBR" ? 'selected="selected"' : "") ?>
+						>
+							<?php echo $c ?>
+						</option>
+					<?php endforeach ?>
+				</select>
+			</div>
+		</div>
 	</form>
 </div>
 
