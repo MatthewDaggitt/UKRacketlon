@@ -76,10 +76,6 @@
 				<field type="spacer" name="spacer" hr="true"/>
 			</fieldset>
 
-		  	<fieldset name="license" label="License Key">       
-				<field name="license" type="text" default="License key" size="50" label="License key" description="License key"/>         
-			</fieldset>	
-
 		  	<fieldset name="analytics" label="Google analytics">
 		  		<field name="ac" type="radio" default="0" class="btn-group" label="Google analytics" description="test">
 					<option value="0">Disabled</option>
@@ -98,31 +94,50 @@
 					<option value="0">Disabled</option>
 					<option value="1">Enabled</option>
 				</field>
+
 				<field name="close_text" type="radio" default="1" class="btn-group"  label="Slideshow text" description="Stop the slideshow text from appearing">
 					<option value="0">Disabled</option>
 					<option value="1">Enabled</option>
 				</field>
 
+				<field name="slideshow_delay" type="number" default="10" min="1" label="Slideshow delay (s)" description="Time between slide transitions in seconds"/>
+
+
 				<field type="spacer" class="text" label=" " />	
+
 				<field type="spacer" class="text" label="&lt;b&gt;Slide 1&lt;/b&gt;" />	
 				<field name="foto1" type="media" label="Photo" description="" default="templates/uk_racketlon/images/slideshow/1.jpg"/>
+				<field name="t1" type="text" default="Read more" size="50" label="Title text" description="Title for the slide"/>
 				<field name="ts1" type="textarea" default="From 2nd to 4th October 2015, Malta will become the newest country on the FIR International World Tour events list with the Malta Open. This is a truly incredible venue, with all the facilities a Racketlon player could ask for on site.  Outdoor tennis courts with indoor facilities that are the toast of Malta, it is certain to prove to be a very special world tour venue." rows="8" cols="60" label="Text"/>
 				<field name="b1" type="text" default="Enter now!" size="50" label="Button text" description="Title button"/>
 				<field name="l1" type="text" default="http://" size="50" label="Button link" description="Link button"/>
 				
+
 				<field type="spacer" class="text" label=" " />	
-				<field type="spacer" class="text" label="&lt;b&gt;Slide 2&lt;/b&gt;" />	
+				<field type="spacer" class="text" label="&lt;b&gt;Slide 2&lt;/b&gt;" />
 				<field name="foto2" type="media" label="Photo" description="" default="templates/uk_racketlon/images/slideshow/2.jpg"/>
+				<field name="t2" type="text" default="Read more" size="50" label="Title text" description="Title for the slide"/>
 				<field name="ts2" type="textarea" default="The 2016 UK Racketlon tour is good to go and it is beautifully laid out on our 2016 Tour Poster.  The tour is not complete and we hope to add additional events as the year goes on, but as a starting point you cannot go wrong." rows="8" cols="60" label="Text"/>
 				<field name="b2" type="text" default="View tour" size="50" label="Button text" description="Title button"/>
 				<field name="l2" type="text" default="http://" size="50" label="Button link" description="Link button"/>
 			
+
 				<field type="spacer" class="text" label=" " />	
-				<field type="spacer" class="text" label="&lt;b&gt;Slide 3&lt;/b&gt;" />	
+				<field type="spacer" class="text" label="&lt;b&gt;Slide 3&lt;/b&gt;" />
 				<field name="foto3" type="media" label="Photo" description="" default="templates/uk_racketlon/images/slideshow/3.jpg"/>
+				<field name="t3" type="text" default="Read more" size="50" label="Title text" description="Title for the slide"/>
 				<field name="ts3" type="textarea" default="As we approach the end of the 2015 Racketlon season, we approach the first ever European Championships. With 6 events, the UK is fielding the largest squad of players with teams entered in all categories and in 2015 we go with real hopes of coming home with some excess baggage in all 6 of them." rows="8" cols="60" label="Text"/>
 				<field name="b3" type="text" default="Read more" size="50" label="Button text" description="Title button"/>
 				<field name="l3" type="text" default="http://" size="50" label="Button link" description="Link button"/>
+
+
+				<field type="spacer" class="text" label=" " />	
+				<field type="spacer" class="text" label="&lt;b&gt;Slide 4&lt;/b&gt;" />	
+				<field name="foto4" type="media" label="Photo" description="" default="templates/uk_racketlon/images/slideshow/4.jpg"/>
+				<field name="t4" type="text" default="Read more" size="50" label="Title text" description="Title for the slide"/>
+				<field name="ts4" type="textarea" default="As we approach the end of the 2015 Racketlon season, we approach the first ever European Championships. With 6 events, the UK is fielding the largest squad of players with teams entered in all categories and in 2015 we go with real hopes of coming home with some excess baggage in all 6 of them." rows="8" cols="60" label="Text"/>
+				<field name="b4" type="text" default="Read more" size="50" label="Button text" description="Title button"/>
+				<field name="l4" type="text" default="http://" size="50" label="Button link" description="Link button"/>
 			</fieldset>
 				
 				

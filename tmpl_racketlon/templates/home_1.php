@@ -81,6 +81,7 @@
 					<div class="bd-container-inner">
 					    <div id="bd-slideshow-text">
 							<div class="bd-container-inner">
+								<h3 id="bd-slideshow-title"></h3>
 								<p></p>
 
 								<div id="bd-slideshow-link">
@@ -257,31 +258,42 @@
 		// Slideshow transition script
 		var numberOfSlides = 3;
 		var currentSlide = 0;
-		var timePerSlide = 10000;
+		var timePerSlide = 1000 * <?php echo $document->params->get('slideshow_delay'); ?>;
 
 		var imageUrls = [
 			'url(<?php echo $document->params->get('foto1'); ?>)',
 			'url(<?php echo $document->params->get('foto2'); ?>)',
-			'url(<?php echo $document->params->get('foto3'); ?>)'
-		]
+			'url(<?php echo $document->params->get('foto3'); ?>)',
+			'url(<?php echo $document->params->get('foto4'); ?>)'
+		];
+
+		var titles = [
+			<?php echo json_encode($document->params->get('t1')); ?>,
+			<?php echo json_encode($document->params->get('t2')); ?>,
+			<?php echo json_encode($document->params->get('t3')); ?>,
+			<?php echo json_encode($document->params->get('t4')); ?>
+		];
 
 		var text = [
 			<?php echo json_encode($document->params->get('ts1')); ?>,
 			<?php echo json_encode($document->params->get('ts2')); ?>,
-			<?php echo json_encode($document->params->get('ts3')); ?>
-		]
+			<?php echo json_encode($document->params->get('ts3')); ?>,
+			<?php echo json_encode($document->params->get('ts4')); ?>
+		];
 		
 		var buttonText = [
 			<?php echo json_encode($document->params->get('b1')); ?>,
 			<?php echo json_encode($document->params->get('b2')); ?>,
-			<?php echo json_encode($document->params->get('b3')); ?>
-		]
+			<?php echo json_encode($document->params->get('b3')); ?>,
+			<?php echo json_encode($document->params->get('b4')); ?>
+		];
 
 		var links = [
 			'<?php echo $document->params->get('l1'); ?>',
 			'<?php echo $document->params->get('l2'); ?>',
-			'<?php echo $document->params->get('l3'); ?>'
-		]
+			'<?php echo $document->params->get('l3'); ?>',
+			'<?php echo $document->params->get('l4'); ?>'
+		];
 
 		function moveSlideshowForward()
 		{
@@ -299,7 +311,8 @@
 			jQuery('#bd-slideshow-text p').text(text[currentSlide]);
 			jQuery('#bd-slideshow-btn').attr('href', links[currentSlide]);
 			jQuery('#bd-slideshow-btn span').text(buttonText[currentSlide]);
-
+			jQuery('#bd-slideshow-title').text(titles[currentSlide]);
+			
 			if(jQuery(window).width() >= 768)
 			{
 				jQuery('#bd-slideshow').css('background-image', imageUrls[currentSlide]);
