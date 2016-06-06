@@ -3668,9 +3668,19 @@
 
 			if(self.ft.columns.array[0].title.indexOf('#') > -1)
 			{
-				for(var i = 0; i < self.ft.rows.array.length; i++)
+				function isNotNameFilter(f)
 				{
-					self.ft.rows.array[i].cells[0].val(i+1);
+					return f.name != "name";
+				}
+
+				var filters = self.filters.filter(isNotNameFilter);
+				var rankings = $.grep(self.ft.rows.all, function(r){
+					return r.filtered(filters);
+				});
+
+				for(var i = 0; i < rankings.length; i++)
+				{
+					rankings[i].cells[0].val(i+1);
 				}
 			}
 		},

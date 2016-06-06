@@ -13170,7 +13170,6 @@ input[type=text].bd-bootstrapinput-7.form-control::-webkit-input-placeholder {
 	pointer-events: none;
 	position: absolute;
 	z-index: 1001;
-	transition: all 0.2s;
 	opacity: 1;
 }
 .bd-menu-4-popup.bd-popup-left {
@@ -16641,6 +16640,10 @@ table.tournament-table.footable-details>tbody>tr>th:nth-child(1) {
 /* Top players */
 /***************/
 
+#ranking-controls {
+	margin-bottom: 50px;
+}
+
 .rankings-table-container {
 	display: none;
 }
@@ -16677,6 +16680,10 @@ table.tournament-table.footable-details>tbody>tr>th:nth-child(1) {
 
 .rankings-table td {
 	vertical-align: top;
+}
+
+.footable-filtering {
+	display:none;
 }
 
 /**************/

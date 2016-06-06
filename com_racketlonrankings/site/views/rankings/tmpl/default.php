@@ -29,9 +29,9 @@ defined('_JEXEC') or die('Restricted access');
 	$countries = array('All' => 'All') + $countries;
 ?>
 
-<h1 id="ranking-title"> Top GBR players </h1>
+<h1> All rankings </h1>
 
-<div class="test">
+<div id="ranking-controls">
 	<form class="form-inline">
 		<div class="control-group">
 			<div class="control-label">
@@ -47,22 +47,13 @@ defined('_JEXEC') or die('Restricted access');
 				</select>
 			</div>
 		</div>
-		<!--
-		<label>
-			Age group: 
-			<select name="age">
-			  <option value="all">All</option>
-			  <option value="u18">U18</option>
-			  <option value="o45">O45</option>
-			  <option value="o45">O55</option>
-			</select>
-		</label>
-		-->
+
 		<div class="control-group">
 			<div class="control-label">
 				<label>
 					Nationality: 
 				</label>
+			</div>
 			<div class="controls">
 				<select name="country">
 					<?php foreach($countries as $c) : ?>
@@ -76,8 +67,51 @@ defined('_JEXEC') or die('Restricted access');
 				</select>
 			</div>
 		</div>
+
+		<div class="control-group">
+			<div class="control-label">
+				<label>
+					Age group: 
+				</label>
+			</div>
+			<div class="controls">
+				<select name="age" disabled>
+					<option value="all">All</option>
+					<option value="u21">U21</option>
+					<option value="o45">O45</option>
+					<option value="o45">O55</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<div class="control-label">
+				<label>
+					Include inactive: 
+				</label>
+			</div>
+			<div class="controls">
+				<select name="activity" disabled>
+					<option value="yes">Yes</option>
+					<option value="no">No</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<div class="control-label">
+				<label>
+					Search: 
+				</label>
+			</div>
+			<div class="controls">
+				<input name="name" type="text" placeholder="name">
+			</div>
+		</div>
 	</form>
 </div>
+
+<h2 id="ranking-title"> Top GBR players </h2>
 
 <div id="loading-div"> </div>
 
@@ -90,7 +124,7 @@ defined('_JEXEC') or die('Restricted access');
 		<thead>
 			<tr>
 				<th class="rank-col" 	data-type="number" 	data-sortable="false"> # </th>
-				<th class="name-col" 	data-type="html" 	data-sortable="false"> Name </th>
+				<th data-name="name" 	class="name-col" 	data-type="html" 	data-sortable="false"> Name </th>
 				<th class="rating-col" 	data-type="number" 	data-breakpoints="xss"> Rating</th>
 				<th class="class-col" 	data-type="text" 	data-breakpoints="xss"> Class </th>
 				<th class="tt-col" 		data-type="text" 	data-breakpoints="xss"> TT </th>
@@ -192,18 +226,19 @@ defined('_JEXEC') or die('Restricted access');
 			var gender = jQuery('[name=gender]').val();
 			var country = jQuery('[name=country]').val();
 
-			var text = "Top "
+			var text = "";
+			
 			if(country != "All")
 			{
 				text += country + " ";
 			}
 			if(gender == '1')
 			{
-				text += "female "
+				text += "Female ";
 			}
 			else if(gender == '0')
 			{
-				text += "male ";
+				text += "Male ";
 			}
 			text += "players";
 			jQuery('#ranking-title').text(text);
@@ -235,12 +270,18 @@ defined('_JEXEC') or die('Restricted access');
 		}
 		addFilterListener('gender');
 		addFilterListener('country');
+		addFilterListener('name');
+
+		jQuery('[name=name]').on('keyup', function() {
+		     filter('name', this.value);
+		});
+
+		jQuery(".rankings-table-container").show();
+		jQuery('#loading-div').hide();
+		cl.kill();
 
 		jQuery('[name=country]').val("GBR");
 		jQuery('[name=country]').trigger("change");
-
-		jQuery(".rankings-table-container").show();
-		cl.kill();
 	}, 100);
 
 </script>
