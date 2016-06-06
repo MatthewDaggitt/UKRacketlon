@@ -283,9 +283,19 @@
 			'<?php echo $document->params->get('l3'); ?>'
 		]
 
-		
+		function moveSlideshowForward()
+		{
+			currentSlide = (currentSlide + 1) % numberOfSlides;
+			updateSlideshow();
+		}
 
-		var updateSlideshow = function(e) {
+		function moveSlideshowBack()
+		{
+			currentSlide = (currentSlide + numberOfSlides - 1) % numberOfSlides;
+			updateSlideshow();
+		}
+
+		function updateSlideshow() {
 			jQuery('#bd-slideshow-text p').text(text[currentSlide]);
 			jQuery('#bd-slideshow-btn').attr('href', links[currentSlide]);
 			jQuery('#bd-slideshow-btn span').text(buttonText[currentSlide]);
@@ -298,24 +308,22 @@
 			{
 				jQuery('#bd-slideshow').css('background-image', 'none');
 			}
-			
 		}
-		updateSlideshow();
 
-		window.setInterval(updateSlideshow, timePerSlide);
+		window.setInterval(moveSlideshowForward, timePerSlide);
 		jQuery(window).resize(updateSlideshow);
 
 		jQuery('.left-button').click(function(e) {
-			currentSlide = (currentSlide + numberOfSlides - 1) % numberOfSlides;
-			updateSlideshow();
+			moveSlideshowBack();
 			e.preventDefault();
 		});
 
 		jQuery('.right-button').click(function(e) {
-			currentSlide = (currentSlide + 1) % numberOfSlides;
-			updateSlideshow();
+			moveSlideshowForward();
 			e.preventDefault();
 		});
+
+		updateSlideshow();
 
 	</script>
 
