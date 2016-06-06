@@ -360,9 +360,14 @@ defined('_JEXEC') or die('Restricted access');
 					return Math.min.apply(null, this);
 				};
 
-				function removeNulls(xs)
+				function notNull(x)
 				{
-					return xs.filter(x => x !== null);
+					return x !== null;
+				}
+
+				function removeNulls(xs)
+				{	
+					return xs.filter(notNull);
 				}
 
 				function calculateClass(rating)
