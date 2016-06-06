@@ -12,10 +12,6 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 
 <?php
-	function classSortValue($class)
-	{
-		return $class == "??" ? ' data-sort-value="Z"' : '';
-	}
 
 	$countries = array();
 	foreach($this->data as $p)
@@ -27,88 +23,88 @@ defined('_JEXEC') or die('Restricted access');
 	unset($countries['']);
 
 	$countries = array('All' => 'All') + $countries;
+
+	$now = new DateTime();
 ?>
 
 <h1> All rankings </h1>
 
 <div id="ranking-controls">
-	<form class="form-inline">
-		<div class="control-group">
-			<div class="control-label">
-				<label>
-					Gender:
-				</label>
-			</div>
-			<div class="controls">
-				<select name="gender">
-				  <option value="All">All</option>
-				  <option value="1">Female</option>
-				  <option value="0">Male</option>
-				</select>
-			</div>
+	<div class="control-group">
+		<div class="control-label">
+			<label>
+				Gender:
+			</label>
 		</div>
+		<div class="controls">
+			<select name="gender">
+			  <option value="All">All</option>
+			  <option value="1">Female</option>
+			  <option value="0">Male</option>
+			</select>
+		</div>
+	</div>
 
-		<div class="control-group">
-			<div class="control-label">
-				<label>
-					Nationality: 
-				</label>
-			</div>
-			<div class="controls">
-				<select name="country">
-					<?php foreach($countries as $c) : ?>
-						<option 
-							value="<?php echo $c ?>"
-							<?php echo ($c == "GBR" ? 'selected="selected"' : "") ?>
-						>
-							<?php echo $c ?>
-						</option>
-					<?php endforeach ?>
-				</select>
-			</div>
+	<div class="control-group">
+		<div class="control-label">
+			<label>
+				Nationality: 
+			</label>
 		</div>
+		<div class="controls">
+			<select name="country">
+				<?php foreach($countries as $c) : ?>
+					<option 
+						value="<?php echo $c ?>"
+						<?php echo ($c == "GBR" ? 'selected="selected"' : "") ?>
+					>
+						<?php echo $c ?>
+					</option>
+				<?php endforeach ?>
+			</select>
+		</div>
+	</div>
 
-		<div class="control-group">
-			<div class="control-label">
-				<label>
-					Age group: 
-				</label>
-			</div>
-			<div class="controls">
-				<select name="age" disabled>
-					<option value="all">All</option>
-					<option value="u21">U21</option>
-					<option value="o45">O45</option>
-					<option value="o45">O55</option>
-				</select>
-			</div>
+	<div class="control-group">
+		<div class="control-label">
+			<label>
+				Age group: 
+			</label>
 		</div>
+		<div class="controls">
+			<select name="age">
+				<option value="All">All</option>
+				<option value="U21">U21</option>
+				<option value="O45">O45</option>
+				<option value="O45">O55</option>
+			</select>
+		</div>
+	</div>
 
-		<div class="control-group">
-			<div class="control-label">
-				<label>
-					Include inactive: 
-				</label>
-			</div>
-			<div class="controls">
-				<select name="activity" disabled>
-					<option value="yes">Yes</option>
-					<option value="no">No</option>
-				</select>
-			</div>
+	<div class="control-group">
+		<div class="control-label">
+			<label>
+				Include inactive players: 
+			</label>
 		</div>
+		<div class="controls">
+			<select name="activity" disabled>
+				<option value="yes">Yes</option>
+				<option value="no">No</option>
+			</select>
+		</div>
+	</div>
 
-		<div class="control-group">
-			<div class="control-label">
-				<label>
-					Search: 
-				</label>
-			</div>
-			<div class="controls">
-				<input name="name" type="text" placeholder="name">
-			</div>
+	<div class="control-group">
+		<div class="control-label">
+			<label>
+				Search: 
+			</label>
 		</div>
-	</form>
+		<div class="controls">
+			<input name="name" type="text" placeholder="name">
+		</div>
+	</div>
 </div>
 
 <h2 id="ranking-title"> Top GBR players </h2>
@@ -131,7 +127,7 @@ defined('_JEXEC') or die('Restricted access');
 				<th class="bd-col" 		data-type="text" 	data-breakpoints="xss"> Bd </th>
 				<th class="sq-col" 		data-type="text" 	data-breakpoints="xss"> Sq </th>
 				<th class="tn-col" 		data-type="text" 	data-breakpoints="xss"> Tn </th>
-				<th class="dob-col" 	data-type="date" 	data-visible="false"> DoB </th>
+				<th data-name="age" 	class="age-col" 	data-type="date" 	data-visible="false"> DoB </th>
 				<th data-name="gender" 	class="gender-col" 	data-type="text" 	data-visible="false"> Gender </th>
 				<th data-name="country" class="country-col" data-type="text" 	data-visible="false"> Country </th>
 			</tr>
@@ -157,28 +153,52 @@ defined('_JEXEC') or die('Restricted access');
 					<td>
 						<?php echo ($p['rating']) ?>
 					</td>
-					<td <?php echo classSortValue($p['class']) ?>>
+					<td data-sort-value="<?php echo number_format($p['rating']/100000, 5) ?>">
 						<?php echo ($p['class']) ?>
 					</td>
-					<td <?php echo classSortValue($p['classtt']) ?>>
+					<td data-sort-value="<?php echo number_format($p['ratingtt']/100000, 5) ?>">
 						<?php echo ($p['classtt']) ?>
 					</td>
-					<td <?php echo classSortValue($p['classbd']) ?>>
+					<td data-sort-value="<?php echo number_format($p['ratingbd']/100000, 5) ?>">
 						<?php echo ($p['classbd']) ?>
 					</td>
-					<td <?php echo classSortValue($p['classsq']) ?>>
+					<td data-sort-value="<?php echo number_format($p['ratingsq']/100000, 5) ?>">
 						<?php echo ($p['classsq']) ?>
 					</td>
-					<td <?php echo classSortValue($p['classtn']) ?>>
+					<td data-sort-value="<?php echo number_format($p['ratingtn']/100000, 5) ?>">
 						<?php echo ($p['classtn']) ?>
 					</td>
 					<td>
-						<?php echo ($p['dob']) ?>
+						All 
+						<?php
+							echo $p["dob"];
+							if($p["dob"] != "0000-00-00")
+							{
+								$dob21 = (new DateTime($p["dob"]))->add(new DateInterval('P21Y'));
+								$dob45 = (new DateTime($p["dob"]))->add(new DateInterval('P45Y'));
+								$dob55 = (new DateTime($p["dob"]))->add(new DateInterval('P55Y'));
+
+								if($now < $dob21)
+								{
+									echo 'U21';
+								}
+								if($now > $dob45)
+								{
+									echo 'O45';
+								}
+								if($now > $dob55)
+								{
+									echo 'O55';
+								}
+							}
+						?>
 					</td>
 					<td>
+						All 
 						<?php echo ($p['gender']) ?>
 					</td>
 					<td>
+						All 
 						<?php echo ($p['country'] ? $p['country'] : '???') ?>
 					</td>
 				</tr>
@@ -187,7 +207,7 @@ defined('_JEXEC') or die('Restricted access');
 	</table>
 </div>
 
-<script type="text/javascript" src="/templates/uk_racketlon/js/footable.min.js"></script>
+<script type="text/javascript" src="/templates/uk_racketlon/js/footable.js"></script>
 <link rel="stylesheet" type="text/css" href="/templates/uk_racketlon/css/footable.bootstrap.min.css">
 
 <script type="text/javascript" src="/templates/uk_racketlon/js/heartcode-canvasloader.min.js"></script>
@@ -225,6 +245,7 @@ defined('_JEXEC') or die('Restricted access');
 
 			var gender = jQuery('[name=gender]').val();
 			var country = jQuery('[name=country]').val();
+			var ageGroup = jQuery('[name=age]').val();
 
 			var text = "";
 			
@@ -244,37 +265,22 @@ defined('_JEXEC') or die('Restricted access');
 			jQuery('#ranking-title').text(text);
 		}
 
-		function matchAllQuery(name)
-		{
-			var query = '???';
-			jQuery.each(jQuery('[name=' + name + '] option'), function(index, el) {
-				if(el.value != "All")
-				{
-					query += " OR " + el.value;
-				}
-			});
-			return query;
-		}
-
 		function addFilterListener(name)
 		{
-			jQuery('[name=' + name + ']').on('change', function()
-			{
-				var query = this.value;
-				if(query == "All") 
-				{
-					query = matchAllQuery(name);
-				}
-				filter(name, query);
+			jQuery('[name=' + name + ']').on('change', function() {
+				filter(name, this.value);
 			});
 		}
+
 		addFilterListener('gender');
 		addFilterListener('country');
 		addFilterListener('name');
+		addFilterListener('age');
 
 		jQuery('[name=name]').on('keyup', function() {
 		     filter('name', this.value);
 		});
+
 
 		jQuery(".rankings-table-container").show();
 		jQuery('#loading-div').hide();

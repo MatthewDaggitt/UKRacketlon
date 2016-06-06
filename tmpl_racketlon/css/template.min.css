@@ -13,6 +13,9 @@ h5 {
 .jmodedit {
 	cursor: pointer
 }
+.mce-toolbar button:hover {
+	border: 0px;
+}
 .bd-bulletlist li,
 .bd-bulletlist-15 li,
 .bd-bulletlist-16 li,
@@ -15243,6 +15246,10 @@ input[type=text].bd-bootstrapinput-9.form-control:-ms-input-placeholder {
 		width: 100%
 	}
 	.bd-contentlayout-7 .bd-flex-horizontal {
+		padding-right: 10px;
+		padding-left: 10px;
+	}
+	.bd-contentlayout-7 .bd-flex-horizontal {
 		-webkit-box-orient: vertical;
 		-webkit-box-direction: normal;
 		-webkit-flex-direction: column;
@@ -15809,7 +15816,7 @@ body {
     background-size: cover;
     background-position: center;
     height: 500px;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
 }
 @media (max-width: 1399px) {
 	#bd-slideshow {
@@ -15831,8 +15838,13 @@ body {
 #bd-slideshow-content {
 	position: absolute;
 	width: 100%;
-	bottom: -50px;
+	bottom: -100px;
 	z-index: 1;
+}
+#bd-slideshow-title {
+	margin-top: 0px;    
+	letter-spacing: 0px;
+    font-weight: 700;
 }
 #bd-slideshow-link {
 	padding-top: 10px;
@@ -16460,6 +16472,7 @@ th.footable-sortable>span.fooicon.fooicon-sort {
     line-height: 40px;
     top: 0px;
     margin-top: 0px;
+    color: #2f4885;
 }
 .fooicon.fooicon-sort:before {
 	content: "\106";
@@ -16678,6 +16691,24 @@ table.tournament-table.footable-details>tbody>tr>th:nth-child(1) {
    text-align: center;
 }
 
+.rankings-table thead .rating-col,
+.rankings-table thead .class-col,
+.rankings-table thead .tt-col,
+.rankings-table thead .bd-col,
+.rankings-table thead .sq-col,
+.rankings-table thead .tn-col {
+	color: #003c85;
+    text-decoration: none;
+}
+.rankings-table thead .rating-col:hover,
+.rankings-table thead .class-col:hover,
+.rankings-table thead .tt-col:hover,
+.rankings-table thead .bd-col:hover,
+.rankings-table thead .sq-col:hover,
+.rankings-table thead .tn-col:hover {
+	color: #d9534f;
+    text-decoration: underline;
+}
 .rankings-table td {
 	vertical-align: top;
 }
