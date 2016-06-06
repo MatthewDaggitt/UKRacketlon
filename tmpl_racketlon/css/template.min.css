@@ -15822,6 +15822,16 @@ body {
     height: 500px;
     margin-bottom: 50px;
 }
+@media (max-width: 1199px) {
+	#bd-slideshow {
+		height: 400px;
+	}
+}
+@media (max-width: 991px) {
+	#bd-slideshow {
+		height: 350px;
+	}
+}
 
 /** Content **/
 #bd-slideshow-content {
@@ -15848,10 +15858,12 @@ body {
     bottom: 0px;
     text-align: center;
     font-size: 16px;
-    padding: 10px;
     margin-left: 1em;
     margin-right: 1em;
     padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
 }
 #bd-slideshow-border {
 	width: 100%;
@@ -16445,6 +16457,34 @@ table.footable-details {
 	margin-left: 10px;
 	margin-bottom: 25px;
 }
+th.footable-sortable>span.fooicon.fooicon-sort-desc,
+th.footable-sortable>span.fooicon.fooicon-sort-asc,
+th.footable-sortable>span.fooicon.fooicon-sort {
+	font-family: 'Billion Web Font'!important;
+	right: initial;
+    padding-left: 10px;
+    line-height: 40px;
+    top: 0px;
+    margin-top: 0px;
+}
+.fooicon.fooicon-sort:before {
+	content: "\106";
+}
+.fooicon.fooicon-sort-desc:before {
+	content: "\245";
+}
+.fooicon.fooicon-sort-asc:before {
+	content: "\245";
+}
+th.footable-sortable>span.fooicon.fooicon-sort-desc
+{
+	-moz-transform: scale(1, -1);
+	-webkit-transform: scale(1, -1);
+	-o-transform: scale(1, -1);
+	-ms-transform: scale(1, -1);
+	transform: scale(1, -1);
+	margin-top: -1px;
+}
 
 /******************/
 /* Player ratings */
@@ -16616,13 +16656,32 @@ table.tournament-table.footable-details>tbody>tr>th:nth-child(1) {
 	.rankings-table .name-col {
 		width: 70%;
 	}
-	.rankings-table .rank-col {
-		padding-left: 50px;
-	}
 }
 #loading-div {
 	text-align: center;
     padding-top: 30px;
+}
+
+.rankings-table tr td:nth-child(1) {
+   padding-right: 5px;
+}
+.rankings-table td:nth-child(3),
+.rankings-table td:nth-child(4),
+.rankings-table td:nth-child(5),
+.rankings-table td:nth-child(6),
+.rankings-table td:nth-child(7),
+.rankings-table td:nth-child(8),
+.rankings-table th:nth-child(3),
+.rankings-table th:nth-child(4),
+.rankings-table th:nth-child(5),
+.rankings-table th:nth-child(6),
+.rankings-table th:nth-child(7),
+.rankings-table th:nth-child(8), {
+   text-align: center;
+}
+
+.rankings-table td {
+	vertical-align: top;
 }
 
 /**************/

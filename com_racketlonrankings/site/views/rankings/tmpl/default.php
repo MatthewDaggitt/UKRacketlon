@@ -16,18 +16,27 @@ defined('_JEXEC') or die('Restricted access');
 	{
 		return $class == "??" ? ' data-sort-value="Z"' : '';
 	}
+
+	$countries = array();
+	foreach($this->data as $p)
+	{
+		$countries[$p['country']] = $p['country'];
+	}
+	$countries = array_unique($countries);
+	ksort($countries);
+	unset($countries['']);
+
+	$countries = array('All' => 'All') + $countries;
 ?>
 
-<h1> Top UK players </h1>
-
-Note: Genders are currently randomly assigned and some UK players are not properly registered...
+<h1 id="ranking-title"> Top GBR players </h1>
 
 <div class="test">
 	<form class="form-inline">
 		<label>
 			Gender: 
 			<select name="gender">
-			  <option value="all">All</option>
+			  <option value="All">All</option>
 			  <option value="1">Female</option>
 			  <option value="0">Male</option>
 			</select>
@@ -35,7 +44,7 @@ Note: Genders are currently randomly assigned and some UK players are not proper
 
 		<!--
 		<label>
-			Age: 
+			Age group: 
 			<select name="age">
 			  <option value="all">All</option>
 			  <option value="u18">U18</option>
@@ -48,8 +57,14 @@ Note: Genders are currently randomly assigned and some UK players are not proper
 		<label>
 			Nationality: 
 			<select name="country">
-			  <option value="GBR">UK</option>
-			  <option value="all">All</option>
+				<?php foreach($countries as $c) : ?>
+					<option 
+						value="<?php echo $c ?>"
+						<?php echo ($c == "GBR" ? 'selected="selected"' : "") ?>
+					>
+						<?php echo $c ?>
+					</option>
+				<?php endforeach ?>
 			</select>
 		</label>
 	</form>
@@ -121,7 +136,7 @@ Note: Genders are currently randomly assigned and some UK players are not proper
 						<?php echo ($p['gender']) ?>
 					</td>
 					<td>
-						<?php echo ($p['country']) ?>
+						<?php echo ($p['country'] ? $p['country'] : '???') ?>
 					</td>
 				</tr>
 			<?php endforeach ?>
@@ -162,33 +177,57 @@ Note: Genders are currently randomly assigned and some UK players are not proper
 		function filter(name, value)
 		{
 			var filtering = FooTable.get('.rankings-table').use(FooTable.Filtering);
-
-			if (value === 'all')
-			{
-				filtering.removeFilter(name);
-			} 
-			else 
-			{
-				console.log(name, value, [name]);
-				filtering.addFilter(name, value, [name]);
-			}
+			filtering.addFilter(name, value, [name]);
 			filtering.filter();
 
-			var tds= jQuery("table > tbody > td:nth-child(1)");
-			console.log(tds);
+			var gender = jQuery('[name=gender]').val();
+			var country = jQuery('[name=country]').val();
+
+			var text = "Top "
+			if(country != "All")
+			{
+				text += country + " ";
+			}
+			if(gender == '1')
+			{
+				text += "female "
+			}
+			else if(gender == '0')
+			{
+				text += "male ";
+			}
+			text += "players";
+			jQuery('#ranking-title').text(text);
 		}
 
-		jQuery('[name=gender]').on('change', function()
+		function matchAllQuery(name)
 		{
-			filter("gender", this.value);
-		});
+			var query = '???';
+			jQuery.each(jQuery('[name=' + name + '] option'), function(index, el) {
+				if(el.value != "All")
+				{
+					query += " OR " + el.value;
+				}
+			});
+			return query;
+		}
 
-
-		jQuery('[name=country]').on('change', function()
+		function addFilterListener(name)
 		{
-			filter("country", this.value);
-		});
+			jQuery('[name=' + name + ']').on('change', function()
+			{
+				var query = this.value;
+				if(query == "All") 
+				{
+					query = matchAllQuery(name);
+				}
+				filter(name, query);
+			});
+		}
+		addFilterListener('gender');
+		addFilterListener('country');
 
+		jQuery('[name=country]').val("GBR");
 		jQuery('[name=country]').trigger("change");
 
 		jQuery(".rankings-table-container").show();

@@ -3665,6 +3665,14 @@
 			self.ft.rows.array = $.grep(self.ft.rows.array, function(r){
 				return r.filtered(self.filters);
 			});
+
+			if(self.ft.columns.array[0].title.indexOf('#') > -1)
+			{
+				for(var i = 0; i < self.ft.rows.array.length; i++)
+				{
+					self.ft.rows.array[i].cells[0].val(i+1);
+				}
+			}
 		},
 		/**
 		 * As the rows are drawn by the {@link FooTable.Rows#draw} method this simply updates the colspan for the UI.
