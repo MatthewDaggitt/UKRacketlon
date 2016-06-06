@@ -81,19 +81,15 @@
 					<div class="bd-container-inner">
 					    <div id="bd-slideshow-text">
 							<div class="bd-container-inner">
-								<p> 
-									<?php echo $document->params->get('ts1'); ?>
-								</p>
+								<p></p>
 
 								<div id="bd-slideshow-link">
 									<a class="bd-round-icon left-button" href="#">
 										<span></span>
 									</a>
 
-									<a id="bd-slideshow-btn" class="bd-slide-button bd-link-button btn-primary btn" href="<?php echo $document->params->get('l1'); ?>" >
-										<span> 
-											<?php echo $document->params->get('b1'); ?> 
-										</span>
+									<a id="bd-slideshow-btn" class="bd-slide-button bd-link-button btn-primary btn" href="">
+										<span></span>
 									</a>
 
 									<a class="bd-round-icon right-button" href="#">
@@ -270,9 +266,15 @@
 		]
 
 		var text = [
-			'<?php echo $document->params->get('ts1'); ?>',
-			'<?php echo $document->params->get('ts2'); ?>',
-			'<?php echo $document->params->get('ts3'); ?>'
+			<?php echo json_encode($document->params->get('ts1')); ?>,
+			<?php echo json_encode($document->params->get('ts2')); ?>,
+			<?php echo json_encode($document->params->get('ts3')); ?>
+		]
+		
+		var buttonText = [
+			<?php echo json_encode($document->params->get('b1')); ?>,
+			<?php echo json_encode($document->params->get('b2')); ?>,
+			<?php echo json_encode($document->params->get('b3')); ?>
 		]
 
 		var links = [
@@ -281,12 +283,7 @@
 			'<?php echo $document->params->get('l3'); ?>'
 		]
 
-		var buttonText = [
-			'<?php echo $document->params->get('b1'); ?>',
-			'<?php echo $document->params->get('b2'); ?>',
-			'<?php echo $document->params->get('b3'); ?>'
-
-		]
+		
 
 		var updateSlideshow = function(e) {
 			jQuery('#bd-slideshow-text p').text(text[currentSlide]);
