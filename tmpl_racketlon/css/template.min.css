@@ -10218,7 +10218,7 @@ a.bd-backtotop-1:hover {
 	position: absolute;
 	top: 50%;
 	left: auto;
-	right: 18%;
+	right: 200px;
 	bottom: auto;
 	line-height: 40px;
 	transform: translateY(-50%);
@@ -10226,14 +10226,11 @@ a.bd-backtotop-1:hover {
 @media (max-width: 1199px) {
 	.bd-socialicons-1 {
 		top: 50%;
-		left: auto;
-		right: 22%;
 	}
 }
 @media (max-width: 991px) {
 	.bd-socialicons-1 {
 		top: 72%;
-		right: 29%;
 	}
 }
 .bd-socialicons-1 .bd-socialicon {
@@ -15805,7 +15802,9 @@ body {
 		height: 450px;
 	}
 }
-
+.bd-search-wrapper input[name=searchword] {
+	width: 180px;
+}
 .bd-link-button {
 	font-size: 20px;
 }
