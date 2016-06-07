@@ -256,7 +256,7 @@
 		
 	<script> 
 		// Slideshow transition script
-		var numberOfSlides = 3;
+		var numberOfSlides = 4;
 		var currentSlide = 0;
 		var timePerSlide = 1000 * <?php echo $document->params->get('slideshow_delay'); ?>;
 
