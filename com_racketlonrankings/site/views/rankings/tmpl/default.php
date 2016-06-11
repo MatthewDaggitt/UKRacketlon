@@ -13,23 +13,36 @@ defined('_JEXEC') or die('Restricted access');
 
 <?php
 
-	$countries = array();
-	foreach($this->data as $p)
-	{
-		$countries[$p['country']] = $p['country'];
-	}
-	$countries = array_unique($countries);
-	ksort($countries);
-	unset($countries['']);
+	$countries = $this->data["countries"];
+	$players = $this->data["players"];
 
-	$countries = array('All' => 'All') + $countries;
-
-	$now = new DateTime();
+	$js_players = json_encode($players);
 ?>
 
 <h1> All rankings </h1>
 
 <div id="ranking-controls">
+
+	<div class="control-group">
+		<div class="control-label">
+			<label>
+				Nationality: 
+			</label>
+		</div>
+		<div class="controls">
+			<select name="country">
+				<?php foreach($countries as $code => $name) : ?>
+					<option 
+						value="<?php echo $code ?>"
+						<?php echo ($code == "GBR" ? 'selected="selected"' : "") ?>
+					>
+						<?php echo $name ?>
+					</option>
+				<?php endforeach ?>
+			</select>
+		</div>
+	</div>
+
 	<div class="control-group">
 		<div class="control-label">
 			<label>
@@ -48,26 +61,6 @@ defined('_JEXEC') or die('Restricted access');
 	<div class="control-group">
 		<div class="control-label">
 			<label>
-				Nationality: 
-			</label>
-		</div>
-		<div class="controls">
-			<select name="country">
-				<?php foreach($countries as $c) : ?>
-					<option 
-						value="<?php echo $c ?>"
-						<?php echo ($c == "GBR" ? 'selected="selected"' : "") ?>
-					>
-						<?php echo $c ?>
-					</option>
-				<?php endforeach ?>
-			</select>
-		</div>
-	</div>
-
-	<div class="control-group">
-		<div class="control-label">
-			<label>
 				Age group: 
 			</label>
 		</div>
@@ -76,7 +69,7 @@ defined('_JEXEC') or die('Restricted access');
 				<option value="All">All</option>
 				<option value="U21">U21</option>
 				<option value="O45">O45</option>
-				<option value="O45">O55</option>
+				<option value="O55">O55</option>
 			</select>
 		</div>
 	</div>
@@ -95,7 +88,7 @@ defined('_JEXEC') or die('Restricted access');
 		</div>
 	</div>
 
-	<div class="control-group">
+	<div class="control-group" id="search-control-group">
 		<div class="control-label">
 			<label>
 				Search: 
@@ -107,9 +100,7 @@ defined('_JEXEC') or die('Restricted access');
 	</div>
 </div>
 
-<h2 id="ranking-title"> Top GBR players </h2>
-
-<div id="loading-div"> </div>
+<h2 id="ranking-title"> </h2>
 
 <div class="rankings-table-container">
 	<h2> 
@@ -119,91 +110,19 @@ defined('_JEXEC') or die('Restricted access');
 	<table class="rankings-table" data-sorting="true" data-paging="true" data-filtering="true" data-toggle-column="last">
 		<thead>
 			<tr>
-				<th class="rank-col" 	data-type="number" 	data-sortable="false"> # </th>
-				<th data-name="name" 	class="name-col" 	data-type="html" 	data-sortable="false"> Name </th>
-				<th class="rating-col" 	data-type="number" 	data-breakpoints="xss"> Rating</th>
-				<th class="class-col" 	data-type="text" 	data-breakpoints="xss"> Class </th>
-				<th class="tt-col" 		data-type="text" 	data-breakpoints="xss"> TT </th>
-				<th class="bd-col" 		data-type="text" 	data-breakpoints="xss"> Bd </th>
-				<th class="sq-col" 		data-type="text" 	data-breakpoints="xss"> Sq </th>
-				<th class="tn-col" 		data-type="text" 	data-breakpoints="xss"> Tn </th>
-				<th data-name="age" 	class="age-col" 	data-type="date" 	data-visible="false"> DoB </th>
-				<th data-name="gender" 	class="gender-col" 	data-type="text" 	data-visible="false"> Gender </th>
-				<th data-name="country" class="country-col" data-type="text" 	data-visible="false"> Country </th>
+				<th data-name="rank" 	class="rank-col" 	data-type="number" 	data-sortable="false"> 	# </th>
+				<th data-name="name" 	class="name-col" 	data-type="html" 	data-sortable="false"> 	Name </th>
+				<th data-name="rating" 	class="rating-col" 	data-type="number" 	data-breakpoints="xss"> Rating</th>
+				<th data-name="class" 	class="class-col" 	data-type="text" 	data-breakpoints="xss"> Class </th>
+				<th data-name="tt" 		class="tt-col" 		data-type="text" 	data-breakpoints="xss"> TT </th>
+				<th data-name="bd" 		class="bd-col" 		data-type="text" 	data-breakpoints="xss"> Bd </th>
+				<th data-name="sq" 		class="sq-col" 		data-type="text" 	data-breakpoints="xss"> Sq </th>
+				<th data-name="tn" 		class="tn-col" 		data-type="text" 	data-breakpoints="xss"> Tn </th>
+				<th data-name="age" 	class="age-col" 	data-type="date" 	data-visible="false"> 	DoB </th>
+				<th data-name="gender" 	class="gender-col" 	data-type="text" 	data-visible="false"> 	Gender </th>
+				<th data-name="country" class="country-col" data-type="text" 	data-visible="false"> 	Country </th>
 			</tr>
 		</thead>
-		
-		<tfoot>
-			<tr>
-				<td colspan="8"></td>
-			</tr>
-		</tfoot>
-		
-		<tbody>
-			<?php foreach($this->data as $i => $p) : ?>
-				<tr>
-					<td> 
-						<?php echo ($i + 1) ?>
-					</td>
-					<td>
-						<a href="http://www.racketlon.co.uk/index.php/rankings/search?option=com_racketlonrankings&player_id=<?php echo $p['id'] ?>">
-							<?php echo $p['name'] ?>
-						</a>
-					</td>
-					<td>
-						<?php echo ($p['rating']) ?>
-					</td>
-					<td data-sort-value="<?php echo number_format($p['rating']/100000, 5) ?>">
-						<?php echo ($p['class']) ?>
-					</td>
-					<td data-sort-value="<?php echo number_format($p['ratingtt']/100000, 5) ?>">
-						<?php echo ($p['classtt']) ?>
-					</td>
-					<td data-sort-value="<?php echo number_format($p['ratingbd']/100000, 5) ?>">
-						<?php echo ($p['classbd']) ?>
-					</td>
-					<td data-sort-value="<?php echo number_format($p['ratingsq']/100000, 5) ?>">
-						<?php echo ($p['classsq']) ?>
-					</td>
-					<td data-sort-value="<?php echo number_format($p['ratingtn']/100000, 5) ?>">
-						<?php echo ($p['classtn']) ?>
-					</td>
-					<td>
-						All 
-						<?php
-							echo $p["dob"];
-							if($p["dob"] != "0000-00-00")
-							{
-								$dob21 = (new DateTime($p["dob"]))->add(new DateInterval('P21Y'));
-								$dob45 = (new DateTime($p["dob"]))->add(new DateInterval('P45Y'));
-								$dob55 = (new DateTime($p["dob"]))->add(new DateInterval('P55Y'));
-
-								if($now < $dob21)
-								{
-									echo 'U21';
-								}
-								if($now > $dob45)
-								{
-									echo 'O45';
-								}
-								if($now > $dob55)
-								{
-									echo 'O55';
-								}
-							}
-						?>
-					</td>
-					<td>
-						All 
-						<?php echo ($p['gender']) ?>
-					</td>
-					<td>
-						All 
-						<?php echo ($p['country'] ? $p['country'] : '???') ?>
-					</td>
-				</tr>
-			<?php endforeach ?>
-		</tbody>
 	</table>
 </div>
 
@@ -212,6 +131,156 @@ defined('_JEXEC') or die('Restricted access');
 
 <script type="text/javascript" src="/templates/uk_racketlon/js/heartcode-canvasloader.min.js"></script>
 
+<script>
+	// Data setup
+	var players = <?php echo $js_players ?>;
+
+	var rows = [];
+	for(var i = 0; i < players.length; i++)
+	{
+		p = players[i];
+
+		var name = '<a href="http://www.racketlon.co.uk/index.php/rankings/search?option=com_racketlonrankings&player_id=' + p['id'] + '">' + p['name'] + "</a>";
+						
+		rows.push({
+			"rank": 	i+1,
+			"name": 	name,
+			"rating": 	p['rating'],
+			"class": 	(1 - p['rating']/100000).toFixed(5),	// Needed to hack the sorting order
+			"tt": 		(1 - p['ratingtt']/100000).toFixed(5),
+			"bd": 		(1 - p['ratingbd']/100000).toFixed(5),
+			"sq": 		(1 - p['ratingsq']/100000).toFixed(5),
+			"tn": 		(1 - p['ratingtn']/100000).toFixed(5),
+			"age": 		"All " + p['dob'],
+			"gender": 	"All " + p['gender'],
+			"country": 	"All " + p['country']
+		});
+	}
+
+	function formatRating(rating)
+	{
+		rating = (1 - parseFloat(rating))*100000;
+
+		if(rating < 10000)
+			return "??";
+		if(rating < 12000)
+			return "D" + Math.ceil((12000 - rating)/500);
+		if(rating < 14000)
+			return "C" + Math.ceil((14000 - rating)/500);
+		if(rating < 16000)
+			return "B" + Math.ceil((16000 - rating)/500);
+		if(rating < 18000)
+			return "A" + Math.ceil((18000 - rating)/500);
+		if(rating < 20000)
+			return Math.ceil((20000 - rating)/500) + "+";
+		
+		return '0+';
+	}
+
+	var columns = [
+		{},
+		{},
+		{},
+
+		{"formatter":formatRating},
+		{"formatter":formatRating},
+		{"formatter":formatRating},
+		{"formatter":formatRating},
+		{"formatter":formatRating},
+
+		{},
+		{},
+		{}
+	]
+
+
+	jQuery(".rankings-table").footable({
+		"toggleColumn": "last",
+		"breakpoints": {
+			"xss": 320,
+			"xs": 480,
+			"s": 768,
+			"m": 992,
+			"l": 1200,
+			"xl": 1400
+		},
+		"rows": rows,
+		"columns": columns
+	});
+
+	
+
+	function filter()
+	{
+		var gender 	= jQuery('[name=gender] option:selected');
+		var country = jQuery('[name=country] option:selected');
+		var age 	= jQuery('[name=age] option:selected');
+		var name 	= jQuery('[name=name]');
+
+		// Filters
+		var filtering = FooTable.get('.rankings-table').use(FooTable.Filtering);
+		filtering.addFilter("gender", 	gender.val(), 	["gender"]);
+		filtering.addFilter("country", 	country.val(), 	["country"]);
+		filtering.addFilter("age", 		age.val(), 		["age"]);
+		filtering.addFilter("name", 	name.val(), 	["name"]);
+		filtering.filter();
+
+		// Header
+		var genderTxt = gender.text();
+		var countryTxt = country.text();
+		var ageTxt = age.text();
+
+		var text = "";
+		if(ageTxt != "All")
+		{
+			text += ageTxt + " ";
+		}
+		if(genderTxt != 'All')
+		{
+			text += genderTxt + " ";
+		}
+		if(countryTxt != "All")
+		{
+			text += countryTxt + " ";
+		}
+		text += "players";
+		jQuery('#ranking-title').text(text);
+	}
+
+	// Listeners
+	var britishCodes = ["IMN", "ENG", "WAL", "SCO", "NIR", "GBR"];
+
+	jQuery('[name=gender]').on('change', filter);
+	jQuery('[name=age]').on('change', filter);
+	jQuery('[name=country]').on('change', function() {
+		if(britishCodes.indexOf(this.value) > -1)
+		{
+			jQuery('[name=age]').prop('disabled', false);
+		}
+		else
+		{
+			jQuery('[name=age]').val("All");
+			jQuery('[name=age]').prop('disabled', true);
+		}
+		filter();
+	});
+	jQuery('[name=name]').on('change', filter);
+	jQuery('[name=name]').on('keyup', filter);
+
+	// Cleanup
+	FooTable.get('.rankings-table').pageSize(25);
+	jQuery(".rankings-table-container").show();
+
+	jQuery('[name=country]').val("GBR");
+	jQuery('[name=country]').trigger("change");
+
+	jQuery(function($) {
+		
+
+	});
+</script>
+
+<!--
 <script>
 
 	var cl = new CanvasLoader("loading-div");
@@ -224,70 +293,15 @@ defined('_JEXEC') or die('Restricted access');
 
 	setTimeout(function() {
 		
-		jQuery(".rankings-table").footable({
-			"breakpoints": {
-				"xss": 320,
-				"xs": 480,
-				"s": 768,
-				"m": 992,
-				"l": 1200,
-				"xl": 1400
-			}
-		});
-		FooTable.get('.rankings-table').pageSize(25);
 
-
-		function filter(name, value)
-		{
-			var filtering = FooTable.get('.rankings-table').use(FooTable.Filtering);
-			filtering.addFilter(name, value, [name]);
-			filtering.filter();
-
-			var gender = jQuery('[name=gender]').val();
-			var country = jQuery('[name=country]').val();
-			var ageGroup = jQuery('[name=age]').val();
-
-			var text = "";
-			
-			if(country != "All")
-			{
-				text += country + " ";
-			}
-			if(gender == '1')
-			{
-				text += "Female ";
-			}
-			else if(gender == '0')
-			{
-				text += "Male ";
-			}
-			text += "players";
-			jQuery('#ranking-title').text(text);
-		}
-
-		function addFilterListener(name)
-		{
-			jQuery('[name=' + name + ']').on('change', function() {
-				filter(name, this.value);
-			});
-		}
-
-		addFilterListener('gender');
-		addFilterListener('country');
-		addFilterListener('name');
-		addFilterListener('age');
-
-		jQuery('[name=name]').on('keyup', function() {
-		     filter('name', this.value);
-		});
+		
 
 
 		jQuery(".rankings-table-container").show();
 		jQuery('#loading-div').hide();
 		cl.kill();
 
-		jQuery('[name=country]').val("GBR");
-		jQuery('[name=country]').trigger("change");
 	}, 100);
 
 </script>
+-->

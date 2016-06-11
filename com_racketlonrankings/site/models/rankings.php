@@ -9,7 +9,7 @@
  
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
- 
+
 /**
  * Rankings Model
  *
@@ -54,9 +54,61 @@ class RacketlonRankingsModelRankings extends JModelItem
 					->from($db->quoteName('#__players'))
 					->order($db->quoteName('rating') . ' desc');
 			$db->setQuery($query);
-			$this->message = $db->loadAssocList();
+			$players = $db->loadAssocList();
+			
+			$this->message = array(
+				"players" 	=> $this->convertDoBToAgeGroups($players),
+				"countries" => $this->generateCountries($players)
+			);
 		}
  
 		return $this->message;
+	}
+
+	private function convertDoBToAgeGroups($players)
+	{
+		$now = new DateTime();
+		foreach ($players as $i => $p) 
+		{
+			$ageStr = "";
+			if($p["dob"] != "0000-00-00")
+			{
+				$dob21 = (new DateTime($p["dob"]))->add(new DateInterval('P21Y'));
+				$dob45 = (new DateTime($p["dob"]))->add(new DateInterval('P45Y'));
+				$dob55 = (new DateTime($p["dob"]))->add(new DateInterval('P55Y'));
+
+				if($now < $dob21)
+				{
+					$ageStr .= 'U21';
+				}
+				if($now > $dob45)
+				{
+					$ageStr .= 'O45';
+				}
+				if($now > $dob55)
+				{
+					$ageStr .= 'O55';
+				}
+
+			}
+			$players[$i]["dob"] = $ageStr;
+		}
+		return $players;
+	}
+
+	private function generateCountries($players)
+	{
+		require_once("countries.php");
+
+		$countries = array();
+		foreach($players as $p)
+		{
+			$code = $p['country'];
+			$countries[$code] = $allCountries[$code];
+		}
+
+		asort($countries);
+		unset($countries['']);
+		return $countries;	
 	}
 }

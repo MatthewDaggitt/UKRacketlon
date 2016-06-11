@@ -3048,7 +3048,6 @@ textarea:not([class]) {
 	-ms-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
-	background-color: #fff;
 	border-radius: 0
 }
 input[type=text]:not([class]):-moz-placeholder,
@@ -12636,6 +12635,25 @@ table.tournament-table.footable-details>tbody>tr>th:nth-child(1) {
 
 #ranking-controls {
 	margin-bottom: 50px;
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+#ranking-controls .control-group {
+	width: 45%;
+}
+#ranking-controls #search-control-group {
+	width: 100%;
+}
+
+#ranking-controls input,
+#ranking-controls select {
+	width: 100%;
+}
+@media (max-width: 479px) {
+	#ranking-controls .control-group {
+		width: 100%;
+	}
 }
 
 .rankings-table-container {
