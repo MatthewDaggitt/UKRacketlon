@@ -90,6 +90,7 @@
 
 
 			<fieldset name="slideshow" label="Slideshow">
+
 				<field name="close_slideshow" type="radio" default="1" class="btn-group"  label="Slideshow" description="Stop the slideshow from appearing">
 					<option value="0">Disabled</option>
 					<option value="1">Enabled</option>
@@ -102,6 +103,9 @@
 
 				<field name="slideshow_delay" type="number" default="10" min="1" label="Slideshow delay (s)" description="Time between slide transitions in seconds"/>
 
+
+				<field type="spacer" class="text" label=" " />
+				<field type="spacer" class="text" label="&lt;b&gt;Node&lt;/b&gt; High resolution images are preferred for slideshow backgrounds. However to reduce the loading time for the front page please feed them through a minifier (such as www.compressjpeg.com) before uploading." />
 
 				<field type="spacer" class="text" label=" " />	
 
