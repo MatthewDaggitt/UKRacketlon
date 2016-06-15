@@ -84,67 +84,7 @@ defined('_JEXEC') or die('Restricted access');
   <a href="#" id="player-search-icon" class=" bd-icon-30" link-disable="true"></a>
 </div>
 
-<script>
-	// Fill autocomplete
-    var players = <?php echo $js_players ?>;
-    var names = [];
-    var idsByName = {};
-
-    for(var i = 0; i < players.length; i++)
-    {
-    	names.push(players[i]['name']);
-    	idsByName[players[i]['name']] = players[i]['id'];
-    }
-
-    function search()
-    {
-    	var name = jQuery("#player-search-box").val();
-    	if(name)
-    	{
-    		var id;
-    		if(name in idsByName)
-    		{
-    			id = idsByName[name];
-    		}
-    		else
-    		{
-    			id = -1;
-    		}
-    		window.location="http://www.racketlon.co.uk/index.php/rankings/search?option=com_racketlonrankings&player_id=" + id;
-    	}
-    }
-
-    jQuery("#player-search-box").autocomplete({
-    	source: function(req, response) {
-			response(jQuery.ui.autocomplete.filter(names, req.term).slice(0, 10));//for getting 5 results
-		},
-		select: function(event, ui) {
-	        jQuery("#player-search-box").val(ui.item.value);
-	        search();
-	    }
-    });
-
-    document.getElementById("player-search-box").onkeypress = function(e)
-    {
-	    if(!e) 
-	    {
-	    	e = window.event;
-	    } 
-
-	    var keyCode = e.keyCode || e.which;
-	    if (keyCode == '13')
-	    {
-	    	// Enter pressed
-	    	search();
-	    }
-	};
-
-	document.getElementById("player-search-icon").onclick = function(e)
-	{
-		search();
-	};
-</script>
-
+<p id="player-search-error" class="collapse"> </p>
 
 <?php if($this->id >= -1) : ?>
 	<?php if($this->id == -1 || is_null($player)) : ?>
@@ -520,7 +460,68 @@ defined('_JEXEC') or die('Restricted access');
 	<?php endif ?>
 <?php endif ?>
 
+<script>
+	// Fill autocomplete
+    var players = <?php echo $js_players ?>;
+    var names = [];
+    var idsByName = {};
 
+    for(var i = 0; i < players.length; i++)
+    {
+    	names.push(players[i]['name']);
+    	idsByName[players[i]['name']] = players[i]['id'];
+    }
+
+    function search()
+    {
+    	var name = jQuery("#player-search-box").val();
+    	if(name)
+    	{
+    		var errorTxt = jQuery("#player-search-error");
+    		if(name in idsByName)
+    		{
+    			errorTxt.text("");
+    			window.location="http://www.racketlon.co.uk/index.php/rankings/search?option=com_racketlonrankings&player_id=" + idsByName[name];
+    		}
+    		else
+    		{
+    			jQuery('#ui-id-1').hide();
+    			errorTxt.text("Could not find player '" + name + "'");
+    			errorTxt.collapse('show');
+    		}
+    	}
+    }
+
+    jQuery("#player-search-box").autocomplete({
+    	source: function(req, response) {
+			response(jQuery.ui.autocomplete.filter(names, req.term).slice(0, 10));//for getting 5 results
+		},
+		select: function(event, ui) {
+	        jQuery("#player-search-box").val(ui.item.value);
+	        search();
+	    }
+    });
+
+    document.getElementById("player-search-box").onkeypress = function(e)
+    {
+	    if(!e) 
+	    {
+	    	e = window.event;
+	    } 
+
+	    var keyCode = e.keyCode || e.which;
+	    if (keyCode == '13')
+	    {
+	    	// Enter pressed
+	    	search();
+	    }
+	};
+
+	document.getElementById("player-search-icon").onclick = function(e)
+	{
+		search();
+	};
+</script>
 
 
 

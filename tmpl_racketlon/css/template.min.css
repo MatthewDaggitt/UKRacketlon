@@ -12497,6 +12497,9 @@ table.footable>thead>tr>th.footable-sortable {
 #player-search-box {
 	width: 100%;
 }
+#player-search-error {
+	color: red;
+}
 
 #all-rating-graph {
 	width: 100%;
