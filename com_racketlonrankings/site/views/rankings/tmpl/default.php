@@ -142,7 +142,13 @@ defined('_JEXEC') or die('Restricted access');
 		p = players[i];
 
 		var name = '<a href="http://www.racketlon.co.uk/index.php/rankings/search?option=com_racketlonrankings&player_id=' + p['id'] + '">' + p['name'] + "</a>";
-						
+		
+		var country = p['country'];
+		if(p['country'] == "SCO" || p['country'] == "WAL" || p['country'] == "IMN" || p['country'] == "NIR" || p['country'] == "ENG")
+		{
+			country += " GBR";
+		}
+
 		rows.push({
 			"rank": 	i+1,
 			"name": 	name,
@@ -154,7 +160,7 @@ defined('_JEXEC') or die('Restricted access');
 			"tn": 		(1 - p['ratingtn']/100000).toFixed(5),
 			"age": 		"All " + p['dob'],
 			"gender": 	"All " + p['gender'],
-			"country": 	"All " + p['country']
+			"country": 	"All " + country
 		});
 	}
 

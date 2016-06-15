@@ -79,6 +79,7 @@ $allCountries = array(
 	"DZA" => "Algerian",
 	"ECU" => "Ecuadorian",
 	"EGY" => "Egyptian",
+	"ENG" => "English",
 	"ERI" => "Eritrean",
 	"ESH" => "Western Sahara", //
 	"ESP" => "Spanish",
