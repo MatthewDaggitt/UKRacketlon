@@ -69,6 +69,10 @@ class RacketlonRankingsModelPlayer extends JModelItem
 			$db->setQuery($query);
 			$player = $db->loadAssoc();
 
+			require_once("countries.php");
+			$player['country'] = $allCountries[$player['country']];
+			$player['ageCategory'] = $this->convertDoBToAgeCategory($player['dob']);
+
 			$query = $db->getQuery(true)
 				->select('*')
 				->from($db->quoteName('#__matches'))
@@ -116,8 +120,9 @@ class RacketlonRankingsModelPlayer extends JModelItem
 		{
 			$firstMatch = $tournament['matches'][0];
 			$lastMatch = end($tournament['matches']);
+			$matches = $tournament['matches'];
 
-			$r = $lastMatch['p1rating']   + $lastMatch['p1ratingchg'];
+			$r   = $lastMatch['p1rating']   + $lastMatch['p1ratingchg'];
 			$rtt = $lastMatch['p1ratingtt'] + $lastMatch['p1ratingchgtt'];
 			$rbd = $lastMatch['p1ratingbd'] + $lastMatch['p1ratingchgbd'];
 			$rsq = $lastMatch['p1ratingsq'] + $lastMatch['p1ratingchgsq'];
@@ -128,9 +133,36 @@ class RacketlonRankingsModelPlayer extends JModelItem
 			$tournaments[$name]['finalRatingbd'] = $rbd == 0 ? null : $rbd;
 			$tournaments[$name]['finalRatingsq'] = $rsq == 0 ? null : $rsq;
 			$tournaments[$name]['finalRatingtn'] = $rtn == 0 ? null : $rtn;
-			$tournaments[$name]['date']          = $firstMatch['date'];
+
+			$tournaments[$name]['startDate']     = $firstMatch['date'];
+			$tournaments[$name]['endDate']       = $lastMatch['date'];
 		}
 
 		return array('player' => $player, 'tournaments' => $tournaments);
+	}
+
+	private function convertDoBToAgeCategory($dob)
+	{
+		if($p["dob"] != "0000-00-00")
+		{
+			$dob21 = (new DateTime($dob))->add(new DateInterval('P21Y'));
+			$dob45 = (new DateTime($dob))->add(new DateInterval('P45Y'));
+			$dob55 = (new DateTime($dob))->add(new DateInterval('P55Y'));
+
+			$now = new DateTime();
+			if($now < $dob21)
+			{
+				return 'Junior';
+			}
+			if($now > $dob55)
+			{
+				return 'O55';
+			}
+			if($now > $dob45)
+			{
+				return 'O45';
+			}
+		}
+		return "";
 	}
 }

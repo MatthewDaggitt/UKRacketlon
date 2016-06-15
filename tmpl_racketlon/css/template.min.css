@@ -11905,7 +11905,7 @@ body {
 /**********/
 
 .twitter_module.jmoddiv {
-	transition: padding-top 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+	transition: opacity 0.8s;
 }
 
 
@@ -11984,7 +11984,7 @@ body {
 	min-width: 125px;
 	padding-top: 15px;
 }
-
+.twitter_module
 
 
 #searchForm legend {
@@ -11996,7 +11996,7 @@ body {
 }
 .badge {
 	background-color: #428BCA;
-	font-size: 16px;
+	font-size: 18px;
 	vertical-align: text-top;
 }
 
@@ -12472,6 +12472,13 @@ th.footable-sortable>span.fooicon.fooicon-sort-desc
 	transform: scale(1, -1);
 	margin-top: -1px;
 }
+.footable-filtering {
+	display:none;
+}
+table.footable>thead>tr>th.footable-sortable {
+	color: #003c85;
+    text-decoration: none;
+}
 
 /******************/
 /* Player ratings */
@@ -12675,30 +12682,22 @@ table.tournament-table.footable-details>tbody>tr>th:nth-child(1) {
 .rankings-table tr td:nth-child(1) {
    padding-right: 5px;
 }
+
 .rankings-table td:nth-child(3),
 .rankings-table td:nth-child(4),
 .rankings-table td:nth-child(5),
 .rankings-table td:nth-child(6),
 .rankings-table td:nth-child(7),
-.rankings-table td:nth-child(8),
-.rankings-table th:nth-child(3),
-.rankings-table th:nth-child(4),
-.rankings-table th:nth-child(5),
-.rankings-table th:nth-child(6),
-.rankings-table th:nth-child(7),
-.rankings-table th:nth-child(8), {
+.rankings-table td:nth-child(8) {
    text-align: center;
 }
 
-.rankings-table thead .rating-col,
-.rankings-table thead .class-col,
-.rankings-table thead .tt-col,
-.rankings-table thead .bd-col,
-.rankings-table thead .sq-col,
-.rankings-table thead .tn-col {
-	color: #003c85;
-    text-decoration: none;
+table.footable.rankings-table>thead>tr>th.footable-sortable {
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
 }
+
 .rankings-table thead .rating-col:hover,
 .rankings-table thead .class-col:hover,
 .rankings-table thead .tt-col:hover,
@@ -12712,9 +12711,7 @@ table.tournament-table.footable-details>tbody>tr>th:nth-child(1) {
 	vertical-align: top;
 }
 
-.footable-filtering {
-	display:none;
-}
+
 
 /**************/
 /* Contact us */

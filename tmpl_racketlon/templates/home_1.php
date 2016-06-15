@@ -117,18 +117,23 @@
 								<div class="col-lg-6 col-sm-12">
 									<div class="bd-layoutcolumn-9">
 										<div class="bd-vertical-align-wrapper">
-											<h4 class=" bd-textblock-8 bd-tagstyles">
-												<font color="#428bca">
-													01.
-												</font>
-											</h4>
-								
-											<h3 class=" bd-textblock-6 bd-tagstyles">
-							  					<?php echo $document->params->get('title1'); ?>
-											</h3>
+
+											<a href="<?php echo $document->params->get('link1'); ?>" style="text-decoration: none">
+												<h4 class=" bd-textblock-8 bd-tagstyles">
+													<font color="#428bca">
+														01.
+													</font>
+												</h4>
+									
+												<h3 class=" bd-textblock-6 bd-tagstyles">
+								  					<?php echo $document->params->get('title1'); ?>
+												</h3>
+											</a>
 			
 											<div class=" bd-imagescaling-1 bd-imagescaling-animated" data-imagescaling-target=" bd-imagelink-6">
-												<img class="bd-imagestyles bd-imagelink-6   " src="<?php echo $document->params->get('image1'); ?>">
+												<a href="<?php echo $document->params->get('link1'); ?>">
+													<img class="bd-imagestyles bd-imagelink-6" src="<?php echo $document->params->get('image1'); ?>">
+												</a>
 											</div>
 			
 											<p class=" bd-textblock-7 bd-tagstyles">
@@ -145,18 +150,23 @@
 								<div class="col-lg-6 col-sm-12">
 									<div class="bd-layoutcolumn-18">
 										<div class="bd-vertical-align-wrapper">
-											<h4 class=" bd-textblock-8 bd-tagstyles">
-												<font color="#428bca">
-													02.
-												</font>
-											</h4>
 
-											<h3 class=" bd-textblock-9 bd-tagstyles">
-												<?php echo $document->params->get('title2'); ?>
-											</h3>
+											<a href="<?php echo $document->params->get('link2'); ?>" style="text-decoration: none">
+												<h4 class=" bd-textblock-8 bd-tagstyles">
+													<font color="#428bca">
+														02.
+													</font>
+												</h4>
+
+												<h3 class=" bd-textblock-9 bd-tagstyles">
+													<?php echo $document->params->get('title2'); ?>
+												</h3>
+											</a>
 				
 											<div class=" bd-imagescaling-2 bd-imagescaling-animated" data-imagescaling-target=" bd-imagelink-7">
-												<img class="bd-imagestyles bd-imagelink-7   " src="<?php echo $document->params->get('image2'); ?>">
+												<a href="<?php echo $document->params->get('link2'); ?>">
+													<img class="bd-imagestyles bd-imagelink-7" src="<?php echo $document->params->get('image2'); ?>">
+												</a>
 											</div>
 									
 											<p class=" bd-textblock-10 bd-tagstyles">
@@ -173,18 +183,23 @@
 								<div class="col-lg-6 col-sm-12">
 									<div class="bd-layoutcolumn-20">
 										<div class="bd-vertical-align-wrapper">
-											<h4 class=" bd-textblock-8 bd-tagstyles">
-												<font color="#428bca">
-													03.
-												</font>
-											</h4>
-									
-											<h3 class=" bd-textblock-12 bd-tagstyles">
-												<?php echo $document->params->get('title3'); ?>
-											</h3>
+
+											<a href="<?php echo $document->params->get('link3'); ?>" style="text-decoration: none">
+												<h4 class=" bd-textblock-8 bd-tagstyles">
+													<font color="#428bca">
+														03.
+													</font>
+												</h4>
+										
+												<h3 class=" bd-textblock-12 bd-tagstyles">
+													<?php echo $document->params->get('title3'); ?>
+												</h3>
+											</a>
 									
 											<div class=" bd-imagescaling-3 bd-imagescaling-animated" data-imagescaling-target=" bd-imagelink-8">
-												<img class="bd-imagestyles bd-imagelink-8   " src="<?php echo $document->params->get('image3'); ?>">
+												<a href="<?php echo $document->params->get('link3'); ?>">
+													<img class="bd-imagestyles bd-imagelink-8" src="<?php echo $document->params->get('image3'); ?>">
+												</a>
 											</div>
 									
 											<p class=" bd-textblock-13 bd-tagstyles">
@@ -201,18 +216,23 @@
 								<div class="col-lg-6 col-sm-12">
 									<div class="bd-layoutcolumn-22">
 										<div class="bd-vertical-align-wrapper">
-											<h4 class=" bd-textblock-8 bd-tagstyles">
-												<font color="#428bca">
-													04.
-												</font>
-											</h4>
-							
-											<h3 class=" bd-textblock-15 bd-tagstyles">
-												<?php echo $document->params->get('title4'); ?>
-											</h3>
+
+											<a href="<?php echo $document->params->get('link4'); ?>" style="text-decoration: none">
+												<h4 class=" bd-textblock-8 bd-tagstyles">
+													<font color="#428bca">
+														04.
+													</font>
+												</h4>
+								
+												<h3 class=" bd-textblock-15 bd-tagstyles">
+													<?php echo $document->params->get('title4'); ?>
+												</h3>
+											</a>
 									
 											<div class=" bd-imagescaling-4 bd-imagescaling-animated" data-imagescaling-target=" bd-imagelink-9">
-												<img class="bd-imagestyles bd-imagelink-9   " src="<?php echo $document->params->get('image4'); ?>">
+												<a href="<?php echo $document->params->get('link4'); ?>">
+													<img class="bd-imagestyles bd-imagelink-9" src="<?php echo $document->params->get('image4'); ?>">
+												</a>
 											</div>
 									
 											<p class=" bd-textblock-16 bd-tagstyles">

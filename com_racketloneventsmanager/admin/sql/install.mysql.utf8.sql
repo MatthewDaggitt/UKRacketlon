@@ -14,6 +14,8 @@ CREATE TABLE `#__racketloneventsmanager` (
 	`teams`		BOOLEAN			NOT NULL,
 	`location` 	VARCHAR(25)		NOT NULL,
 	`postcode`	VARCHAR(10)		NOT NULL,
+	`email`		VARCHAR(100)	NOT NULL,
+	`phone`		VARCHAR(20)		NOT NULL,
 	`published` tinyint(4) 		NOT NULL,
 	PRIMARY KEY (`id`)
 )

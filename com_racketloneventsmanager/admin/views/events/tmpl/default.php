@@ -41,7 +41,7 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 			<th width="1px">
 				<?php echo JHtml::_('grid.sort', 'Type', 'type', $listDirn, $listOrder); ?>
 			</th>
-			<th width="10%">
+			<th width="5%">
 				<?php echo JHtml::_('grid.sort', 'Link', 'link', $listDirn, $listOrder); ?>
 			</th>
 			<th width="1px">
@@ -59,20 +59,11 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 			<th width="1px">
 				<?php echo JHtml::_('grid.sort', 'Start date', 'startdate', $listDirn, $listOrder); ?>
 			</th>
-			<th width="1px">
-				<?php echo JText::_('End date') ?>
-			</th>
-			<th width="5%">
+			<th width="10%">
 				<?php echo JText::_('Location'); ?>
 			</th>
-			<th width="5%">
+			<th width="10%">
 				<?php echo JText::_('Postcode'); ?>
-			</th>
-			<th width="5%">
-				<?php echo JText::_('Latitude'); ?>
-			</th>
-			<th width="5%">
-				<?php echo JText::_('Longitude'); ?>
 			</th>
 		</tr>
 		</thead>
@@ -129,23 +120,10 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 							?>
 						</td>
 						<td>
-							<?php 
-								if ($row->dated) {
-									echo $row->enddate;
-								}
-							?>
-						</td>
-						<td>
 							<?php echo $row->location; ?>
 						</td>
 						<td>
 							<?php echo $row->postcode; ?>
-						</td>
-						<td>
-							<?php echo substr($row->latitude,0,8); ?>
-						</td>
-						<td>
-							<?php echo substr($row->longitude,0,8); ?>
 						</td>
 					</tr>
 				<?php endforeach; ?>

@@ -24,7 +24,7 @@ jQuery(function() {
 	});
 
 	document.formvalidator.setHandler('location', function (value) {
-		regex=/^[a-z0-9 .&-]+$/i;
+		regex=/^[a-z0-9 .,&-]+$/i;
 		return regex.test(value);
 	});
 

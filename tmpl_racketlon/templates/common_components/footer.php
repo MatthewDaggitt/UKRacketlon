@@ -62,5 +62,6 @@
 	jQuery(".bd-login-icon").click(function(e)
 	{
 		jQuery(name).toggle("slow");
+		jQuery(window).scrollTop(0);
 	});
 </script>

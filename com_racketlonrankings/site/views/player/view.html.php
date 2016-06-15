@@ -31,6 +31,11 @@ class RacketlonRankingsViewPlayer extends JViewLegacy
  		$this->players = $this->get('Players');
  		$this->id = JFactory::getApplication()->input->get('player_id', 1, 'INT');
 
+ 		if($this->id >= -1)
+ 		{
+ 			JFactory::getDocument()->setTitle($this->params['player']['name']);
+ 		}
+
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{

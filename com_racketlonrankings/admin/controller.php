@@ -371,7 +371,7 @@ class RacketlonRankingsController extends JControllerLegacy
 
 	function convertCountry($country)
 	{
-		if($country == "WAL" || $country == "SCO" || $country == "ENG")
+		if(empty($country))
 		{
 			return "GBR";
 		}

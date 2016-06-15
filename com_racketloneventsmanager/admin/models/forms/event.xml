@@ -17,14 +17,14 @@
 		/>
 		
 		<field type="spacer" class="text" label="" />
-		<field type="spacer" class="text" label="&lt;b&gt;Game details&lt;/b&gt;" />
+		<field type="spacer" class="text" label="&lt;b&gt;Type&lt;/b&gt;" />
 
 		<field 
 			name="type"
 			type="list"
 			default="National tour"
-			label="Event type"
-			description="The type of the event?"
+			label="Tour"
+			description="Which tour is the event part of?"
 		>
 			<option value="World tour">World tour</option>
 			<option value="UK tour">UK tour</option>
@@ -157,6 +157,25 @@
 			class="inputbox"
 			default=""
 		/>
-
+		<field
+			name="phone"
+			type="text"
+			label="Contact number"
+			description="A contact phone number for the organiser"
+			size="10"
+			class="inputbox validate-phone"
+			default=""
+			required="true"
+		/>
+		<field
+			name="email"
+			type="text"
+			label="Contact email"
+			description="A contact email for the organiser"
+			size="10"
+			class="inputbox validate-email"
+			default=""
+			required="true"
+		/>
 	</fieldset>
 </form>

@@ -31,6 +31,7 @@ defined('_JEXEC') or die('Restricted access');
 		</div>
 		<div class="controls">
 			<select name="country">
+				<option value="All">All</option>
 				<?php foreach($countries as $code => $name) : ?>
 					<option 
 						value="<?php echo $code ?>"
@@ -91,7 +92,7 @@ defined('_JEXEC') or die('Restricted access');
 	<div class="control-group" id="search-control-group">
 		<div class="control-label">
 			<label>
-				Search: 
+				Search:
 			</label>
 		</div>
 		<div class="controls">
@@ -239,7 +240,7 @@ defined('_JEXEC') or die('Restricted access');
 		{
 			text += genderTxt + " ";
 		}
-		if(countryTxt != "All")
+		if(countryTxt != "All" || (genderTxt == "All" && ageTxt == "All"))
 		{
 			text += countryTxt + " ";
 		}

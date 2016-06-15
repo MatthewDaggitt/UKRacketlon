@@ -29,7 +29,7 @@ defined('_JEXEC') or die('Restricted access');
 	foreach($tournaments as $name => $t)
 	{
 		$ratingsOverTime['names'][] = $name;
-		$ratingsOverTime['dates'][] = $t['date'];
+		$ratingsOverTime['dates'][] = $t['startDate'];
 		$ratingsOverTime['all'][] = $t['finalRating'];
 		$ratingsOverTime['tt'][] = $t['finalRatingtt'];
 		$ratingsOverTime['bd'][] = $t['finalRatingbd'];
@@ -38,10 +38,6 @@ defined('_JEXEC') or die('Restricted access');
 	}
 	$js_ratingsOverTime = json_encode($ratingsOverTime);	
 	$js_players = json_encode($this->players);
-
-	$dob = new DateTime($player["dob"]);
-	$dob18 = $dob->add(new DateInterval('P18Y'));
-
 
 	function displayGameResult($v1 , $v2)
 	{
@@ -53,6 +49,24 @@ defined('_JEXEC') or die('Restricted access');
 		{
 			echo $v1 . "-" . $v2;
 		}
+	}
+
+	function generateDates($begin, $end) {
+		$begin = new DateTime($begin);
+		$end = (new DateTime($end))->modify('+1 day');
+
+		$interval = new DateInterval('P1D');
+		$daterange = new DatePeriod($begin, $interval ,$end);
+
+		$result  = '';
+		foreach($daterange as $date) {
+			$result .= '<div class="rem-date">';
+			$result .= 	'<span class="rem-day">' . $date->format("d") . '</span>';
+			$result .= 	'<span class="rem-month">' . $date->format("M") . '</span>';
+			$result .= '</div>';
+		}
+
+		return $result;
 	}
 ?>
 
@@ -143,31 +157,27 @@ defined('_JEXEC') or die('Restricted access');
 		<!-- Tags -->
 
 		<div id="player-tags">
-			<?php if ($player["uk"]) : ?>
-				<div class="badge uk">
-					UK
+			<?php if ($player["gender"]) : ?>
+				<div class="badge female">
+					Female
 				</div>
-
-				<?php if ($player["gender"]) : ?>
-					<div class="badge female">
-						Female
-					</div>
-				<?php else : ?>
-					<div class="badge male">
-						Male
-					</div>
-				<?php endif ?>
-
-				<?php if(new DateTime() < $dob18) : ?>
-					<div class="badge u18">
-						Junior
-					</div>
-				<?php endif ?>
 			<?php else : ?>
-				<div class="badge international">
-					Non-UK
+				<div class="badge male">
+					Male
 				</div>
 			<?php endif ?>
+
+			<div class="badge country">
+				<?php echo $player["country"] ?>
+			</div>
+
+			<?php if ($player["ageCategory"]) : ?>
+				<div class="badge">
+					<?php echo $player["ageCategory"] ?>
+				</div>
+			<?php endif ?>
+			<!--
+			-->
 		</div>
 
 		<?php if(is_null($player['rating'])) : ?>
@@ -222,9 +232,15 @@ defined('_JEXEC') or die('Restricted access');
 				<?php foreach(array_reverse($tournaments) as $name => $t) : ?>
 					<div class="tournament-results-container">
 						<h3>
-							<?php echo ($name . " (" . $t['date'] . ")"); ?>
+							<?php echo $name; ?>
 						</h3>
 
+						<!--
+						<div class="tournament-dates">
+							<?php echo generateDates($t['startDate'],$t['endDate']) ?>
+						</div>
+						-->
+						
 						<table class="tournament-table">
 
 							<thead>
@@ -446,22 +462,26 @@ defined('_JEXEC') or die('Restricted access');
 					dataTable.addColumn({type: 'string', role: 'tooltip'});
 					dataTable.addColumn({type: 'string', role: 'style'});
 
+
+					var pointSize = jQuery(window).width() > 480 ? 10 : 7;
+
 					for(var i = 0; i < xs.length; i++)
 					{
 						dataTable.addRow([
 							new Date(xs[i]), 
 							ys[i], 
 							ts[i] + " (" + ys[i] + ")",
-							(i == xs.length - 1) ? 'point { size: 10 ; stroke-color: #000000 }' : null
+							(i == xs.length - 1) ? 'point { size: ' + pointSize + ' ; stroke-color: #000000 }' : null
 						]);
 					}
+
 
 			        var options = {
 			          	curveType: 'function',
 			          	fontSize: 16,
 			          	fontName: 'Arial',
 			          	pointShape: 'circle',
-			          	pointSize: 10,
+			          	pointSize: pointSize,
 			          	animation: {
 			          		duration: 500,
 			          		startup: firstTime,

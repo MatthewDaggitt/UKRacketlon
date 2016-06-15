@@ -1660,56 +1660,7 @@ buildTypeSelector = function(layouts, parent) {
     });
 }
 })(window._$, window._$);
-(function (jQuery, $) {
-jQuery(function ($) {
-    'use strict';
 
-    function getFloat(value){
-        return parseFloat(value.replace('px', ''))  ;
-    }
-
-    $('.bd-productsslider-1').each(function () {
-        var slider = $(this).find('.carousel.slide');
-        slider.carousel({ interval: 3000, pause: "", wrap: false});
-
-        var leftButton = $('.left-button', slider);
-        var rightButton = $('.right-button', slider);
-
-        
-            var blockSelector = '.bd-block',
-                blockHeaderSelector = '.bd-container-53';
-            if ($(blockSelector, this).length > 0 && $(blockHeaderSelector, this).length > 0)
-            {
-                var block = $(blockSelector, this),
-                    blockHeader = block.find(blockHeaderSelector),
-                    blockHeaderTitle = blockHeader.children('h4');
-
-                blockHeader.css('min-height', '35px');
-                blockHeader.css('position', 'relative');
-
-                var navigationWrapper = $('<div class="bd-top-navigation-wrapper"></div>');
-                blockHeaderTitle.addClass('bd-top-navigation');
-                blockHeaderTitle.append(navigationWrapper);
-
-                leftButton.appendTo(navigationWrapper);
-                rightButton.appendTo(navigationWrapper);
-            }
-
-        leftButton.find('.bd-carousel-5').click(function() {
-            slider.carousel('prev');
-            return false;
-        }).attr('href', '#');
-
-        rightButton.find('.bd-carousel-5').click(function() {
-            slider.carousel('next');
-            return false;
-        }).attr('href', '#');
-
-        
-            slider.carousel('pause');
-    });
-});
-})(window._$, window._$);
 (function (jQuery, $) {
 $(setToPageBackground);
 $(window).on('resize', setToPageBackground);

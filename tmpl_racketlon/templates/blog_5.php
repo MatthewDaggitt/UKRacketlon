@@ -90,22 +90,44 @@
         </div>
 
         <script>
+            var timeoutHandle;
+            var twitter = jQuery(".bd-block-13.twitter_module");
+
+            function reappear()
+            {
+                var height = Math.max(0, jQuery(window).scrollTop() - jQuery(".bd-headerarea-1").height() - 10);
+                twitter.css('padding-top', height);
+                twitter.css('opacity', 1.0);
+            }
+
+            function inView($elem)
+            {
+                var $window = jQuery(window);
+
+                var docViewTop = $window.scrollTop();
+                var docViewBottom = docViewTop + $window.height();
+
+                var elemTop = $elem.offset().top + parseInt($elem.css('padding-top'));
+                var elemBottom = elemTop + $elem.height();
+
+                return (elemBottom >= docViewTop) && (elemTop <= docViewBottom);
+            }
+
             jQuery(window).scroll(function(e) {
-                if(jQuery(window).width() >= 768)
+                if(jQuery(window).width() >= 768 && !inView(twitter))
                 {
-                    var height = Math.max(0, jQuery(window).scrollTop() - jQuery(".bd-headerarea-1").height() - 10);
-                    jQuery(".twitter_module.jmoddiv").css('padding-top', height);
-                }
-                else
-                {
-                    jQuery(".twitter_module.jmoddiv").css('padding-top', 0);
+                    twitter.css('opacity', 0.0);
+                    window.clearTimeout(timeoutHandle);
+                    timeoutHandle = window.setTimeout(reappear, 300);
                 }
             });
 
+            
             jQuery(window).resize(function() {
                 if(jQuery(window).width() < 768)
                 {
-                    jQuery(".twitter_module.jmoddiv").css('padding-top', 0);
+                    twitter.css('padding-top', 0);
+                    twitter.css('opacity', 1.0);
                 }
             });
         </script>
