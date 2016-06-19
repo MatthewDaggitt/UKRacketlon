@@ -12382,6 +12382,8 @@ th > .rem-trophy {
 	cursor: pointer;
 	padding-left: 5px;
 	padding-right: 5px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 .bd-slide-button span:after {
   content: '»';
@@ -12719,6 +12721,9 @@ table.footable.rankings-table>thead>tr>th.footable-sortable {
 	vertical-align: top;
 }
 
+#ratings-disclaimer {
+	margin-top: 40px;
+}
 
 
 /**************/
