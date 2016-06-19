@@ -11795,8 +11795,13 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 500px;
+    height: 550px;
     margin-bottom: 100px;
+}
+@media (max-width: 1499px) {
+	#bd-slideshow {
+		height: 500px;
+	}
 }
 @media (max-width: 1399px) {
 	#bd-slideshow {
