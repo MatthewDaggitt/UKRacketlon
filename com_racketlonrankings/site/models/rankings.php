@@ -56,9 +56,17 @@ class RacketlonRankingsModelRankings extends JModelItem
 			$db->setQuery($query);
 			$players = $db->loadAssocList();
 			
+			$query = $db->getQuery(true)
+				->select('date')
+				->from($db->quoteName('#__matches'))
+				->order($db->quoteName('date') . ' desc');
+			$db->setQuery($query);
+			$updateDate = $db->loadResult();
+
 			$this->message = array(
 				"players" 	=> $this->convertDoBToAgeGroups($players),
-				"countries" => $this->generateCountries($players)
+				"countries" => $this->generateCountries($players),
+				"updateDate" => $updateDate
 			);
 		}
  

@@ -119,9 +119,9 @@ class RacketlonRankingsController extends JControllerLegacy
 				{
 					$this->db->transactionStart();
 
-					$success = $this->process($playersHandle, $this->playerTable, $this->playerColumns)
-						&& $this->process($matchesHandle, $this->matchTable,  $this->matchColumns)
-						&& $this->calculateCurrentRatings();
+					//$success = $this->process($playersHandle, $this->playerTable, $this->playerColumns);
+					$success = $this->process($matchesHandle, $this->matchTable,  $this->matchColumns);
+						//&& $this->calculateCurrentRatings();
 
 					if($success)
 					{
@@ -141,7 +141,7 @@ class RacketlonRankingsController extends JControllerLegacy
 			}
 		}
 		
-		$this->application->redirect('/administrator/index.php?option=com_racketlonrankings');
+		//$this->application->redirect('/administrator/index.php?option=com_racketlonrankings');
 	}
 
 	/**
@@ -168,6 +168,7 @@ class RacketlonRankingsController extends JControllerLegacy
 		$this->lineNo = 2;
 		while (($line = fgets($handle)) !== false) 
 	    {
+	    	/**
 	    	if($valid && $this->lineNo % $this->commitFrequency == 0)
 	    	{
 	    		
@@ -178,7 +179,7 @@ class RacketlonRankingsController extends JControllerLegacy
 	    		$query = $this->db->getQuery(true)
 					->insert($table)
 	    			->columns($columns);
-	    	}
+	    	}**/
 
 	    	$values = explode(",",str_replace(PHP_EOL, '', $line));
 	    	$fields = array();
@@ -191,21 +192,23 @@ class RacketlonRankingsController extends JControllerLegacy
 	    		$fields[] = $this->call([$this, $c[3]] , $value);
 	    	}
 
+	    	/**
 	    	if($valid)
 	    	{
 	    		$fields = implode(",", $this->db->quote($fields));
 	    		$query = $query->values($fields);
-	    	}
+	    	}**/
 
 	    	$this->lineNo += 1;
 	    }
 	    fclose($handle);
 
+	    /**
 	    if($valid)
 	    {
 	    	$this->db->setQuery($query);
 	    	$this->db->execute();
-	    }
+	    }**/
 	    
 	    return $valid;
 	}

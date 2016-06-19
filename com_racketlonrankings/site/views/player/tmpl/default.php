@@ -15,6 +15,7 @@ defined('_JEXEC') or die('Restricted access');
 <?php
 	$player = $this->params["player"];
 	$tournaments = $this->params["tournaments"];
+	$updateDate = $this->params["updateDate"];
 
 	$ratingsOverTime = array(
 		'names' => array(),
@@ -459,6 +460,10 @@ defined('_JEXEC') or die('Restricted access');
 		<?php endif ?>
 	<?php endif ?>
 <?php endif ?>
+
+<p id="ratings-disclaimer">
+	<b> Note: </b> ratings last updated on <?php echo date_format(new DateTime($updateDate), 'D \t\h\e jS \o\f F Y') ?>. More information about ratings and how they're calculated can be found <a href="http://www.racketlon.co.uk/index.php/rankings/ratings-explained">here</a>.
+</p>
 
 <script>
 	// Fill autocomplete

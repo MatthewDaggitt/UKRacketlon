@@ -15,7 +15,8 @@ defined('_JEXEC') or die('Restricted access');
 
 	$countries = $this->data["countries"];
 	$players = $this->data["players"];
-
+	$updateDate = $this->data["updateDate"];
+	
 	$js_players = json_encode($players);
 ?>
 
@@ -126,6 +127,10 @@ defined('_JEXEC') or die('Restricted access');
 		</thead>
 	</table>
 </div>
+
+<p id="ratings-disclaimer">
+	<b> Note: </b> ratings last updated on <?php echo date_format(new DateTime($updateDate), 'D \t\h\e jS \o\f F Y') ?>. More information about ratings and how they're calculated can be found <a href="http://www.racketlon.co.uk/index.php/rankings/ratings-explained">here</a>.
+</p>
 
 <script type="text/javascript" src="/templates/uk_racketlon/js/footable.js"></script>
 <link rel="stylesheet" type="text/css" href="/templates/uk_racketlon/css/footable.bootstrap.min.css">

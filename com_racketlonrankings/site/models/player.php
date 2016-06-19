@@ -82,8 +82,15 @@ class RacketlonRankingsModelPlayer extends JModelItem
 			$db->setQuery($query);
 			$matches = $db->loadAssocList();
 
+			$query = $db->getQuery(true)
+				->select('date')
+				->from($db->quoteName('#__matches'))
+				->order($db->quoteName('date') . ' desc');
+			$db->setQuery($query);
+			$updateDate = $db->loadResult();
+
 			// Assign the message
-			$this->messages[$id] = $this->collateResults($player, $matches);
+			$this->messages[$id] = $this->collateResults($player, $matches, $updateDate);
 		}
  
 		return $this->messages[$id];
@@ -104,7 +111,7 @@ class RacketlonRankingsModelPlayer extends JModelItem
 		return $this->players;
 	}
 
-	private function collateResults($player, $matches)
+	private function collateResults($player, $matches, $updateDate)
 	{
 		$tournaments = array();
 		foreach($matches as $match)
@@ -138,7 +145,7 @@ class RacketlonRankingsModelPlayer extends JModelItem
 			$tournaments[$name]['endDate']       = $lastMatch['date'];
 		}
 
-		return array('player' => $player, 'tournaments' => $tournaments);
+		return array('player' => $player, 'tournaments' => $tournaments, 'updateDate' => $updateDate);
 	}
 
 	private function convertDoBToAgeCategory($dob)
