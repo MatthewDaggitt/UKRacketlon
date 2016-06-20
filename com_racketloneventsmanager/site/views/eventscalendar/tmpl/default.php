@@ -26,7 +26,6 @@ defined('_JEXEC') or die('Restricted access');
 	usort($this->items, "cmp");
 
 	
-
 	// Generates a series of date divs
 	function generateDates($row) {
 		$result  = '';
@@ -71,91 +70,13 @@ defined('_JEXEC') or die('Restricted access');
 		
 		return '<img class="rem-trophy" src="' . JURI::root() . 'media/com_racketloneventsmanager/images/' . $typeImage . '" data-toggle="tooltip" title="' . $row->type . '">';
 	}
+
+	$contactDetails = true;
 ?>
 
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA-XCnoJQEARUqKqIMI9J16Ax6g5e1Fxh0"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script>
-	function initialise() {
-
-		var mapProp = {
-			center:new google.maps.LatLng(54.5, -3.6252),
-			zoom:5,
-			streetViewControl: false,
-			mapTypeControl: false,
-			mapTypeId:google.maps.MapTypeId.ROADMAP
-		};
-		
-		var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-		var infoWindow = new google.maps.InfoWindow({
-    		content: "Hello"
-  		});
-
-
-		function createMarker(id, latlon, content, occured) {
-			// Create a marker and set its position.
-			var marker = new google.maps.Marker({
-				map: map,
-				position: latlon
-			});
-
-			if(occured) {
-				marker.setIcon('http://maps.google.com/mapfiles/marker_grey.png');
-			}
-			else {
-				marker.setIcon('http://maps.google.com/mapfiles/marker.png');
-			}
-
-			marker.addListener('mouseover', function() {
-				infoWindow.open(map, marker);
-				infoWindow.setContent(content);
-			});
-
-			marker.addListener('mouseout', function() {
-				infoWindow.close();
-			});
-
-			var timerID;
-			marker.addListener('click', function() {
-				var eventElement;
-				if(jQuery(window).width() < 768) {
-					eventElement = "#rem-event-table-" + id;
-				}
-				else {
-					eventElement = "#rem-event-row-" + id;
-				}
-
-				jQuery('html,body').animate({
-				   scrollTop: jQuery(eventElement).offset().top - jQuery(window).height()/2 + jQuery(eventElement).height()/2
-				});
-
-				jQuery(eventElement).effect("pulsate", { times:4 }, 2000);
-			});
-		};
-
-		<?php
-			foreach ($this->items as $i => $row) {
-				if($row->latitude != "" && $row->longitude != "") {
-
-					$content = '<div class="rem-marker-title"> ' . $row->name . '</div>';
-					$content .= '<div class="rem-marker-dates"> ' . generateDates($row) . '</div>';
-
-					if(new DateTime() < new DateTime($row->startdate))
-					{
-						$occured = "false";
-					}
-					else
-					{
-						$occured = "true";
-					}
-
-					echo "\t\t createMarker('" . $row->id . "', {lat: " . $row->latitude . ", lng: " . $row->longitude . "}, '" . $content . "', " . $occured . ");", PHP_EOL;
-				}
-			}
-		?>
-	};
-	google.maps.event.addDomListener(window, 'load', initialise);
-</script>
+<!--
+This page is currently undergoing maintainence and therefore temporarily may not display and function correctly. Apologies for any inconvenience caused.
+-->
 
 <h1>
 	The <?php echo $this->year;?> Racketlon calendar
@@ -245,7 +166,17 @@ defined('_JEXEC') or die('Restricted access');
 <table class="table table-hover" id="rem-desktop-events-table">
 	<thead>
 		<tr>
-			<th colspan="6" id="rem-events-subheading"> Events in <?php echo $this->year;?> </th>
+			<th 							data-type="html"> </th>
+			<th data-breakpoints="xss xs"	data-type="html"> Tour</th>
+			<th 							data-type="text"> Name </th>
+			<th data-breakpoints="xss xs" 	data-type="html"> Date </th>
+			<th data-breakpoints="xss xs s m" data-type="text"> Location </th>
+			<th data-breakpoints="xss xs s" data-type="html"> Events </th>
+			<?php if($contactDetails) : ?>
+				<th data-breakpoints="all" 	data-type="html"> Phone </th>
+				<th data-breakpoints="all"	data-type="html"> Email </th>
+			<?php endif ?>
+			<th 							data-type="html"> Enter </th>
 		</tr>
 	</thead>
 	
@@ -256,121 +187,25 @@ defined('_JEXEC') or die('Restricted access');
 	</tfoot>
 	
 	<tbody>
-		<?php $lastDate = ""?>
-
 		<?php foreach ($this->items as $i => $row) : ?>
-		
-			<?php if((!$row->dated) && $lastDate == "") : ?>
-				<?php $lastDate = "TBC"; ?>
-				<tr>
-					<td colspan="6" id="rem-events-tbc-subheading"> To be confirmed </td>
-				</tr>
-			<?php endif ?>
-
-			<tr id="rem-event-row-<?php echo $row->id; ?>">
-				<td> <?php echo generateTrophy($row); ?> </td>
-				<td> <?php echo $row->name; ?> </td>
-				<td> <?php echo generateDates($row); ?> </td>
-				<td> <?php echo $row->location; ?> </td>
-				<td>
-					<div class="rem-type-image-container">
-						<?php if ($row->singles == 1): ?>
+			<?php if($row->dated) : ?>
+				<tr id="rem-event-row-<?php echo $row->id; ?>">
+					<td> </td>
+					<td> <?php echo generateTrophy($row); ?> </td>
+					<td> <?php echo $row->name; ?> </td>
+					<td> <?php echo generateDates($row); ?> </td>
+					<td> <?php echo $row->location; ?> </td>
+					<td>
+						<div class="rem-type-image-container">
+							<?php if ($row->singles == 1): ?>
 							<img 
 								class="rem-type-image" 
 								src="<?php echo JURI::root();?>/media/com_racketloneventsmanager/images/singles.png"
 								data-toggle="tooltip"
 								title="Singles"
 							>
-						<?php endif ?>
-
-						<?php if ($row->doubles == 1): ?>
-							<img 
-								class="rem-type-image" 
-								src="<?php echo JURI::root();?>/media/com_racketloneventsmanager/images/doubles.png"
-								data-toggle="tooltip"
-								title="Doubles"
-							>
-						<?php endif ?>
-
-						<?php if ($row->teams == 1): ?>
-							<img 
-								class="rem-type-image" 
-								src="<?php echo JURI::root();?>/media/com_racketloneventsmanager/images/team.png"
-								data-toggle="tooltip"
-								title="Teams"
-							>
-						<?php endif ?>
-					</div>
-				</td>
-				<td>
-					<?php if ($row->link != ""): ?>
-						<?php if (new DateTime() < new DateTime($row->startdate)) : ?>
-							<a href='<?php echo $row->link?>' class="rem-event-link-button enter bd-slide-button btn">
-								<span> Enter </span>
-							</a>
-						<?php else: ?>
-							<a href='<?php echo $row->link?>' class="rem-event-link-button results bd-slide-button btn">
-								<span> Results </span>
-							</a>
-						<?php endif ?>
-					<?php else: ?>
-						<div class="rem-event-link-nyo">
-							<span>
-								<?php if (new DateTime() < new DateTime($row->startdate) || !$row->dated) : ?>
-									Not yet open
-								<?php else: ?>
-									No results
-								<?php endif ?>
-							</span>
-						</div>
-					<?php endif ?>
-				</td>
-			</tr>
-		<?php endforeach; ?>
-	</tbody>
-</table>
-
-<div id="rem-mobile-events-tables">
-	<?php foreach ($this->items as $i => $row) : ?>
-		<table class="rem-mobile-events-table table table-hover" id="rem-event-table-<?php echo $row->id; ?>">
-			<thead>
-				<tr>
-					<th>
-						<div class="rem-trophy-header"> <?php echo generateTrophy($row); ?> </div>
-					</th>
-					<th class="rem-name-header"> <?php echo $row->name; ?> </th>
-				</tr>
-			</thead>
-			<tfoot>
-				<tr>
-					<td colspan="2"></td>
-				</tr>
-			</tfoot>
-			<tbody>
-				<tr>
-					<td class="rem-mobile-row-header"> Location </td>
-					<td> <?php echo $row->location; ?> </td>
-				</tr>
-				<tr>
-					<td class="rem-mobile-row-header"> Dates </td>
-					<td>
-						<?php echo generateDates($row); ?>
-					</td>
-				</tr>
-				<tr>
-					<td class="rem-mobile-row-header"> Type </td>
-					<td>
-						<div class="rem-type-image-container">
-							<?php if ($row->singles == 1) : ?>
-								<img 
-									class="rem-type-image" 
-									src="<?php echo JURI::root();?>/media/com_racketloneventsmanager/images/singles.png"
-									data-toggle="tooltip"
-									title="Singles"
-								>
 							<?php endif ?>
-
-							<?php if ($row->doubles == 1) : ?>
+							<?php if ($row->doubles == 1): ?>
 								<img 
 									class="rem-type-image" 
 									src="<?php echo JURI::root();?>/media/com_racketloneventsmanager/images/doubles.png"
@@ -378,8 +213,7 @@ defined('_JEXEC') or die('Restricted access');
 									title="Doubles"
 								>
 							<?php endif ?>
-
-							<?php if ($row->teams == 1) : ?>
+							<?php if ($row->teams == 1): ?>
 								<img 
 									class="rem-type-image" 
 									src="<?php echo JURI::root();?>/media/com_racketloneventsmanager/images/team.png"
@@ -387,11 +221,32 @@ defined('_JEXEC') or die('Restricted access');
 									title="Teams"
 								>
 							<?php endif ?>
+							<!--
+							<?php if ($row->singles == 1): ?>
+								<span class="bd-square-icon">
+									S
+								</span>
+							<?php endif ?>
+
+							<?php if ($row->doubles == 1): ?>
+								<span class="bd-square-icon">
+									D
+								</span>
+							<?php endif ?>
+
+							<?php if ($row->teams == 1): ?>
+								<span class="bd-square-icon">
+									T
+								</span>
+							<?php endif ?>
+							-->
 						</div>
 					</td>
-				<tr>
-					<td class="rem-mobile-row-header"> </td>
-					<td> 
+					<?php if($contactDetails) : ?>
+						<td> <?php echo $row->phone; ?> </td>
+						<td> <?php echo $row->email; ?> </td>
+					<?php endif ?>
+					<td>
 						<?php if ($row->link != ""): ?>
 							<?php if (new DateTime() < new DateTime($row->startdate)) : ?>
 								<a href='<?php echo $row->link?>' class="rem-event-link-button enter bd-slide-button btn">
@@ -414,8 +269,111 @@ defined('_JEXEC') or die('Restricted access');
 							</div>
 						<?php endif ?>
 					</td>
-				<tr>
-			</tbody>
-		</table>
-	<?php endforeach; ?>
-</div>
+				</tr>
+			<?php endif ?>
+		<?php endforeach; ?>
+	</tbody>
+</table>
+
+<!-- Map -->
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA-XCnoJQEARUqKqIMI9J16Ax6g5e1Fxh0"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+	function initialise() {
+
+		var mapProp = {
+			center:new google.maps.LatLng(54.5, -3.6252),
+			zoom:5,
+			streetViewControl: false,
+			mapTypeControl: false,
+			mapTypeId:google.maps.MapTypeId.ROADMAP
+		};
+		
+		var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+		var infoWindow = new google.maps.InfoWindow({
+    		content: "Hello"
+  		});
+
+
+		function createMarker(id, latlon, content, occured) {
+			// Create a marker and set its position.
+			var marker = new google.maps.Marker({
+				map: map,
+				position: latlon
+			});
+
+			if(occured) {
+				marker.setIcon('http://maps.google.com/mapfiles/marker_grey.png');
+			}
+			else {
+				marker.setIcon('http://maps.google.com/mapfiles/marker.png');
+			}
+
+			marker.addListener('mouseover', function() {
+				infoWindow.open(map, marker);
+				infoWindow.setContent(content);
+			});
+
+			marker.addListener('mouseout', function() {
+				infoWindow.close();
+			});
+
+			var timerID;
+			marker.addListener('click', function() {
+				var eventElement;
+				if(jQuery(window).width() < 768) {
+					eventElement = "#rem-event-table-" + id;
+				}
+				else {
+					eventElement = "#rem-event-row-" + id;
+				}
+
+				jQuery('html,body').animate({
+				   scrollTop: jQuery(eventElement).offset().top - jQuery(window).height()/2 + jQuery(eventElement).height()/2
+				});
+
+				jQuery(eventElement).effect("pulsate", { times:4 }, 2000);
+			});
+		};
+
+		<?php
+			foreach ($this->items as $i => $row) {
+				if($row->latitude != "" && $row->longitude != "") {
+
+					$content = '<div class="rem-marker-title"> ' . $row->name . '</div>';
+					$content .= '<div class="rem-marker-dates"> ' . generateDates($row) . '</div>';
+
+					if(new DateTime() < new DateTime($row->startdate))
+					{
+						$occured = "false";
+					}
+					else
+					{
+						$occured = "true";
+					}
+
+					echo "\t\t createMarker('" . $row->id . "', {lat: " . $row->latitude . ", lng: " . $row->longitude . "}, '" . $content . "', " . $occured . ");", PHP_EOL;
+				}
+			}
+		?>
+	};
+	google.maps.event.addDomListener(window, 'load', initialise);
+</script>
+
+
+<!-- Tables -->
+<script type="text/javascript" src="/templates/uk_racketlon/js/footable.js"></script>
+<link rel="stylesheet" type="text/css" href="/templates/uk_racketlon/css/footable.bootstrap.min.css">
+<script>
+	// Tables
+	jQuery("#rem-desktop-events-table").footable({
+		"breakpoints": {
+			"xss": 320,
+			"xs": 480,
+			"s": 768,
+			"m": 992,
+			"l": 1200,
+			"xl": 1400
+		}
+	});
+</script>
