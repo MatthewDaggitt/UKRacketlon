@@ -105,7 +105,6 @@ select {
   background-color: #fff;
 }
 input,
-textarea,
 .uneditable-input {
   width: 206px !important;
 }

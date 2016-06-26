@@ -2685,12 +2685,10 @@ input[type=button]:not([class]):link,
 input[type=button]:not([class]):visited {
 	border-width: 0;
 	color: #fff;
-	background-color: #ffffff;
 	vertical-align: middle;
 	display: inline-block;
 	text-align: center;
-	white-space: nowrap;
-	margin-bottom: 10px;
+	white-space: nowrap;x
 	padding: 7px 20px;
 	background-image: none
 }
@@ -2719,9 +2717,8 @@ input[type=submit]:not([class]):focus,
 input[type=submit]:not([class]):hover,
 input[type=button]:not([class]):focus,
 input[type=button]:not([class]):hover {
-	background-color: rgba(82, 82, 82, .99);
+	background-color: rgba(185, 185, 185, .99);
 	text-decoration: none;
-	color: #fff;
 	background-image: none
 }
 .bd-button:active,
@@ -5200,7 +5197,7 @@ html[dir=ltr] .bd-lightbox-6 .arrow-t {
 }
 h2.bd-postheader-2 {
 	line-height: 28.57px;
-	font-size: 20px;
+	font-size: 22px;
 	font-weight: bold;
 	color: #003185;
 	font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif
@@ -12338,6 +12335,12 @@ table.footable>thead>tr>th.footable-sortable {
 #player-search-error {
 	color: red;
 }
+.badge.active {
+	background-color: #66b366;
+}
+.badge.inactive {
+	background-color: #ff6666;
+}
 
 #all-rating-graph {
 	width: 100%;
@@ -12413,9 +12416,14 @@ table.footable>thead>tr>th.footable-sortable {
 	line-height: 45px;
 }
 
-
+.tournament-table .padding-col {
+	width: 0px;
+}
 .tournament-table .op-col {
 	width: 25%;
+}
+.tournament-table .result-col {
+	width: 8%;
 }
 .tournament-table .op-rat-col,
 .tournament-table .rat-chg-col {
@@ -12424,9 +12432,6 @@ table.footable>thead>tr>th.footable-sortable {
 .tournament-table .rat-col,
 .tournament-table .total-col {
 	width: 9%;
-}
-.tournament-table .result-col {
-	width: 8%;
 }
 .tournament-table .tt-col,
 .tournament-table .bd-col,
@@ -12438,19 +12443,27 @@ table.footable>thead>tr>th.footable-sortable {
 	margin-right: 10%;
 }
 @media (max-width: 1191px) {
-	.tournament-table .total-col {
+	.tournament-table .padding-col {
 		width: 5%;
+	}
+	.tournament-table .op-col {
+		width: 25%;
+	}
+	.tournament-table .result-col,
+	.tournament-table .rat-col,
+	.tournament-table .total-col {
+		width: 9%;
 	}
 }
 @media (max-width: 992px) {
 	.tournament-table .op-rat-col {
 		width: 12%;
 	}
-	.tournament-table .fooicon.footable-toggle {
-		margin-right: 5%;
-	}
 }
 @media (max-width: 767px) {
+	.tournament-table .padding-col {
+		width: 10%;
+	}
 	.tournament-table .op-col {
 		width: 60%;
 	}
@@ -12460,11 +12473,11 @@ table.footable>thead>tr>th.footable-sortable {
 	.tournament-table .total-col {
 		width: 10%;
 	}
-	.tournament-table .fooicon.footable-toggle {
-		margin-right: 15%;
-	}
 }
 @media (max-width: 479px) {
+	.tournament-table .padding-col {
+		width: 20%;
+	}
 	.tournament-table .op-col {
 		width: 80%;
 	}
@@ -12489,9 +12502,6 @@ table.tournament-table.footable-details>tbody>tr>th:nth-child(1) {
 }
 #ranking-controls .control-group {
 	width: 45%;
-}
-#ranking-controls #search-control-group {
-	width: 100%;
 }
 
 #ranking-controls input,
