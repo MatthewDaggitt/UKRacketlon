@@ -6,6 +6,7 @@
  * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
+
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
@@ -17,6 +18,7 @@ defined('_JEXEC') or die('Restricted access');
 class RacketlonEventsManagerModelEvents extends JModelList
 {
 
+	/**
 	/**
 	 * Constructor.
 	 *
@@ -35,10 +37,8 @@ class RacketlonEventsManagerModelEvents extends JModelList
 				'singles',
 				'doubles',
 				'teams',
-				'link',
-				'year',
-				'startdate',
-				'location'
+				'dated',
+				'startdate'
 			);
 		}
  
@@ -72,18 +72,6 @@ class RacketlonEventsManagerModelEvents extends JModelList
 		{
 			$like = $db->quote('%' . $search . '%');
 			$query->where('name LIKE ' . $like);
-		}
- 
-		// Filter by published state
-		$published = $this->getState('filter.published');
- 
-		if (is_numeric($published))
-		{
-			$query->where('published = ' . (int) $published);
-		}
-		elseif ($published === '')
-		{
-			$query->where('(published IN (0, 1))');
 		}
  
 		// Add the list ordering clause.

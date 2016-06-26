@@ -74,7 +74,7 @@ class RacketlonEventsManagerViewEvents extends JViewLegacy
 		}
  
 		JToolBarHelper::title($title, 'event');
-		JToolBarHelper::deleteList('', 'event.delete');
+		JToolBarHelper::deleteList('', 'events.delete');
 		JToolBarHelper::editList('event.edit');
 		JToolBarHelper::addNew('event.add');
 	}

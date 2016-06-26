@@ -11,119 +11,130 @@
 defined('_JEXEC') or die('Restricted access');
 ?>
 
-<!-- PHP scripts -->
-<?php
-	$player = $this->params["player"];
-	$tournaments = $this->params["tournaments"];
-	$updateDate = $this->params["updateDate"];
+<?php if ($this->updating) : ?>
+	<p> Apologies, the ratings are currently being updated. This normally only takes 5 minutes so please check again soon. If the problem persists please get in touch with the webmaster via the <a href="http://www.racketlon.co.uk/index.php/contact-us">Contact us</a> page.</p>
+<?php else: ?>
+		
+	<!-- PHP scripts -->
+	<?php
+		$player = $this->params["player"];
+		$tournaments = $this->params["tournaments"];
+		$updateDate = $this->params["updateDate"];
 
-	$ratingsOverTime = array(
-		'names' => array(),
-		'dates' => array(),
-		'all' => array(),
-		'tt' => array(),
-		'bd' => array(),
-		'sq' => array(),
-		'tn' => array()
-	);
+		$ratingsOverTime = array(
+			'names' => array(),
+			'dates' => array(),
+			'all' => array(),
+			'tt' => array(),
+			'bd' => array(),
+			'sq' => array(),
+			'tn' => array()
+		);
 
-	foreach($tournaments as $name => $t)
-	{
-		$ratingsOverTime['names'][] = $name;
-		$ratingsOverTime['dates'][] = $t['startDate'];
-		$ratingsOverTime['all'][] = $t['finalRating'];
-		$ratingsOverTime['tt'][] = $t['finalRatingtt'];
-		$ratingsOverTime['bd'][] = $t['finalRatingbd'];
-		$ratingsOverTime['sq'][] = $t['finalRatingsq'];
-		$ratingsOverTime['tn'][] = $t['finalRatingtn'];
-	}
-	$js_ratingsOverTime = json_encode($ratingsOverTime);	
-	$js_players = json_encode($this->players);
-
-	function displayGameResult($v1 , $v2)
-	{
-		if($v1 == 0 && $v2 == 0)
+		foreach($tournaments as $name => $t)
 		{
-			echo "N/A";
+			$ratingsOverTime['names'][] = $name;
+			$ratingsOverTime['dates'][] = $t['startDate'];
+			$ratingsOverTime['all'][] = $t['finalRating'];
+			$ratingsOverTime['tt'][] = $t['finalRatingtt'];
+			$ratingsOverTime['bd'][] = $t['finalRatingbd'];
+			$ratingsOverTime['sq'][] = $t['finalRatingsq'];
+			$ratingsOverTime['tn'][] = $t['finalRatingtn'];
 		}
-		else
+		$js_ratingsOverTime = json_encode($ratingsOverTime);	
+		$js_players = json_encode($this->players);
+
+		function displayGameResult($v1 , $v2)
 		{
-			echo $v1 . "-" . $v2;
-		}
-	}
-
-	function generateDates($begin, $end) {
-		$begin = new DateTime($begin);
-		$end = (new DateTime($end))->modify('+1 day');
-
-		$interval = new DateInterval('P1D');
-		$daterange = new DatePeriod($begin, $interval ,$end);
-
-		$result  = '';
-		foreach($daterange as $date) {
-			$result .= '<div class="rem-date">';
-			$result .= 	'<span class="rem-day">' . $date->format("d") . '</span>';
-			$result .= 	'<span class="rem-month">' . $date->format("M") . '</span>';
-			$result .= '</div>';
+			if($v1 == 0 && $v2 == 0)
+			{
+				echo "N/A";
+			}
+			else
+			{
+				echo $v1 . "-" . $v2;
+			}
 		}
 
-		return $result;
-	}
-?>
+		function generateDates($begin, $end) {
+			$begin = new DateTime($begin);
+			$end = (new DateTime($end))->modify('+1 day');
 
-<!-- Javascript -->
+			$interval = new DateInterval('P1D');
+			$daterange = new DatePeriod($begin, $interval ,$end);
 
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+			$result  = '';
+			foreach($daterange as $date) {
+				$result .= '<div class="rem-date">';
+				$result .= 	'<span class="rem-day">' . $date->format("d") . '</span>';
+				$result .= 	'<span class="rem-month">' . $date->format("M") . '</span>';
+				$result .= '</div>';
+			}
 
-<h1>
-	Search
-</h1>
+			return $result;
+		}
+	?>
 
-<div id="player-search" class="ui-widget">
-  <input type="text" name="searchword" id="player-search-box" class="bd-bootstrapinput-9 form-control" placeholder="Name">
-  <a href="#" id="player-search-icon" class=" bd-icon-30" link-disable="true"></a>
-</div>
+	<!-- Javascript -->
 
-<p id="player-search-error" class="collapse"> </p>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
-<?php if($this->id >= -1) : ?>
-	<?php if($this->id == -1 || is_null($player)) : ?>
-		<p> No players found </p>
-	<?php else : ?>
-		<h1>
-			<?php echo $player["name"] ?>
-		</h1>
+	<h1>
+		Search
+	</h1>
 
-		<!-- Tags -->
+	<div id="player-search" class="ui-widget">
+	  <input type="text" name="searchword" id="player-search-box" class="bd-bootstrapinput-9 form-control" placeholder="Name">
+	  <a href="#" id="player-search-icon" class=" bd-icon-30" link-disable="true"></a>
+	</div>
 
-		<div id="player-tags">
-			<?php if ($player["gender"]) : ?>
-				<div class="badge female">
-					Female
-				</div>
-			<?php else : ?>
-				<div class="badge male">
-					Male
-				</div>
-			<?php endif ?>
+	<p id="player-search-error" class="collapse"> </p>
 
-			<div class="badge country">
-				<?php echo $player["country"] ?>
-			</div>
-
-			<?php if ($player["ageCategory"]) : ?>
-				<div class="badge">
-					<?php echo $player["ageCategory"] ?>
-				</div>
-			<?php endif ?>
-			<!--
-			-->
-		</div>
-
-		<?php if(is_null($player['rating'])) : ?>
-			<p style="margin-top: 10px"> Apologies, the ratings are currently being updated. The process takes approximately 5 minutes so please check again soon. If the problem persists please get in touch with the webmaster via the "Contact us" page. </p>
+	<?php if($this->id >= -1) : ?>
+		<?php if($this->id == -1 || is_null($player)) : ?>
+			<p> No players found </p>
 		<?php else : ?>
+			<h1>
+				<?php echo $player["name"] ?>
+			</h1>
+
+			<!-- Tags -->
+
+			<div id="player-tags">
+				<?php if ($player["active"]) : ?>
+					<div class="badge active">
+						Active
+					</div>
+				<?php else : ?>
+					<div class="badge inactive">
+						Inactive
+					</div>
+				<?php endif ?>
+
+				<?php if ($player["gender"]) : ?>
+					<div class="badge female">
+						Female
+					</div>
+				<?php else : ?>
+					<div class="badge male">
+						Male
+					</div>
+				<?php endif ?>
+
+				<div class="badge country">
+					<?php echo $player["country"] ?>
+				</div>
+
+				<?php if ($player["ageCategory"]) : ?>
+					<div class="badge">
+						<?php echo $player["ageCategory"] ?>
+					</div>
+				<?php endif ?>
+
+				<!--
+				-->
+			</div>
 
 			<!-- Overall ratings -->
 			<div class="rating-section">
@@ -175,34 +186,29 @@ defined('_JEXEC') or die('Restricted access');
 						<h3>
 							<?php echo $name; ?>
 						</h3>
-
-						<!--
-						<div class="tournament-dates">
-							<?php echo generateDates($t['startDate'],$t['endDate']) ?>
-						</div>
-						-->
 						
 						<table class="tournament-table">
 
 							<thead>
 								<tr>
+									<th class="padding-col"></th>
 									<th class="op-col" data-type="html">Opponent</th>
 									<th class="result-col" > Result</th>
 									<th class="rat-col" 	data-breakpoints="xss xs">Rating</th>
 									<th class="op-rat-col" 	data-breakpoints="xss xs">Op. rating</th>
-									<th class="rat-chg-col" data-breakpoints="xss xs">Rating \(\delta\)</th> 
+									<th class="rat-chg-col" data-breakpoints="xss xs s">Rating \(\delta\)</th> 
 									<th class="total-col" 	data-breakpoints="xss">Total</th>
 									<th class="tt-col" 		data-breakpoints="xss xs s m">TT</th>
 									<th class="bd-col" 		data-breakpoints="xss xs s m">Bd</th>
 									<th class="sq-col" 		data-breakpoints="xss xs s m">Sq</th>
 									<th class="tn-col" 		data-breakpoints="xss xs s m">Tn</th>
-									<!--&#948;-->
 								</tr>
 							</thead>
 
 							<tbody>
 								<?php foreach($t['matches'] as $m) : ?>
 									<tr>
+										<td></td>
 										<td>
 											<a href="http://www.racketlon.co.uk/index.php/rankings/search?option=com_racketlonrankings&player_id=<?php echo $m['p2id'] ?>">
 												<?php echo $m['p2name'] ?>
@@ -459,74 +465,80 @@ defined('_JEXEC') or die('Restricted access');
 			</script>
 		<?php endif ?>
 	<?php endif ?>
+
+	<div id="ratings-disclaimer">
+		<b> Notes </b>
+		<p >
+			Rankings last updated on <?php echo date_format(new DateTime($updateDate), 'l \t\h\e jS \o\f F\, Y') ?>. UK Racketlon endeavours to track ratings as accurately as possible. If you think you have found a mistake, please feel free to <a href="http://www.racketlon.co.uk/index.php/contact-us">contact us</a>.
+		</p>
+	</div>
+
+	<script>
+		// Fill autocomplete
+	    var players = <?php echo $js_players ?>;
+	    var names = [];
+	    var idsByName = {};
+
+	    for(var i = 0; i < players.length; i++)
+	    {
+	    	names.push(players[i]['name']);
+	    	idsByName[players[i]['name']] = players[i]['id'];
+	    }
+
+	    function search()
+	    {
+	    	var name = jQuery("#player-search-box").val();
+	    	if(name)
+	    	{
+	    		var errorTxt = jQuery("#player-search-error");
+	    		if(name in idsByName)
+	    		{
+	    			errorTxt.text("");
+	    			window.location="http://www.racketlon.co.uk/index.php/rankings/search?option=com_racketlonrankings&player_id=" + idsByName[name];
+	    		}
+	    		else
+	    		{
+	    			jQuery('#ui-id-1').hide();
+	    			errorTxt.text("Could not find player '" + name + "'");
+	    			errorTxt.collapse('show');
+	    		}
+	    	}
+	    }
+
+	    jQuery("#player-search-box").autocomplete({
+	    	source: function(req, response) {
+				response(jQuery.ui.autocomplete.filter(names, req.term).slice(0, 10));//for getting 5 results
+			},
+			select: function(event, ui) {
+		        jQuery("#player-search-box").val(ui.item.value);
+		        search();
+		    }
+	    });
+
+	    document.getElementById("player-search-box").onkeypress = function(e)
+	    {
+		    if(!e) 
+		    {
+		    	e = window.event;
+		    } 
+
+		    var keyCode = e.keyCode || e.which;
+		    if (keyCode == '13')
+		    {
+		    	// Enter pressed
+		    	search();
+		    }
+		};
+
+		document.getElementById("player-search-icon").onclick = function(e)
+		{
+			search();
+		};
+	</script>
+
+
 <?php endif ?>
 
-<p id="ratings-disclaimer">
-	<b> Note: </b> ratings last updated on <?php echo date_format(new DateTime($updateDate), 'D \t\h\e jS \o\f F Y') ?>. More information about ratings and how they're calculated can be found <a href="http://www.racketlon.co.uk/index.php/rankings/ratings-explained">here</a>.
-</p>
-
-<script>
-	// Fill autocomplete
-    var players = <?php echo $js_players ?>;
-    var names = [];
-    var idsByName = {};
-
-    for(var i = 0; i < players.length; i++)
-    {
-    	names.push(players[i]['name']);
-    	idsByName[players[i]['name']] = players[i]['id'];
-    }
-
-    function search()
-    {
-    	var name = jQuery("#player-search-box").val();
-    	if(name)
-    	{
-    		var errorTxt = jQuery("#player-search-error");
-    		if(name in idsByName)
-    		{
-    			errorTxt.text("");
-    			window.location="http://www.racketlon.co.uk/index.php/rankings/search?option=com_racketlonrankings&player_id=" + idsByName[name];
-    		}
-    		else
-    		{
-    			jQuery('#ui-id-1').hide();
-    			errorTxt.text("Could not find player '" + name + "'");
-    			errorTxt.collapse('show');
-    		}
-    	}
-    }
-
-    jQuery("#player-search-box").autocomplete({
-    	source: function(req, response) {
-			response(jQuery.ui.autocomplete.filter(names, req.term).slice(0, 10));//for getting 5 results
-		},
-		select: function(event, ui) {
-	        jQuery("#player-search-box").val(ui.item.value);
-	        search();
-	    }
-    });
-
-    document.getElementById("player-search-box").onkeypress = function(e)
-    {
-	    if(!e) 
-	    {
-	    	e = window.event;
-	    } 
-
-	    var keyCode = e.keyCode || e.which;
-	    if (keyCode == '13')
-	    {
-	    	// Enter pressed
-	    	search();
-	    }
-	};
-
-	document.getElementById("player-search-icon").onclick = function(e)
-	{
-		search();
-	};
-</script>
 
 
 

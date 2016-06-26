@@ -16,12 +16,16 @@ CREATE TABLE `#__players` (
 	`classbd`	VARCHAR(2),
 	`classsq`	VARCHAR(2),
 	`classtn`	VARCHAR(2),
+	`matches`	INT,
+	`firdate`	DATE,
+	`gbrdate`	DATE,
+	`active`	BOOLEAN,
 	PRIMARY KEY (`id`)
 )
-	ENGINE =MyISAM
+	ENGINE =innodb
 	AUTO_INCREMENT =0
-	DEFAULT CHARSET =utf8;
-
+	DEFAULT CHARSET =utf8mb4
+	COLLATE utf8mb4_unicode_ci;
 
 
 
@@ -64,6 +68,22 @@ CREATE TABLE `#__matches` (
 	`bonus`			INT 			NOT NULL,
 	PRIMARY KEY (`id`)
 )
-	ENGINE =MyISAM
+	ENGINE =innodb
 	AUTO_INCREMENT =0
-	DEFAULT CHARSET =utf8;
+	DEFAULT CHARSET =utf8mb4
+	COLLATE utf8mb4_unicode_ci;
+
+
+
+DROP TABLE IF EXISTS `#__rankings_config`;
+
+CREATE TABLE `#__rankings_config` (
+	`property`		VARCHAR(10),
+	`value`      	VARCHAR(20),
+	PRIMARY KEY (`property`)
+)
+	ENGINE =innodb
+	DEFAULT CHARSET =utf8mb4
+	COLLATE utf8mb4_unicode_ci;
+
+INSERT INTO `#__rankings_config` (`property`, `value`) VALUES ('updating', '0');

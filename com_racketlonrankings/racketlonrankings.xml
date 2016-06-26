@@ -9,7 +9,7 @@
 	<copyright>Copyright Info</copyright>
 	<license>License Info</license>
 	<!--  The version string is recorded in the components table -->
-	<version>0.0.12</version>
+	<version>0.0.16</version>
 	<!-- The description is optional and defaults to the name -->
 	<description>Manages the rankings for the UK Racketlon website</description>
  

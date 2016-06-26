@@ -28,10 +28,8 @@ class RacketlonEventsManagerControllerEvents extends JControllerAdmin
 	 * @since   1.6
 	 */
 	### HERE
-	public function getModel($name = 'Event', $prefix = 'RacketlonEventsManager', $config = array('ignore_request' => true))
+	public function getModel($name = 'Event', $prefix = 'RacketlonEventsManagerModel', $config = array('ignore_request' => true))
 	{
-		$model = parent::getModel($name, $prefix, $config);
- 
-		return $model;
+		return parent::getModel($name, $prefix, $config);
 	}
 }

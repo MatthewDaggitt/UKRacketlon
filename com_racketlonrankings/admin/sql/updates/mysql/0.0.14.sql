@@ -1,0 +1,1 @@
+ALTER TABLE `#__players` ADD `active`	BOOLEAN;

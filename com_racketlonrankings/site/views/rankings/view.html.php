@@ -26,8 +26,12 @@ class RacketlonRankingsViewRankings extends JViewLegacy
 	 */
 	function display($tpl = null)
 	{
-		// Assign data to the view
-		$this->data = $this->get('Msg');
+		$this->updating = $this->get("Updating");
+
+		if(!$this->updating)
+		{
+			$this->data = $this->get('Msg');
+		}
  
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))

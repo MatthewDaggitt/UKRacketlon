@@ -38,7 +38,17 @@ class RacketlonRankingsModelRankings extends JModelItem
 		return JTable::getInstance($type, $prefix, $config);
 	}
 
-
+	public function getUpdating()
+	{
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true)
+			->select($db->quoteName('value'))
+			->where($db->quoteName('property') . ' = ' . $db->quote('updating'))
+			->from($db->quoteName('#__rankings_config'));
+		$db->setQuery($query);
+		return $db->loadResult();
+	}
+	
 	/**
 	 * Get the message
          *
@@ -52,6 +62,7 @@ class RacketlonRankingsModelRankings extends JModelItem
 			$query = $db->getQuery(true)
 					->select('*')
 					->from($db->quoteName('#__players'))
+					->where('active=1')
 					->order($db->quoteName('rating') . ' desc');
 			$db->setQuery($query);
 			$players = $db->loadAssocList();

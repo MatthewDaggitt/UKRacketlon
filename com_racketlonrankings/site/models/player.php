@@ -63,15 +63,18 @@ class RacketlonRankingsModelPlayer extends JModelItem
 			$db = JFactory::getDbo();
 
 			$query = $db->getQuery(true)
+				->select('date')
+				->from($db->quoteName('#__matches'))
+				->order($db->quoteName('date') . ' desc');
+			$db->setQuery($query);
+			$updateDate = $db->loadResult();
+
+			$query = $db->getQuery(true)
 				->select('*')
 				->from($db->quoteName('#__players'))
 				->where('id=' . $id);
 			$db->setQuery($query);
 			$player = $db->loadAssoc();
-
-			require_once("countries.php");
-			$player['country'] = $allCountries[$player['country']];
-			$player['ageCategory'] = $this->convertDoBToAgeCategory($player['dob']);
 
 			$query = $db->getQuery(true)
 				->select('*')
@@ -82,12 +85,9 @@ class RacketlonRankingsModelPlayer extends JModelItem
 			$db->setQuery($query);
 			$matches = $db->loadAssocList();
 
-			$query = $db->getQuery(true)
-				->select('date')
-				->from($db->quoteName('#__matches'))
-				->order($db->quoteName('date') . ' desc');
-			$db->setQuery($query);
-			$updateDate = $db->loadResult();
+			require_once("countries.php");
+			$player['country'] = $allCountries[$player['country']];
+			$player['ageCategory'] = $this->convertDoBToAgeCategory($player['dob']);
 
 			// Assign the message
 			$this->messages[$id] = $this->collateResults($player, $matches, $updateDate);
@@ -109,6 +109,17 @@ class RacketlonRankingsModelPlayer extends JModelItem
 			$this->players = $db->loadAssocList();
 		}
 		return $this->players;
+	}
+
+	public function getUpdating()
+	{
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true)
+			->select($db->quoteName('value'))
+			->where($db->quoteName('property') . ' = ' . $db->quote('updating'))
+			->from($db->quoteName('#__rankings_config'));
+		$db->setQuery($query);
+		return $db->loadResult();
 	}
 
 	private function collateResults($player, $matches, $updateDate)
@@ -150,7 +161,7 @@ class RacketlonRankingsModelPlayer extends JModelItem
 
 	private function convertDoBToAgeCategory($dob)
 	{
-		if($p["dob"] != "0000-00-00")
+		if($dob != "0000-00-00")
 		{
 			$dob21 = (new DateTime($dob))->add(new DateInterval('P21Y'));
 			$dob45 = (new DateTime($dob))->add(new DateInterval('P45Y'));

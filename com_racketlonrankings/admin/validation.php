@@ -41,6 +41,16 @@ function validateInt($value, $column, $er)
 	return true;
 }
 
+function validateEmptyPositiveInt($value, $column, $er)
+{
+	if(!empty($value) && (filter_var($value, FILTER_VALIDATE_INT) === false || ((int) $value) < 0))
+	{
+		$er($value, $column, "it must be an integer");
+		return false;
+	}
+	return true;
+}
+
 function validatePositiveInt($value, $column, $er)
 {
 	if(filter_var($value, FILTER_VALIDATE_INT) === false || ((int) $value) < 0)

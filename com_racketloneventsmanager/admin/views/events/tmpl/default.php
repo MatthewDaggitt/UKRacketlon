@@ -41,9 +41,6 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 			<th width="1px">
 				<?php echo JHtml::_('grid.sort', 'Type', 'type', $listDirn, $listOrder); ?>
 			</th>
-			<th width="5%">
-				<?php echo JHtml::_('grid.sort', 'Link', 'link', $listDirn, $listOrder); ?>
-			</th>
 			<th width="1px">
 				<?php echo JHtml::_('grid.sort', 'Singles', 'singles', $listDirn, $listOrder); ?>
 			</th>
@@ -54,7 +51,7 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 				<?php echo JHtml::_('grid.sort', 'Teams', 'teams', $listDirn, $listOrder); ?>
 			</th>
 			<th width="1px">
-				<?php echo JHtml::_('grid.sort', 'Year', 'year', $listDirn, $listOrder); ?>
+				<?php echo JHtml::_('grid.sort', 'Dated', 'dated', $listDirn, $listOrder); ?>
 			</th>
 			<th width="1px">
 				<?php echo JHtml::_('grid.sort', 'Start date', 'startdate', $listDirn, $listOrder); ?>
@@ -92,15 +89,6 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 							<?php echo $row->type; ?>
 						</td>
 						<td>
-							<?php
-								$link = $row->link;
-								if(strlen($link) > 30) {
-									$link = substr($link, 0 , 30) . "...";
-								}
-								echo $link;
-							?>
-						</td>
-						<td>
 							<?php echo $row->singles; ?>
 						</td>
 						<td>
@@ -110,7 +98,7 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 							<?php echo $row->teams; ?>
 						</td>
 						<td>
-							<?php echo $row->year; ?>
+							<?php echo ($row->dated ? "Yes" : "No") ?>
 						</td>
 						<td>
 							<?php 

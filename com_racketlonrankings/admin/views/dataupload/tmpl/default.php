@@ -35,5 +35,18 @@ defined('_JEXEC') or die('Restricted Access');
             </div>
         </fieldset>
     </div>
+
     <input type="hidden" name="task" value="submit" />
 </form>
+
+<script>
+    console.log("Hi2");
+    jQuery("#adminForm").submit(function(e){
+        var count = 0;
+        var button = jQuery('[name=submit]');
+        window.setInterval(function() {
+            count += 1;
+            button.text("Calculating" + (".".repeat(count % 4)));
+        }, 500);
+    });
+</script>

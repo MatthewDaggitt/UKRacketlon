@@ -27,10 +27,15 @@ class RacketlonRankingsViewPlayer extends JViewLegacy
 	function display($tpl = null)
 	{
 		// Assign data to the view
-		$this->params = $this->get('Msg');
- 		$this->players = $this->get('Players');
- 		$this->id = JFactory::getApplication()->input->get('player_id', 1, 'INT');
+		$this->updating = $this->get("Updating");
+		$this->id = JFactory::getApplication()->input->get('player_id', 1, 'INT');
 
+		if(!$this->updating)
+		{
+			$this->params = $this->get('Msg');
+ 			$this->players = $this->get('Players');
+		}
+		
  		if($this->id >= -1)
  		{
  			JFactory::getDocument()->setTitle($this->params['player']['name']);
