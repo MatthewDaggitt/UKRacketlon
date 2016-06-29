@@ -12583,3 +12583,34 @@ table.footable.rankings-table>thead>tr>th.footable-sortable {
 		width: 100%;
 	}
 }
+
+/*********/
+/* Other */
+/*********/
+
+.bd-video {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 450px;
+}
+@media (max-width: 1191px) {
+	.bd-video {
+	    height: 400px;
+	}
+}
+@media (max-width: 991px) {
+	.bd-video {
+	    height: 350px;
+	}
+}
+@media (max-width: 767px) {
+	.bd-video {
+	    height: 300px;
+	}
+}
+@media (max-width: 479px) {
+	.bd-video {
+	    height: 250px;
+	}
+}
