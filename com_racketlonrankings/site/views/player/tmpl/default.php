@@ -21,6 +21,8 @@ defined('_JEXEC') or die('Restricted access');
 		$tournaments = $this->params["tournaments"];
 		$updateDate = $this->params["updateDate"];
 
+		$lastMatch = end(end($tournaments)['matches']);
+
 		$ratingsOverTime = array(
 			'names' => array(),
 			'dates' => array(),
@@ -140,7 +142,9 @@ defined('_JEXEC') or die('Restricted access');
 			<div class="rating-section">
 				<h2>
 					Overall rating: <?php echo ("<b>" . $player['class'] . "</b> (" . $player['rating'] . ")") ?>
+					<span class="bonus-span"> <?php echo ("(" . ($lastMatch['p1rating'] + $lastMatch['p1ratingchg']) . " + " . $lastMatch['bonus'] . " bonus points)") ?> </span>
 				</h2>
+
 				<div id="all-rating-container">
 					<div id="all-rating-graph"></div>
 				</div>
