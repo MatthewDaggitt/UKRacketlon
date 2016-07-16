@@ -12531,9 +12531,13 @@ table.tournament-table.footable-details>tbody>tr>th:nth-child(1) {
 	text-align: center;
     padding-top: 30px;
 }
-
 .rankings-table tr td:nth-child(1) {
-   padding-right: 5px;
+	padding-right: 5px;
+}
+
+table.footable.rankings-table>thead>tr>th.footable-sortable.class-col,
+.player-class-cell {
+	padding-right: 5%;
 }
 
 .rankings-table td:nth-child(3),

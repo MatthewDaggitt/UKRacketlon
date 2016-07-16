@@ -140,6 +140,8 @@ defined('_JEXEC') or die('Restricted access');
 	<script>
 		// Data setup
 		var players = <?php echo $js_players ?>;
+		var updateDate = new Date("<?php echo $updateDate ?>");
+		var oneDay = 24*60*60*1000;
 
 		var rows = [];
 		for(var i = 0; i < players.length; i++)
@@ -154,11 +156,29 @@ defined('_JEXEC') or die('Restricted access');
 				country += " GBR";
 			}
 
+			if(p['gbrdate'] != "0000-00-00" && country.indexOf("GBR") == -1)
+			{
+				var lastDate = new Date(p['gbrdate']);
+				var days = Math.round(Math.abs((updateDate.getTime() - lastDate.getTime())/(oneDay)));
+
+				if(days <= 275)
+				{
+					country += " GBR";
+				}
+			}
+
 			rows.push({
 				"rank": 	i+1,
 				"name": 	name,
 				"rating": 	p['rating'],
-				"class": 	(1 - p['rating']/100000).toFixed(5),	// Needed to hack the sorting order
+				"class": 	
+				{
+					"options": 
+					{
+						"classes": "player-class-cell"
+					},
+					"value": (1 - p['rating']/100000).toFixed(5),	// Needed to hack the sorting order
+				},
 				"tt": 		(1 - p['ratingtt']/100000).toFixed(5),
 				"bd": 		(1 - p['ratingbd']/100000).toFixed(5),
 				"sq": 		(1 - p['ratingsq']/100000).toFixed(5),

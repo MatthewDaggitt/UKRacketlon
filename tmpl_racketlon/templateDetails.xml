@@ -105,7 +105,7 @@
 
 
 				<field type="spacer" class="text" label=" " />
-				<field type="spacer" class="text" label="&lt;b&gt;Node&lt;/b&gt; High resolution images are preferred for slideshow backgrounds. However to reduce the loading time for the front page please feed them through a minifier (such as www.compressjpeg.com) before uploading." />
+				<field type="spacer" class="text" label="&lt;b&gt;Note:&lt;/b&gt; High resolution images are preferred for slideshow backgrounds. However to reduce the loading time for the front page please feed them through a minifier (such as www.compressjpeg.com) before uploading." />
 
 				<field type="spacer" class="text" label=" " />	
 
