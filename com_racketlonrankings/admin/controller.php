@@ -289,7 +289,7 @@ class RacketlonRankingsController extends JControllerLegacy
 			if(!is_null($match))
 			{
 				$rating   = $match['p1rating']   + $match['p1ratingchg'] + $match['bonus'];
-				$ratingtt = $match['p1ratingtt'] + $match['p1ratingchgsq'];
+				$ratingtt = $match['p1ratingtt'] + $match['p1ratingchgtt'];
 				$ratingbd = $match['p1ratingbd'] + $match['p1ratingchgbd'];
 				$ratingsq = $match['p1ratingsq'] + $match['p1ratingchgsq'];
 				$ratingtn = $match['p1ratingtn'] + $match['p1ratingchgtn'];
