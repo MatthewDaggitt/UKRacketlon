@@ -85,7 +85,7 @@ class RacketlonRankingsController extends JControllerLegacy
 	protected $lineNo;
 	protected $commitFrequency = 1000;
 
-	public function submit($t)
+	public function submit($t=null)
 	{
 		$this->application = JFactory::getApplication();
 		$this->db = JFactory::getDbo();
@@ -318,7 +318,7 @@ class RacketlonRankingsController extends JControllerLegacy
     				->delete($this->playerTable)
     				->where('id=' .$p['id']);
 
-    			$this->application->enqueueMessage("Removed " . $p['name'] . " from database as no matches can be found", "Warning");
+    			$this->application->enqueueMessage("Removed " . $p['name'] . " from database as they have not played in any matches.", "Warning");
 			}
 			$this->db->setQuery($query);
 			$this->db->execute();
