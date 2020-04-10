@@ -195,7 +195,7 @@ class DesignerContentSingleArticle extends DesignerContentItem
     
     public function proccessingContent($content) {
         $plugin = JPluginHelper::getPlugin('content', 'pagebreak');
-        if (count($plugin) > 0) {
+        if (is_object($plugin) || (is_array($plugin) && count($plugin) > 0)) {
             $params = new JRegistry($plugin->params);
             switch($params->get('style')) {
                 case 'sliders':
